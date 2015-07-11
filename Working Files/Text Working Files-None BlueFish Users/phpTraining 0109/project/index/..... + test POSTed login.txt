@@ -1,0 +1,8 @@
+			$username = $_POST['username'];
+			$password = $_POST['password'];
+			if (userAuthorised($username, $password)) {
+				header("Location: index.php");
+			} else {
+				
+				$contentFile = 'includes/tp_loginForm.php';
+			}

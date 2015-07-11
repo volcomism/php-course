@@ -1,0 +1,36 @@
+
+	echo "<table border='1'>";
+		
+		echo "<tr>";
+		
+			echo "<td>#</td>";
+			echo "<td>Salut</td>";
+			echo "<td>FirstName</td>";
+			echo "<td>LastName</td>";
+			echo "<td>Company</td>";
+	
+		echo "</tr>";
+
+	
+	$indx = 1;	
+	while ($row = mysql_fetch_array($tPerson_SQLselect_Query, MYSQL_ASSOC)) {
+	    $Salutation = $row['Salutation'];
+	    $FirstName = $row['FirstName'];
+	    $LastName = $row['LastName'];
+	    $CompanyID = $row['CompanyID'];
+	    
+		echo "<tr>";
+		
+			echo "<td>".$indx."</td>";       //  this is NOT  tPerson.ID
+			echo "<td>".$Salutation."</td>";
+			echo "<td>".$FirstName."</td>";
+			echo "<td>".$LastName."</td>";
+			echo "<td>".$CompanyID."</td>";
+	
+		echo "</tr>";
+
+	    $indx++;
+	    
+	}
+	
+	echo "</table>";	

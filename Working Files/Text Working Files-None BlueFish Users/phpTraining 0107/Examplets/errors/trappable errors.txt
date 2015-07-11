@@ -1,0 +1,13 @@
+	echo 3 * $a;
+	echo "<br />---------------------------------<br />";
+	$a = "asdf";
+	
+	echo strlen($a,3);
+	echo "<br />---------------------------------<br />";
+
+	$testValue = "abcdef1234";
+	$thisSQL = "INSERT into test (testitem) VALUES ('".$testValue."')";
+	$result = mysql_query($thisSQL);
+	echo mysql_error();
+	echo "<br />---------------------------------<br />";
+	

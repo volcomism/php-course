@@ -1,0 +1,7 @@
+		
+	    $Salutation = $row['tPersonSalutation'];
+	    $FirstName = $row['tPersonFirstName'];
+	    $LastName = $row['tPersonLastName'];
+	    $CompanypreName = $row['tCompanypreName'];
+	    $CompanyName = $row['tCompanyName'];
+	    

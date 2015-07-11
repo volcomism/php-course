@@ -1,0 +1,37 @@
+<?php
+/*
+
+*	File:					/includes/inc_userCreateACLdropdown.php
+*		used in 			/forms/userCreate.php
+*
+*	By:			TMIT
+*	Date:			2010-06-01
+*
+*	This script creates the accessLevel DROPDOWN  FIELD 
+*		used in 				inc_userCreateForm.php 
+*
+*
+*=====================================
+*/
+
+			{	//	create the accessLevel DROPDOWN  FIELD 
+				$access_SQL =  "SELECT accessLevel, userType FROM tAccessControl ";
+				$access_SQL .= "ORDER By accessLevel ";
+				
+				$access_SQL_Query = mysql_query($access_SQL);	
+	
+				$fld_access = '<select name="accessLevel">';		 
+				$fld_access .= '<option value="0"> -- access level -- </option>';	
+					while ($row = mysql_fetch_array($access_SQL_Query, MYSQL_ASSOC)) {
+					    $ID = $row['ID'];
+					    $accessLevel = $row['accessLevel'];
+					    $userType = $row['userType'];
+					    
+					    $fld_access .= '<option value="'.$ID.'">'.$userType.'</option>';
+					}			
+					mysql_free_result($access_SQL_Query);			
+				$fld_access .= '</select>';				
+			//	END: create the accessLevel DROPDOWN  FIELD 
+			}	
+			
+?>			

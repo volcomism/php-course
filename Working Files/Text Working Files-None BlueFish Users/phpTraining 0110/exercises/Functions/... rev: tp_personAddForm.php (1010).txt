@@ -1,0 +1,6 @@
+	
+	//	Revisions 1010 - place at END of file before php tag
+	if (!empty($insertMsg)) {
+		echo $insertMsg;
+	}
+

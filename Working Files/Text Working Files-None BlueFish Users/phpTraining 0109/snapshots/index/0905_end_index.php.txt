@@ -1,0 +1,154 @@
+<?php
+
+/*	File:			index.php
+*
+*	Folder:		root (htdocs)	
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	This script is the HOMEPAGE for alphaCRM
+*
+*
+*============================================================
+*/
+
+
+	{ 		//	Secure Connection Script
+			include('../htconfig/dbConfig.php'); 
+			$dbSuccess = false;
+			$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+			
+			if ($dbConnected) {		
+				$dbSelected = mysql_select_db($db['database'],$dbConnected);
+				if ($dbSelected) {
+					$dbSuccess = true;
+				} 	
+			}
+			//	END	Secure Connection Script
+	}
+
+	if ($dbSuccess) {
+		include_once('includes/fn_authorise.php');
+		include_once('includes/stringFunctions.php');
+
+		$menuFile = '';
+		$contentFile = '';
+		$contentMsg = '';
+		
+		$loginAuthorised = ($_COOKIE["loginAuthorised"] == "loginAuthorised");
+
+		if ($loginAuthorised) {
+						
+			$accessLevel = $_COOKIE["accessLevel"];
+			$userID = $_COOKIE["userID"];
+					
+			$status = $_GET['status'];
+			if (isset($status) AND ($status == "logout")) {
+				setcookie("loginAuthorised", "", time()-7200);	
+				header("Location: index.php");
+			} else {
+				
+				//		This is where we manage CONTENT for LOGGED-IN users
+				$menuFile = 'includes/tp_crmMenu.php';
+				
+				$contentCode = $_GET['content'];
+				
+				//  DO SOMETHING depending on the $contentCode.  
+				//		update code:   0905 Content management 
+				switch ($contentCode) {
+				    case "companyList":
+				        $contentFile = "includes/tp_companyList.php";
+				        break;
+				    case "insertCompany":
+				        $contentMsg = $contentCode;
+				        break;
+				    case "editCompany":
+				        $contentMsg = $contentCode;
+				        break;
+				    case "insertUser":
+				        $contentMsg = $contentCode;
+				        break;
+				    case "companyPeopleEdit":						
+ 				         $contentFile = "includes/tp_companyPeopleEdit.php";
+				        break;
+				    case "personEditForm":
+				        $contentFile = "includes/tp_personEditForm.php";
+				        break;
+				}							
+			}
+		
+		} else {
+			$username = $_POST['username'];
+			$password = $_POST['password'];
+			if (userAuthorised($username, $password)) {
+				header("Location: index.php");
+			} else {
+				
+				$contentFile = 'forms/tp_loginForm.php';
+			}
+						
+		}
+
+	} else {
+			$contentMsg = 'No database connection.';
+	}	
+
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+<title>php MySQL Training</title>
+<meta name="generator" content="Bluefish 2.2.1" >
+<meta name="author" content="Chris" >
+<meta name="date" content="2012-01-06T01:44:13-0500" >
+<meta name="copyright" content="TMIT World Limited">
+<meta name="keywords" content="Infinite Skills - php/MySQL Training">
+<meta name="description" content="Infinite Skills - php/MySQL Training">
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+<link rel="stylesheet" href="css/alphacrm_layout.css" type="text/css" />
+<link rel="stylesheet" href="css/alphacrm_style.css" type="text/css" />
+</head>
+
+</head>
+<body>
+
+
+ <div id="outerWrapper">
+
+		    <div id="header">
+		      <p>alpha CRM application</p>				
+		    </div><!-- end header -->
+
+    		<div id="innerWrapper">
+    		
+      		<div id="menuColumn">
+					<p>Menu</p>					
+      			<br />
+      			<?php if (file_exists($menuFile)) { include($menuFile); } 
+      			?>
+		      </div><!-- end menuColumn -->
+
+      		<div id="contentColumn">
+      			<?php 
+      					if (file_exists($contentFile)) { include($contentFile); } 
+		      			if (!empty($contentMsg)) {
+		      				echo $contentMsg;
+		      			}
+      			?>
+      		</div><!-- end contentColumn -->
+      		
+    		</div><!-- end innerWrapper -->
+
+		    <div id="footer">
+		      <p>&copy; 2010, <a href="http://www.TMITworld.com" target="_TMIT">
+		      TMIT World - the database experts
+		      </a></p>
+			 </div><!-- end footer -->
+    
+  </div><!-- end outerWrapper -->
+
+
+</body>
+</html>

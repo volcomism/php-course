@@ -1,0 +1,11 @@
+
+echo '<h4>Semantic Error:</h4>';
+
+for ($i = 5; $i < 2; $i++) {
+	echo $i;
+}
+echo "<br />";
+echo '$i = '.$i."<br />";
+
+echo "<br />";
+

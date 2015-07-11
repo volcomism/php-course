@@ -1,0 +1,52 @@
+		
+	{ 		//	Secure Connection Script
+			include('../../htconfig/dbConfig.php'); 
+			$dbSuccess = false;
+			$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+			
+			if ($dbConnected) {		
+				$dbSelected = mysql_select_db($db['database'],$dbConnected);
+				if ($dbSelected) {
+					$dbSuccess = true;
+				} 	
+			}
+			//	END	Secure Connection Script
+	}
+	
+	{	//		SELECT all records in a table 
+		$tableName = "tUser";	
+		$table_SQLselect = "SELECT * ";
+		$table_SQLselect .= "FROM ";
+		$table_SQLselect .= $tableName." ";
+		$table_SQLselect_Query = mysql_query($table_SQLselect); 	
+	}
+	
+	// File handling example:   fwrite
+	$csvFileName = $tableName.".csv";
+	$fopenMode = 'a';
+	$csvFileHandle = fopen($csvFileName, $fopenMode); 	
+		
+	if ($csvFileHandle) {
+  	 	echo '$csvFileHandle:'.$csvFileHandle.'<br /><br />';
+
+		while ($tableRow = mysql_fetch_array($table_SQLselect_Query, MYSQL_ASSOC)) {
+	
+				$tableRowCSV = implode(",", $tableRow);
+				
+				$tableRowCSV = str_replace("\n","",$tableRowCSV);
+				$tableRowCSV = str_replace("\r","",$tableRowCSV);
+				$tableRowCSV = $tableRowCSV."\n";
+				
+				$fwriteresult = fwrite($csvFileHandle, $tableRowCSV);
+				if ($fwriteresult) {
+			  	 	echo $fwriteresult.' bytes written for '.$tableRowCSV.'<br />';		
+				} else {
+					echo "ERROR writing ".$tableRowCSV." to ".$csvFileName.'<br />';
+				}
+		}		
+		fclose($csvFileHandle);
+
+	} else {
+		echo 'ERROR: fopen('.$csvFileName.', '.$fopenMode.');'.'<br />';
+	}
+

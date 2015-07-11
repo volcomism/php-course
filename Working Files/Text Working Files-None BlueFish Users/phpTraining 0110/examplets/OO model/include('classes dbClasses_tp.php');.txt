@@ -1,0 +1,32 @@
+/*	File:			index.php
+*
+*	Folder:		root (htdocs)	
+*	By:			TMIT
+*	Version:		2
+*	Date:			2010-07-06
+*
+*	Revisions:	2		ooModel connection Script
+*
+*	This script is the HOMEPAGE for alphaCRM
+*
+*
+*============================================================
+*/
+
+include('classes/dbClasses_tp.php');
+/*	File:			index.php
+*
+*	Folder:		root (htdocs)	
+*	By:			TMIT
+*	Version:		2
+*	Date:			2010-07-06
+*
+*	Revisions:	2		ooModel connection Script
+*
+*	This script is the HOMEPAGE for alphaCRM
+*
+*
+*============================================================
+*/
+
+include('classes/dbClasses_tp.php');

@@ -1,0 +1,7 @@
+
+echo '<h4>Syntax Errors:</h4>';
+
+$a = 8 x 5;
+echo "8 x 5 = ".$a
+
+

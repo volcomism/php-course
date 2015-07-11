@@ -1,0 +1,12 @@
+//	FUNCTIONS
+
+		function fullCoName($coID, $preName, $coName, $regType)
+		{
+			if (empty($coID)) {
+				$temp = "Un-Allocated";
+			} else {
+				$temp = trim($preName." ".$coName." ".$regType);
+			}
+			return $temp;
+		}
+

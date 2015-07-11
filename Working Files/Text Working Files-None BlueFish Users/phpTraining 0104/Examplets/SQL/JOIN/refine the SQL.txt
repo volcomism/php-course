@@ -1,0 +1,13 @@
+
+	$tPerson_SQLselect = "SELECT  ";
+	$tPerson_SQLselect .= "tPerson.ID AS tPersonID, ";
+	$tPerson_SQLselect .= "tPerson.Salutation AS tPersonSalutation, ";
+	$tPerson_SQLselect .= "tPerson.FirstName AS tPersonFirstName, ";
+	$tPerson_SQLselect .= "tPerson.LastName AS tPersonLastName, ";
+	$tPerson_SQLselect .= "tCompany.preName AS tCompanypreName, ";
+	$tPerson_SQLselect .= "tCompany.Name AS tCompanyName ";
+	$tPerson_SQLselect .= "FROM ";
+	$tPerson_SQLselect .= "tPerson ";		
+	$tPerson_SQLselect .= "LEFT OUTER JOIN tCompany ON ";		
+	$tPerson_SQLselect .= "tPerson.CompanyID = tCompany.ID ";
+	

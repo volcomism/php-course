@@ -1,0 +1,11 @@
+<?php
+
+	$loginAuthorised = $_GET["auth"];
+	
+	if ($loginAuthorised) {
+		$contentFile = 'includes/inc_crmMenu.php';
+	} else {
+		header("Location: forms/loginForm.php");
+	}	
+
+?>

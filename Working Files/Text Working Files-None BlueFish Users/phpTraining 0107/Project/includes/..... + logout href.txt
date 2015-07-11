@@ -1,0 +1,5 @@
+		//		update code:   0806_03
+		echo '<a href="index.php?status=logout">
+				<span style="color: maroon; ">Logout</span>
+				</a>';
+		echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';

@@ -1,0 +1,43 @@
+<?php
+
+	$status = $_GET['status'];
+	if (isset($status) AND ($status == "logout")) {
+		setcookie("loginAuthorised", "", time()-7200);	
+		$loginAuthorised = false;
+	} else {
+		$loginAuthorised = ($_COOKIE["loginAuthorised"] == "loginAuthorised");
+	}
+	
+	if ($loginAuthorised) {
+		$contentFile = 'includes/inc_crmMenu.php';
+	} else {
+		header("Location: forms/loginForm.php");
+	}	
+	
+
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>php MySQL Training</title>
+<meta name="generator" content="Bluefish 2.2.1" >
+<meta name="author" content="Chris" >
+<meta name="date" content="2012-01-06T00:41:41-0500" >
+<meta name="copyright" content="TMIT World Limited">
+<meta name="keywords" content="Infinite Skills - php/MySQL Training">
+<meta name="description" content="Infinite Skills - php/MySQL Training">
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+<link rel="stylesheet" href="css/alphacrm.css" type="text/css" />
+
+</head>
+<body>
+
+<?php
+					
+	include_once($contentFile);
+
+?>
+
+
+</body>
+</html>

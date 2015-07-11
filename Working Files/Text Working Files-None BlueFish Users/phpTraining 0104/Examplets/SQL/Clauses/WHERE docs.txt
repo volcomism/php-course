@@ -1,0 +1,8 @@
+*	File:			selectJoinWHERE_Demo.php
+*	By:			TMIT
+*	Date:		2010-06-02
+*
+*	This script demonstrates SQL SELECT 
+*		using tPerson LEFT OUTER JOIN tCompany
+*		with SQL WHERE clause
+*		and SQL ORDER BY clause

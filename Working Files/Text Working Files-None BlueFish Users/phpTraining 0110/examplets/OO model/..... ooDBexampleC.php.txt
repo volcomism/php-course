@@ -1,0 +1,62 @@
+<?php
+
+//	File:   ooDBexampleC.php
+//	folder:			DEMO
+
+include('../../htconfig/dbConfig.php'); 
+include('../classes/dbClasses.php'); 
+
+	{ 	//   class DBconnection example 
+			$connectDB = new DBconnection(	$db['hostname'],
+														$db['username'],
+														$db['password'],
+														$db['database']	);
+														
+			$connectionID = $connectDB->getConnectionID();
+			
+			echo "New connectionID  is $connectionID";
+		
+			echo "<br /><hr /><br />";
+	
+	}
+
+	{ 	//   class cTable example 
+	
+		$tableName = "tCompany";
+		$tableObject = new cTable($tableName);
+		$recordCount = $tableObject->getRecordCount();	 
+		
+		echo "Number of records in ".$tableName." is: ".$recordCount;
+		
+		echo "<br /><hr /><br />";
+
+	}
+	
+	{ 	//   class cTable example 2
+
+		$companyObject = new cTable($tableName);
+
+		$company = $companyObject->getAll();
+
+		for ($ii = 0; $ii < $recordCount; $ii++) {
+			$id = $company[$ii]['ID'];
+			$coName = $company[$ii]['Name'];
+			echo "company ".$id." = ".$coName."<br />";
+		}
+
+		echo "<br /><hr /><br />";
+
+	}
+	
+	{ 	//   class cRecord example 
+
+		$personObject = new cRecord("tPerson", 5);
+		$person = $personObject->getRecord();
+		
+		echo trim($person['Salutation']." ".$person['FirstName']." ".$person['LastName']);
+		echo "<br /><hr /><br />";
+
+	}
+	
+
+?>

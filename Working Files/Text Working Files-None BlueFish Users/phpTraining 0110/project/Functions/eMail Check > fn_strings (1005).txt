@@ -1,0 +1,24 @@
+/*  eMail Functions        vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv*/
+/*							revisions 1005								 */
+
+	   function check_email($email) {  
+	    	if( (preg_match('/(@.*@)|(\.\.)|(@\.)|(\.@)|(^\.)/', $email)) || 
+	    		(preg_match('/^.+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/',$email)) ) { 
+				 return true;
+	    	} else {
+				 return false;
+			}    	
+	    }
+
+	    function check_email_mx($email) {  
+	    		$host = explode('@', $email);
+   		
+	    		if(checkdnsrr($host[1].'.', 'MX') ) return true;
+	    		if(checkdnsrr($host[1].'.', 'A') ) return true;
+	    		if(checkdnsrr($host[1].'.', 'CNAME') ) return true;
+   		
+	    	return false;
+	    }
+
+/*							revisions 1005								 */	
+/*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/

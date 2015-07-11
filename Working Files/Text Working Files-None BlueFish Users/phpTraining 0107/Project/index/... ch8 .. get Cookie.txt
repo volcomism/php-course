@@ -1,0 +1,2 @@
+	//		update code:   0806_02 
+	$loginAuthorised = ($_COOKIE["loginAuthorised"] == "loginAuthorised");

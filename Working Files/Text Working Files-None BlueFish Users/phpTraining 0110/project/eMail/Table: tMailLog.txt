@@ -1,0 +1,10 @@
+CREATE TABLE alphacrm.tMailLog (
+ID INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+mailTargetType VARCHAR( 1 ) NOT NULL ,
+targetID INT( 11 ) NOT NULL ,
+templateID INT( 11 ) DEFAULT '0' ,
+contentID INT( 11 ) DEFAULT '1',
+subjectText VARCHAR(255) NOT NULL ,
+contentText TEXT NOT NULL DEFAULT '',
+mailDateTime DATETIME NOT NULL
+)

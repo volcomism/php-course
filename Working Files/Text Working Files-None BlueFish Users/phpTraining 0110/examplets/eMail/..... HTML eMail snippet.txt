@@ -1,0 +1,6 @@
+<h4 style="color: blue;">php mail() provides facilities to:</h4>
+<ul>
+	<li><strong>embed HTML</strong> in mail content or templates</li>
+	<li>use variables to <strong>repeat addresses</strong></li>
+	<li>use variables to <strong>personalise bulk mail</strong></li>
+</ul>

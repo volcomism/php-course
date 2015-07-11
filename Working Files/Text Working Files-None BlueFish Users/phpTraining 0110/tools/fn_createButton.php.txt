@@ -1,0 +1,106 @@
+<?php
+
+/*		THIS IS INCLUDE FILE:   fn_createButton.php
+*
+*		folder:			includes/
+*
+*		used in:       index.php
+*
+*		version:    	1301   date: 2010-07-03
+*
+*		purpose:			FUNCTIONS:
+*							createButton - for use in alphaCRM
+*
+*
+*	===========================================================================
+*/		
+
+	function createButton($xOffset, $background, $textColour, $string, $fileName) {
+	
+		//		CONSTANTS
+			$imageSizeY = 16;
+		
+			//		set a path to the font
+			$font_file = 'FreeSans.ttf';
+			$font_path = '../fonts/'.$font_file;
+			
+			//		path and name of image file to be saved	
+			$image_file = $fileName.'.png';
+			$image_path = '../images/'.$image_file;
+		
+			$fontsize = 12;
+			$textAngle = 0;
+			//$xOffset = 5;
+			$yOffset = 13;
+		
+		
+		// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+		
+		
+		//		dummy image
+		
+		
+			$dummy_image = imagecreate(300, $imageSizeY);		
+			$dummyColour = imagecolorallocate ($dummy_image, 0, 0, 0);
+			$dummy_imagettfArray =   imagettftext (	$dummy_image, $fontsize, 
+									0, 
+									$xOffset, $yOffset, 
+									$dummyColour, 
+									$font_path, 
+									$string);
+	
+			$ttfImageWidth = $dummy_imagettfArray[2]; 
+			
+			//echo $ttfImageWidth."<br /><hr /><br />";
+		//		^^^^^^^^^^^^^^^^^^^^^^^^^^^
+		
+		
+		$image = imagecreate($ttfImageWidth+$xOffset, $imageSizeY);
+	
+		$bgHexColour = trim($background);
+		$bgHexColour = trim($bgHexColour, "#");
+		
+		$bgR = hexdec(substr($bgHexColour,0,2));
+		$bgG = hexdec(substr($bgHexColour,2,2));
+		$bgB = hexdec(substr($bgHexColour,4,2));
+
+	//		first instance of imagecolorallocate sets background of image.
+		$background = imagecolorallocate ($image, $bgR, $bgG, $bgB);		
+	
+	//		now set a colour for the text
+		$txHexColour = trim($textColour);
+		$txHexColour = trim($txHexColour, "#");
+		
+		$txR = hexdec(substr($txHexColour,0,2));
+		$txG = hexdec(substr($txHexColour,2,2));
+		$txB = hexdec(substr($txHexColour,4,2));
+		
+		$textColour = imagecolorallocate ($image, $txR, $txG, $txB);
+		
+	//		create the image 
+	
+		$imagettfArray =   imagettftext (	$image, $fontsize, 
+								$textAngle, 
+								$xOffset, $yOffset, 
+								$textColour, 
+								$font_path, 
+								$string);
+
+
+
+	//		save the image (MAKE SURE PERMISSIONS of the target directory are set to 'WRITE')
+		if (imagepng ( $image, $image_path)) {
+			chmod($image_path, 0666);			//		used for commercial grade systems 		
+			echo 'The image produced at "'.$image_path.'" is: ';	
+			echo '<img src="'.$image_path.'" alt="Test Image from GD Library" />';
+		} else {
+			echo "Failed to create image.";
+		}
+
+	//		release the memory used by the image 
+		imagedestroy($image);			
+		return $errorMsg;
+	}	
+
+ 
+?>

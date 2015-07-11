@@ -1,0 +1,86 @@
+/*		StyleSheet file = alphacrm_style.css
+
+			*
+			* Bespoke  Template Stylesheet by TMITworld.co.uk
+			* Author www.TMITworld.co.uk
+			*
+			*		used in php/MySQL Training Course
+			*		for Infinite Skill Inc.
+			*
+			* StyleSheet name = alphacrm_style.css
+			 			
+*/
+
+body {
+	font-family: arial, helvetica, sans-serif;
+	color:#0000FF;
+	text-decoration: none;
+}
+
+a {
+	color:#0000FF;
+	text-decoration: none;
+	
+}
+
+a:hover {
+	border-bottom:2px solid;
+	color:maroon;
+	
+}
+
+a .tableHeader {
+	background-color: #000000;	
+	color: white;	
+	font-weight: bold;
+	border-bottom:1px solid;	
+}
+
+
+a:hover .tableHeader {
+	background-color: #000000;	
+	color: red;	
+	font-weight: bold;
+	border-bottom:1px solid;	
+}
+
+.trOdd {
+	background-color: #BFFFCF;	
+}
+
+.trEven {
+	background-color: #FCCDFF;	
+}
+
+.textNormal {
+	font-family: arial, helvetica, sans-serif;
+	color: black;	
+}
+
+.textEmph {
+	color: maroon;	
+}
+.tableHeader {
+	background-color: #000000;	
+	color: white;	
+}
+	
+.pad60 {
+	margin-left: 60px;	
+}
+
+.pad120 {
+	margin-left: 120px;	
+}
+
+.mainMenuItem {
+	font-family: arial, helvetica, sans-serif;
+	color: maroon;	
+}
+
+a:hover .mainMenuItem {
+	color: blue;	
+	font-weight: bold;
+	border-bottom:1px solid;	
+}
+

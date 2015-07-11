@@ -1,0 +1,3 @@
+				    case "insertCompany":
+				        $contentFile = "includes/tp_companyInsert.php";
+				        break;

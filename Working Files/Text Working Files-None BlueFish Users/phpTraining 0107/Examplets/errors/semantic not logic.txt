@@ -1,0 +1,13 @@
+
+echo '<h4>Semantic (not Logic) Error:</h4>';
+
+$i = 9;
+$test = 3;
+echo '$i = '.$i."<br />";
+echo '$test = '.$test."<br />";
+
+if ($i = $test) {echo '$i = $test'; } else {echo '$i <> $test'; }
+
+
+echo "<br />";
+

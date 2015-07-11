@@ -1,0 +1,36 @@
+
+	echo '<h4>Database Error - with FORMs:</h4>';
+	
+	$testValue = $_POST['testValue'];
+	
+	if (isset($testValue)) {
+		
+			$thisSQL = "INSERT into test (testitem) VALUES ('".$testValue."')";
+			echo $thisSQL."<br />";
+			
+			if (mysql_query($thisSQL))  {	
+				echo 'used to Successfully add new testitem '.$testValue.'.<br /><br />';
+			} else {
+				echo '<span style="color:red; ">FAILED to add new testitem '.$testValue.'.</span><br /><br />';
+				echo mysql_error();
+			}		
+			
+			unset($testValue);
+			
+	} else {
+	
+			unset($testValue);
+			echo '<form name="posttest" action="createTestTable.php" method="post">';	
+					echo '
+						<input type="text" name="testValue" size="30" maxlength="10" />
+						<input type="submit"  value="Save" />
+					';
+			echo '</form>';
+	}
+
+		unset($testValue);
+		echo "<br /><br />";
+		echo '<a href="createTestTable.php">
+				<span style="color: maroon; ">again</span>
+				</a>';
+

@@ -1,0 +1,8 @@
+
+		/*		revision    1005   */
+		function dataError($subject)
+		{				
+			$returnText = '<span class="dataError">'.$subject.'</span>';
+							  
+			return $returnText;
+		}

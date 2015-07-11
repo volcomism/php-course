@@ -1,0 +1,7 @@
+		//		update code:   0807_04
+		{		//				Restrict Access to Editor or higher
+			$accessLevel = $_COOKIE["accessLevel"];
+			if (isset($accessLevel) AND $accessLevel >= 21) {
+			}
+		//		END:		Restrict Access
+		}

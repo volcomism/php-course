@@ -1,0 +1,17 @@
+
+		$menuFile = '';
+		$contentFile = '';
+		$contentMsg = '';
+		
+		$loginAuthorised = ($_COOKIE["loginAuthorised"] == "loginAuthorised");
+
+		if ($loginAuthorised) {
+			
+			$menuFile = 'includes/tp_crmMenu.php';
+		
+		} else {
+				
+			$contentFile = 'includes/tp_loginForm.php';
+		
+		}
+		

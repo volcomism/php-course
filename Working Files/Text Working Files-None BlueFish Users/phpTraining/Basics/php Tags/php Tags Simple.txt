@@ -1,0 +1,16 @@
+<?php
+/*
+
+*	File:		
+*	By:		
+*	Date:		
+
+=====================================
+*/
+
+echo "This is the first index page";
+echo "<br />";
+echo "<br />";
+echo "by: rawr ";
+
+?>

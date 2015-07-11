@@ -1,0 +1,4 @@
+
+			$linkToEditCompany = '<a href="index.php?content=editCompany&companyID='.$ID.'">'
+										.$CompanyFullName.'</a>';
+			

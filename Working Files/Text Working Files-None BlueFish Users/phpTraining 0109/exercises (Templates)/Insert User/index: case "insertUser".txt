@@ -1,0 +1,3 @@
+				    case "insertUser":					
+ 				        $contentFile = "includes/tp_userInsert.php";
+				        break;

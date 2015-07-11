@@ -1,0 +1,3 @@
+					//		update code:   0806_01 
+					setcookie("loginAuthorised", "loginAuthorised", time()+7200, "/");					
+					header("Location: ../index.php");	

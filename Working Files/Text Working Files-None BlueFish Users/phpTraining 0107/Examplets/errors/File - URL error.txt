@@ -1,0 +1,11 @@
+$fileName = "../forms/companyListOrder.php";
+if(!file_exists($fileName))
+  {
+  echo "bad file link in script";
+  }
+else
+  {
+	  echo '<a href='.$fileName.'>
+					<span style="color: maroon; ">List Companies</span>
+				</a>';
+  }

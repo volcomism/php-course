@@ -1,0 +1,66 @@
+<?php
+/*
+
+*	File:					/includes/inc_userCreateSave.php
+*		used in 			/forms/userCreate.php
+*
+*	By:			TMIT
+*	Date:			2010-06-01
+*
+*	This script checks data from userCreate form 
+*		& saves if its OK
+*
+*=====================================
+*/
+		{  //   collect the data with $_POST
+			$username = $_POST["username"];	
+			$password = $_POST["password"];	
+			$passwordValidate = $_POST["passwordValidate"];	
+			$eMail = $_POST["eMail"];	
+		}
+			
+		{	//		check the data before processing it
+			$errorMsg = "";		 
+			if (strlen($username) < 5) { $errorMsg = "Username cannot be less than 5 characters<br />"; }
+			if (strlen($password) < 5) { $errorMsg .= "Password cannot be less than 5 characters<br />"; }
+			if ($password <> $passwordValidate) { $errorMsg .= "Password retypedoes not match.<br />"; }
+		}
+			
+		if (empty($errorMsg)) {		
+		
+			{  //   SQL:     $tUser_SQLinsert				
+				$tUser_SQLinsert = "INSERT INTO tUser (";			
+				$tUser_SQLinsert .=  "username, ";
+				$tUser_SQLinsert .=  "password, ";
+				$tUser_SQLinsert .=  "eMail ";
+				$tUser_SQLinsert .=  ") ";
+				
+				$tUser_SQLinsert .=  "VALUES (";
+				$tUser_SQLinsert .=  "'".$username."', ";
+				$tUser_SQLinsert .=  "'".$password."', ";	
+				$tUser_SQLinsert .=  "'".$eMail."' ";
+				$tUser_SQLinsert .=  ") ";
+			}
+			
+			{	//		run the SQL 
+						if (mysql_query($tUser_SQLinsert))  {	
+							echo 'New user successfully added.<br /><br />';
+						} else {
+							echo '<span style="color:red; ">FAILED to add new user.</span><br /><br />';
+							echo mysql_error();	
+							echo '<br /><br />';
+						}						
+			}
+		
+		} else {
+			{	//		error handling
+			echo "There are errors in the data:<br /><br />";
+			echo 	$errorMsg."<br /><br />";
+			echo '<a href="userCreate.php">
+						<span class="mainMenuItem">Click to Try Again</span>
+						</a>';
+			echo '<br /><br />';		
+			}	
+		}
+
+?>

@@ -1,0 +1,6 @@
+ 				    //	revision  1300:   admin tools
+				    //							
+				    case "toolButtons":
+				        $contentFile = "tools/tool_createButton.php";
+				        break;
+ 

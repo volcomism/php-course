@@ -1,0 +1,47 @@
+		{	//	FORM postUser
+			//							revision   1005 
+			//							create field variables to retain current values.
+			//	
+			
+			$fld_userInserted = '<input type="hidden" name="userInserted" value="1"/>';
+			$fld_access = dropdownUserAccess($accessLevel);
+	
+			$fld_username = '<input type="text" name="username" value="'.$username.'"/>';
+			$fld_password = '<input type="password" name="password" value="'.$password.'"/>';
+			$fld_passwordValidate = '<input type="text" name="passwordValidate" value="'.$passwordValidate.'"/>';
+			$fld_eMail = '<input type="text" name="eMail" value="'.$eMail.'"/>';
+
+			echo '<form name="postUser" action="index.php?content=insertUser" method="post">';
+					echo $fld_userInserted;
+					echo '
+					<table>
+						<tr>
+							<td>username</td>
+							<td>'.$fld_username.'</td>
+						</tr>
+						<tr>
+							<td>password</td>
+							<td>'.$fld_password.'</td>
+						</tr>
+						<tr>
+							<td>retype password</td>
+							<td>'.$fld_passwordValidate.'</td>
+						</tr>
+						<tr>
+							<td>eMail</td>
+							<td>'.$fld_eMail.'</td>
+						</tr>
+						<tr>
+							<td>access level</td>
+							<td>'.$fld_access.'</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td align="right"><input type="submit"  value="Save" /></td>
+						</tr>
+					</table>
+					';
+						
+			echo '</form>';
+		//	END: FORM postUser 
+		}			

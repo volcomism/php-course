@@ -1,0 +1,142 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>The Quiche Company</title>
+<!-- eMail Template   eMailTemplateONE.html -->
+<style type="text/css">
+<!--
+
+#body {
+	margin: 0; 
+	padding: 0;
+	
+}
+
+
+.tmitLogo{
+	position:absolute;
+	top: 20px;
+	left: 20px;
+	height: 150px;	
+	width:200px;
+	z-index:9;
+
+}
+
+.strip1 {
+	width:99%;
+	position:absolute;
+	top:0;
+	background-color: #731600;
+	height: 5.2em;	
+}
+
+.strip2 {
+	width:99%;
+	position:absolute;
+	top: 5.2em;	
+	background-color: #FF9C2A;
+	height: 1.5em;
+}
+
+.striptail {
+	width:100%;
+	background-color: #FF9C2A;
+	height: 1em;
+}
+
+
+
+.header{
+	width:90%;
+	text-align:center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 2em;
+	font-weight: bold;
+	color:#A2C100;
+	margin-top:0.3em;
+	margin-left:3em;
+}
+
+.strapline{
+	width:90%;
+	text-align:center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	font-weight: bold;
+	color:#FFFF33;
+	margin-left:8em;
+	margin-top:-1em;
+	font-style: italic;
+}
+
+.straptail{
+	width:100%;
+	text-align:center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	font-weight: bold;
+	color:#005064;
+	font-style: none;
+
+}
+
+.strapinfo{
+	width:100%;
+	text-align:center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	font-weight: bold;
+	color:#092049;
+	font-style: none;
+
+}
+
+.indentLetter{
+	margin-top: 8em;
+	width: 90%;
+	text-align:left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	font-weight: normal;
+	color:#000000;
+	font-style: none;
+	margin-left:2em;	
+}
+-->
+</style>
+
+</head>
+<body>
+		<div>
+					<div class="strip1"> 
+					  	<p class="header">Template Example ONE</p>
+					  	<p class="strapline"> - for exercise 1 of chapter 'eMail with php'</p>
+					</div>
+					<div class="strip2"></div>
+					<div class="tmitLogo">	</div>
+		</div>
+		<div class="indentLetter">
+		<span class="fsb"></span>
+					
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+					[%content]
+					<p>&nbsp;</p>
+
+			
+					Your obedient, modest and humble servant, <br/>
+					MegaBoss and Intergalactic SuperStar<br/>
+					The Quiche Company<br/>
+					<br/>
+					<br/>
+		</div>
+		<div class="striptail">
+		  <p class="straptail">Leaders in Quiche.</p>
+		</div>
+		<div class="strapinfo">
+		<br/>
+		  Squishy quiche is a dishy dish.</div>
+		  
+</body>
+</html>

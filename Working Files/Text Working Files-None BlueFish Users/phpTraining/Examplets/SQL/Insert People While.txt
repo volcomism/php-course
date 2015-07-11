@@ -1,0 +1,18 @@
+
+
+		$indx = 0;		
+		while($indx < $numRows) {			
+			$person_SQLinsert .=  "(
+										'".$personData[$indx][0]."',
+										'".$personData[$indx][1]."',
+										'".$personData[$indx][2]."',
+										'".$personData[$indx][3]."'
+										) ";
+			if ($indx < ($numRows - 1)) {
+				$person_SQLinsert .=  ",";
+			}
+			
+			$indx++;
+		}
+	
+	

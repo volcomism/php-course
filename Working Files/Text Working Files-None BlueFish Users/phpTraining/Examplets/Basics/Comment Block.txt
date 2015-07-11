@@ -1,0 +1,6 @@
+/*	this is a block of comment
+	lines
+
+	they start with slash-asterisk
+	and terminate with asterisk-slash
+*/

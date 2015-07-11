@@ -1,0 +1,55 @@
+<?php
+
+	//		File btnEmail.php
+	
+	//		set size of image
+		$imageSizeX = 50;
+		$imageSizeY = 16;
+		
+		$image = imagecreate($imageSizeX, $imageSizeY);
+
+	//		first instance of imagecolorallocate sets background of image.
+		$background_orange = imagecolorallocate ($image, 240, 140, 50);
+	
+	//		now set a colour for the text
+		$blue = imagecolorallocate ($image, 0, 0, 255);
+	
+		$textColour = $blue;
+		
+	//		set a path to the font
+		$font_file = 'FreeSans.ttf';
+		$font_path = '../fonts/'.$font_file;
+		
+	//		the text string
+		$string = 'eMail';
+
+	//		path and name of image file to be saved	
+		$image_file = 'btnEmail.png';
+		$image_path = '../images/'.$image_file;
+	
+		$fontsize = 12;
+		$textAngle = 0;
+		$xOffset = 5;
+		$yOffset = 14;
+		
+	//		create the image 
+		imagettftext (	$image, $fontsize, 
+							$textAngle, 
+							$xOffset, $yOffset, 
+							$textColour, 
+							$font_path, 
+							$string);
+	
+	//		save the image (MAKE SURE PERMISSIONS of the target directory are set to 'WRITE')
+		if (imagepng ( $image, $image_path)) {
+			chmod($image_path, 0666);			//		used for commercial grade systems 		
+			echo 'The image is "'.$image_path.'"<br /><br /><br />';	
+			echo '<img src="'.$image_path.'" alt="Test Image from GD Library" />';
+		} else {
+			echo "Failed to create image.";
+		}
+
+	//		release the memory used by the image 
+		imagedestroy($image);
+	
+?>

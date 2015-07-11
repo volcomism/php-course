@@ -1,0 +1,2 @@
+//		update code:   0809_01
+include_once('../includes/functions_accessLog.php');

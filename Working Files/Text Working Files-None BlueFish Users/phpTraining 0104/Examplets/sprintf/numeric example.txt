@@ -1,0 +1,19 @@
+echo '<p style=" text-decoration: underline; font-family: arial, helvetica, sans-serif; color:red; ">
+		numeric example		
+	</p>';
+
+	$town = "Banbury";
+	$ordinal = 2;
+	$county = "Oxfordshire";
+	$population = 42478;
+	$format = "The %dnd town in %s is %s with a population of %d ";
+	//             ^^           ^^    ^^                      ^^
+	//					\_____________\_____\_______________________\_____   4 specifications
+	//
+	//        and 4 arguments after the format string argument
+	//										 _____________________________________
+	//										/			/	       /         /   
+	$output = sprintf($format, $ordinal, $county, $town, $population);
+	echo "<p>$output</p>";
+	
+	echo "<br /><hr /><br />";

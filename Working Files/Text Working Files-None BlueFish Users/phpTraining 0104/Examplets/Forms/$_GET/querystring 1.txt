@@ -1,0 +1,4 @@
+
+	$getValue = 'TMIT World Limited';
+	
+	echo '<a href="twoPageModelOutput.php?companyName='.$getValue.'">Send Company Name</a>';

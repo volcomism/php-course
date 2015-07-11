@@ -1,0 +1,5 @@
+if (mysql_query($_SQL))  {	
+	
+} else {
+	
+}

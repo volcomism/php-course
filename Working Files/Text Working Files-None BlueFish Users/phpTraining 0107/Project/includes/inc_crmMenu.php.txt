@@ -1,0 +1,20 @@
+<?php
+/*
+*	INCLUDE FILE
+*	=================================
+*	File:			inc_crmMenu.php			
+*	Folder:		/includes/
+*  Used in:		index.php
+*	By:			TMIT
+*	Date:		   2010-06-01 
+*
+*	This script is the CRM menu.
+*
+*
+*=====================================
+*/
+
+
+
+
+?>

@@ -1,0 +1,17 @@
+									echo '<tr '.$rowClass.' height="20">
+									
+												<td>'.$personArray[$indx]['Salutation'].'&nbsp;</td>
+												
+												<td>'.$personArray[$indx]['FirstName'].'&nbsp;</td>
+		
+												<td>'.$personArray[$indx]['LastName'].'&nbsp;</td>
+		
+												<td>'.$personArray[$indx]['Tel'].'&nbsp;</td>
+												
+												<td>'.$personArray[$indx]['eMail'].'&nbsp;</td>';
+				
+									//		update code:   coPeopleEdit 0807_13_restrict_21
+									if (isset($accessLevel) AND $accessLevel >= 21) {
+											echo '<td>'.$personEditLink.'&nbsp;</td>';
+									}
+									echo '</tr>	';	

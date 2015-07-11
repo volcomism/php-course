@@ -1,0 +1,3 @@
+			    $RegType = $row['RegType'];
+			    
+			    $fullCoyName = trim($preName." ".$companyName." ".$RegType);

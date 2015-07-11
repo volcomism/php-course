@@ -1,0 +1,25 @@
+<?php
+
+/*		INCLUDE FILE:   fn_formatting.php
+*
+*		folder:			includes/
+*
+*		used in:       index.php
+*
+*		version:    	1004   date: 2010-07-01
+*
+*		purpose:			format functions for use in alphaCRM		
+*
+*		Contents:		pageHint()
+*
+*	===========================================================================
+*/		
+	
+		function pageHint($subject)
+		{				
+			$returnText = '<span class="pageHints">.'.$subject.'</span>';
+							  
+			return $returnText;
+		}
+
+?>

@@ -1,0 +1,148 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>TMIT - the database experts!</title>
+<!-- eMail Template   eMailTemplate.html -->
+<style type="text/css">
+<!--
+
+#body {
+	margin: 0; 
+	padding: 0;
+	
+}
+
+
+.tmitLogo{
+	position:absolute;
+	top: 20px;
+	left: 20px;
+	height: 150px;	
+	width:200px;
+	background:url("http://www.TMIT.net/TMIT_eLogo_w150.png") top left no-repeat;
+	z-index:9;
+
+}
+
+.strip1 {
+	width:99%;
+	position:absolute;
+	top:0;
+	background-color: #7CA3CE;
+	height: 5.2em;	
+}
+
+.strip2 {
+	width:99%;
+	position:absolute;
+	top: 5.2em;	
+	background-color: #D9E2EB;
+	height: 1.5em;
+}
+
+.striptail {
+	width:100%;
+	background-color: #D9E2EB;
+	height: 1em;
+}
+
+
+
+.header{
+	width:90%;
+	text-align:center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 2em;
+	font-weight: bold;
+	color:#005064;
+	margin-top:0.3em;
+	margin-left:3em;
+}
+
+.strapline{
+	width:90%;
+	text-align:center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	font-weight: bold;
+	color:#FFFF33;
+	margin-left:8em;
+	margin-top:-1em;
+	font-style: italic;
+}
+
+.straptail{
+	width:100%;
+	text-align:center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	font-weight: bold;
+	color:#005064;
+	font-style: none;
+
+}
+
+.strapinfo{
+	width:100%;
+	text-align:center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	font-weight: bold;
+	color:#092049;
+	font-style: none;
+
+}
+
+.indentLetter{
+	margin-top: 8em;
+	width: 90%;
+	text-align:left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	font-weight: normal;
+	color:#000000;
+	font-style: none;
+	margin-left:2em;	
+	background:url("http://www.TMIT.net/fsb_w100.png") top right no-repeat;
+}
+-->
+</style>
+
+</head>
+<body>
+		<div>
+					<div class="strip1"> 
+					  	<p class="header">TMIT - the database experts</p>
+					  	<p class="strapline">specialists in web 2.0 applications</p>
+					</div>
+					<div class="strip2"></div>
+					<div class="tmitLogo">	</div>
+		</div>
+		<div class="indentLetter">
+		<span class="fsb"></span>
+					
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+					[%content]
+					<p>&nbsp;</p>
+
+			
+					Regards<br/>
+					Principal<br/>
+					TMIT World Limited<br/>
+					<br/>
+					Tel:&nbsp;&nbsp;01869&nbsp;322665					
+					<br/>
+		</div>
+		<div class="striptail">
+		  <p class="straptail">Leaders in business information systems,
+      content management and process design - 
+      Business information delivered to your browser.</p>
+		</div>
+		<div class="strapinfo">
+		<br/>
+		  <a href="http://www.tmitworld.com/index.php?option=com_content&view=category&id=90&Itemid=120">
+            If you use the web for anything then you need to know about <strong>ACID3</strong></a></div>
+		  
+</body>
+</html>

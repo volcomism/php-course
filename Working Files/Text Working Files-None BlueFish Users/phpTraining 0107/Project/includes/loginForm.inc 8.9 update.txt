@@ -1,0 +1,90 @@
+<?php
+	
+/*
+
+*	File:			inc_loginForm.php
+*		folder:	/includes/
+*		used in:		index.php
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	This script is the login FORM for alpha CRM
+*
+*
+*============================================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+$thisScriptName = "index.php";
+include_once('includes/functions_accessLog.php');
+
+echo '<h2>Login Form alphaCRM</h2>';
+
+	$username = $_POST['username'];
+	
+	if(isset($username)) {
+		$password = $_POST['password'];
+		$md5Password = md5($password);		
+		
+		{	//		SELECT password for this user from the DB and see it it matches 
+			$tUser_SQLselect = "SELECT ID, password, accessLevel FROM tUser ";
+			$tUser_SQLselect .= "WHERE username = '".$username."' ";	
+
+			$tUser_SQLselect_Query = mysql_query($tUser_SQLselect); 	
+			while ($row = mysql_fetch_array($tUser_SQLselect_Query, MYSQL_ASSOC)) {
+			    $userID = $row['ID'];
+			    $passwordRetrieved = $row['password'];
+			    $accessLevel = $row['accessLevel'];
+			}
+			mysql_free_result($tUser_SQLselect_Query);
+					
+			if (!empty($passwordRetrieved) AND ($md5Password == $passwordRetrieved)) {			
+					setcookie("loginAuthorised", "loginAuthorised", time()+7200);
+					setcookie("accessLevel", $accessLevel, time()+7200);
+					setcookie("userID", $userID, time()+7200);
+					
+					$sessionLogged = insertLogin($userID);
+					if ($sessionLogged) {
+							header("Location: ".$thisScriptName);
+					} else {
+						echo 'Session Logging ERROR.<br /><br />';
+						echo $sessionLogged;
+						echo '<a href="'.$thisScriptName.'">Login Anyway</a>';
+					}	
+										
+			} else {
+				echo "Access denied.<br /><br />";		
+				echo '<a href="'.$thisScriptName.'">Try again</a>';			
+			}
+		}
+		
+	} else {
+
+		echo '<form name="postLoginHid" action="'.$thisScriptName.'" method="post">';	
+				echo '
+					<P>User name: 
+					<INPUT TYPE=text NAME=username value="" SIZE=12 MAXLENGTH=16></P>
+					<P>Password: 
+					<INPUT TYPE=password NAME=password value="" SIZE=12 MAXLENGTH=16></P>
+					<input type="submit"  value="Login" />
+				';
+		echo '</form>';
+
+	}
+	
+echo '<h2>--------- END Login Form --------</h2>';
+
+?>

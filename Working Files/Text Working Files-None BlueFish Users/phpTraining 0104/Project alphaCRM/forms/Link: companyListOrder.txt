@@ -1,0 +1,2 @@
+echo '<a href="companyListOrder.php">Company List</a>';
+echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';

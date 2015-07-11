@@ -1,0 +1,2 @@
+				$thisLine = str_replace("<","&lt;",$thisLine);
+				$thisLine = str_replace(">","&gt;",$thisLine);

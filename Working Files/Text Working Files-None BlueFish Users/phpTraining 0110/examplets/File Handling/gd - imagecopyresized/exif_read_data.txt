@@ -1,0 +1,62 @@
+<?php
+
+
+//	vvv Test
+
+
+		$imageFile = "http://www.infiniteskills.com/images/logo3.jpg";
+		$imageFile = "http://www.training.tmit.net/TMIT_Logo.jpg";
+		
+		
+			$typeTest =  exif_imagetype($imageFile);
+		
+			echo "TYPE: ".$typeTest;
+			
+		echo "<br /><hr /><br />";		
+		
+			echo 'EXIF info for: '.$imageFile;
+			
+			echo "<br /><hr /><br />";		      
+		
+		
+			$exif = exif_read_data($imageFile);
+			$exif_name = var_name($exif, get_defined_vars());
+		
+			$p = dumpArray($exif, $exif_name);
+
+
+//	^^^ Test
+
+
+
+
+function dumpArray($arr, $arrName){	
+		
+		foreach ($arr as $key => $value)
+		{
+	      echo  $arrName."[",$key."] => ".$value."<br />";
+	      if (is_array($value)) {
+				foreach ($value as $key2 => $value2)
+				{
+				      echo  str_repeat("&nbsp;", 8).$arrName."[",$key."][".$key2."] => ".$value2."<br />";
+				}
+			}
+	      echo "<br />";		      
+		}
+}
+
+function var_name (&$iVar, &$aDefinedVars){
+	
+    foreach ($aDefinedVars as $k=>$v){
+        $aDefinedVars_0[$k] = $v;}
+ 
+    $iVarSave = $iVar;
+    $iVar     =!$iVar;
+ 
+    $aDiffKeys = array_keys (array_diff_assoc ($aDefinedVars_0, $aDefinedVars));
+    $iVar      = $iVarSave;
+ 
+    return $aDiffKeys[0];
+}
+	
+?>

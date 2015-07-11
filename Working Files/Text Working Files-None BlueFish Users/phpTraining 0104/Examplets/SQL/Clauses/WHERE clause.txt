@@ -1,0 +1,5 @@
+
+	$tPerson_SQLselect .= "WHERE ";
+	$tPerson_SQLselect .= "tCompany.ID IS NULL ";
+	$tPerson_SQLselect .= "ORDER BY ";
+	$tPerson_SQLselect .= "tPerson.LastName ASC, tPerson.FirstName ASC ";

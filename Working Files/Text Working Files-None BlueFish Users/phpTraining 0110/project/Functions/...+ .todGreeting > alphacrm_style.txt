@@ -1,0 +1,16 @@
+
+.greeting {
+	font-size: 0.7em;
+	color: maroon;
+	padding-right: 10px;
+	float: right;	
+}
+
+.greetingName {
+	color: black;
+}
+
+.pageHint {
+	font-size: 0.6em;
+	color: maroon;
+}

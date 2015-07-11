@@ -1,0 +1,8 @@
+	//		update code:   0806_04
+	$status = $_GET['status'];
+	if (isset($status) AND ($status == "logout")) {
+		setcookie("loginAuthorised", "", time()-7200);	
+		$loginAuthorised = false;
+	} else {
+		$loginAuthorised = ($_COOKIE["loginAuthorised"] == "loginAuthorised");
+	}

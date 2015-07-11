@@ -1,0 +1,8 @@
+
+	$userName = $_GET["userName"];
+	$companyName = $_GET["companyName"];
+
+	echo "The name sent was: ".$companyName;
+	echo "<br /><br />";
+	echo "The username sent was: ".$userName;
+

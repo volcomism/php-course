@@ -1,0 +1,1489 @@
+<?xml version="1.0"?>
+<snippets>
+  <branch title="phpTraining">
+    
+    
+  <branch title="Basics"><branch title="php Tags"><leaf type="insert" title="php Tags simple" tooltip="&lt;?php ... ?&gt;&#10;"><before>&lt;?php
+	
+</before><after>
+
+?&gt;</after></leaf><leaf type="insert" title="php Tags documented" tooltip="&lt;?php ... ?&gt;&#10;BF form to ask for file details."><before>&lt;?php
+/*
+
+*	File:		%0
+*	By:		%1
+*	Date:		%2
+
+=====================================
+*/
+
+</before><after>
+?&gt;</after><param name="FileName"/><param name="Author"/><param name="Date"/></leaf></branch><branch title="echo"><leaf type="insert" title="echo"><before>echo "</before><after>";
+</after></leaf><leaf type="insert" title="echo &lt;br /&gt;"><before>echo "</before><after>&lt;br /&gt;";</after></leaf><leaf type="insert" title="echo &lt;p&gt;&lt;/p&gt;"><before>echo "&lt;p&gt;</before><after>&lt;/p&gt;";</after></leaf><leaf type="insert" title="capture as $variable"><before>$%0 = "</before><after>";</after><param name="variable name"/></leaf></branch><branch title="if ... elseif "><leaf type="insert" title="structure"><before>if ( TRUE ) {
+	echo "this is true";
+} else {
+	echo "this is false";
+}</before><after/></leaf></branch></branch><branch title="Project"><leaf type="insert" title="index content 1.0"><before>echo "This is the first index page";
+echo "&lt;br /&gt;";
+echo "&lt;br /&gt;";
+echo "by: </before><after>";</after></leaf><leaf type="insert" title="New php Script File"><before>&lt;?php
+/*
+
+*	File:		%0
+*	By:			TMIT
+*	Date:		%1
+*
+*	This script </before><after>*
+*
+*
+*=====================================
+*/
+
+
+
+
+
+?&gt;</after><param name="file name"/><param name="date"/></leaf><leaf type="insert" title="connectDB"><before>
+{ // Connect and Test MySQL and specific DB (return $dbSuccess = T/F)
+				
+			$hostname = "localhost";
+			$username = "root";
+			$password = "";
+			
+			$databaseName = "alphacrm";
+
+			$dbConnected = @mysql_connect($hostname, $username, $password);
+			$dbSelected = @mysql_select_db($databaseName,$dbConnected);
+
+			$dbSuccess = true;
+			if ($dbConnected) {
+				if (!$dbSelected) {
+					echo "DB connection FAILED&lt;br /&gt;&lt;br /&gt;";
+					$dbSuccess = false;
+				}		
+			} else {
+				echo "MySQL connection FAILED&lt;br /&gt;&lt;br /&gt;";
+				$dbSuccess = false;
+			}
+}  
+
+//	 Execute code ONLY if connections were successful 	
+if ($dbSuccess) {
+	
+	</before><after>	
+			
+}
+</after></leaf></branch><branch title="SQL"><branch title="dbConnections"><leaf type="insert" title="mysql_connect (alphacrm)"><before>
+$hostname = "localhost";
+$username = "root";
+$password = "";
+
+$databaseName = "alphacrm";
+
+$dbConnected = mysql_connect($hostname, $username, $password);
+
+$dbSelected = mysql_select_db($databaseName,$dbConnected);
+
+</before><after/></leaf><leaf type="insert" title="mysql_select_db (secure)"><before>
+include('../htconfig/dbconf.php'); 
+
+$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+if ($dbConnection) {
+	
+	$dbSelected = mysql_select_db($db['database'],$dbConnected);
+	if ($dbSelected) {
+		echo "DB connected&lt;br /&gt;&lt;br /&gt;";
+	} else {
+		echo "DB connection FAILED&lt;br /&gt;&lt;br /&gt;";
+	}		
+} else {
+	echo "MySQL connection FAILED&lt;br /&gt;&lt;br /&gt;";
+}
+</before><after/></leaf><leaf type="insert" title="dbConfig.php"><before>&lt;?php
+	
+$db = array(
+'hostname' =&gt; 'localhost',
+'username' =&gt; 'root',
+'password' =&gt; '',
+'database' =&gt; 'alphacrm',
+); 
+
+?&gt;</before><after/></leaf></branch><branch title="Project"><leaf type="insert" title="create tCompany"><before>				//   SQL script to create table tCompany
+	
+				$createCoyTable_SQL = "CREATE TABLE alphacrm.tCompany ( ";
+				$createCoyTable_SQL .= "ID INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY , ";
+				$createCoyTable_SQL .= "preName VARCHAR( 50 ) , ";
+				$createCoyTable_SQL .= "Name VARCHAR( 250 ) NOT NULL, ";
+				$createCoyTable_SQL .= "RegType VARCHAR( 50 )  NULL, ";
+	
+				$createCoyTable_SQL .= "StreetA VARCHAR( 150 )  NULL, ";
+				$createCoyTable_SQL .= "StreetB VARCHAR( 150 )  NULL, ";
+				$createCoyTable_SQL .= "StreetC VARCHAR( 150 )  NULL, ";
+				$createCoyTable_SQL .= "Town VARCHAR( 150 )  NULL, ";
+				$createCoyTable_SQL .= "County VARCHAR( 150 )  NULL, ";
+				$createCoyTable_SQL .= "Postcode VARCHAR( 50 )  NULL, ";
+	
+				$createCoyTable_SQL .= "COUNTRY VARCHAR( 250 ) NOT NULL ";
+				$createCoyTable_SQL .= ")";
+				
+				if (mysql_query($createCoyTable_SQL))  {	
+					echo "'Create TABLE tCompany' -  Successful.&lt;br /&gt;&lt;br /&gt;";
+				} 
+</before><after/></leaf><leaf type="insert" title="create tPerson"><before>				//   SQL script to create table tPerson 
+				$createPersonTable_SQL = "CREATE TABLE alphacrm.tPerson ( ";
+				$createPersonTable_SQL .= "ID INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY , ";
+				$createPersonTable_SQL .= "Salutation VARCHAR( 20 ) , ";
+				$createPersonTable_SQL .= "FirstName VARCHAR( 50 ) , ";
+				$createPersonTable_SQL .= "LastName VARCHAR( 50 ) NOT NULL, ";
+				$createPersonTable_SQL .= "CompanyID INT ( 11 ) NOT NULL ";
+				$createPersonTable_SQL .= ")";
+	
+				if (mysql_query($createPersonTable_SQL))  {	
+					echo "'Create TABLE tPerson' -  Successful.&lt;br /&gt;&lt;br /&gt;";
+				} </before><after/></leaf><leaf type="insert" title="INSERT companies" tooltip="&#9;"><before>	
+		$company_SQLinsert = "INSERT INTO tCompany ( ";
+		// $company_SQLinsert .=  "ID, ";
+		$company_SQLinsert .=  "preName, ";
+		$company_SQLinsert .=  "Name, ";
+		$company_SQLinsert .=  "RegType, ";
+		$company_SQLinsert .=  "StreetA, ";
+		$company_SQLinsert .=  "StreetB, ";
+		$company_SQLinsert .=  "StreetC, ";
+		$company_SQLinsert .=  "Town, ";
+		$company_SQLinsert .=  "County, ";
+		$company_SQLinsert .=  "Postcode, ";
+		$company_SQLinsert .=  "COUNTRY ";
+		$company_SQLinsert .=  ") ";
+		
+		$company_SQLinsert .=  "VALUES ";
+		
+		{ // insert Pie Company 
+			$company_SQLinsert .=  "(";
+			//$company_SQLinsert .=  "'&lt;autoincremented ID value&gt;', ";
+			$company_SQLinsert .=  "'The', ";
+			$company_SQLinsert .=  "'Pie Company', ";
+			$company_SQLinsert .=  "'', ";
+			$company_SQLinsert .=  "'89 Gravy Road', ";
+			$company_SQLinsert .=  "'', ";
+			$company_SQLinsert .=  "'', ";
+			$company_SQLinsert .=  "'Pastryville', ";
+			$company_SQLinsert .=  "'NSW', ";
+			$company_SQLinsert .=  "'1297', ";
+			$company_SQLinsert .=  "'Australia' ";
+			$company_SQLinsert .=  "), ";
+		}
+
+		{ // insert TMIT 		
+			$company_SQLinsert .=  "(";
+			//$company_SQLinsert .=  "'&lt;autoincremented ID value&gt;', ";
+			$company_SQLinsert .=  "'', ";
+			$company_SQLinsert .=  "'TMIT World', ";
+			$company_SQLinsert .=  "'Limited', ";
+			$company_SQLinsert .=  "'42 Lily Close', ";
+			$company_SQLinsert .=  "'', ";
+			$company_SQLinsert .=  "'', ";
+			$company_SQLinsert .=  "'Bicester', ";
+			$company_SQLinsert .=  "'Oxfordshire', ";
+			$company_SQLinsert .=  "'OX26 3EJ', ";
+			$company_SQLinsert .=  "'UK' ";
+			$company_SQLinsert .=  "), ";
+		}
+
+		{ // insert JACASTA 		
+			$company_SQLinsert .=  "(";
+			//$company_SQLinsert .=  "'&lt;autoincremented ID value&gt;', ";
+			$company_SQLinsert .=  "'', ";
+			$company_SQLinsert .=  "'JACASTA', ";
+			$company_SQLinsert .=  "'Limited', ";
+			$company_SQLinsert .=  "'42 Lily Close', ";
+			$company_SQLinsert .=  "'', ";
+			$company_SQLinsert .=  "'', ";
+			$company_SQLinsert .=  "'Bicester', ";
+			$company_SQLinsert .=  "'Oxfordshire', ";
+			$company_SQLinsert .=  "'OX26 3EJ', ";
+			$company_SQLinsert .=  "'UK' ";
+			$company_SQLinsert .=  ") ";
+		}
+		
+		
+		if (mysql_query($company_SQLinsert))  {	
+			echo "INSERT INTO tCompany - SUCCESSFUL.&lt;br /&gt;&lt;br /&gt;";
+		} else {
+			echo "INSERT INTO tCompany - FAILED.&lt;br /&gt;&lt;br /&gt;";
+		}
+		
+</before><after/></leaf><leaf type="insert" title="INSERT people"><before>//	INSERT 4 records into table tPeople 
+	
+$person_SQLinsert = "INSERT INTO tPerson ( ";
+// $person_SQLinsert .=  "ID, ";
+$person_SQLinsert .=  "Salutation, ";
+$person_SQLinsert .=  "FirstName, ";
+$person_SQLinsert .=  "LastName, ";
+$person_SQLinsert .=  "CompanyID ";
+$person_SQLinsert .=  ") ";
+
+$person_SQLinsert .=  "VALUES ";
+
+{ // insert Person 1
+	$person_SQLinsert .=  "(";
+	//$person_SQLinsert .=  "'&lt;autoincremented ID value&gt;', ";
+	$person_SQLinsert .=  "'Mr', ";
+	$person_SQLinsert .=  "'Larry', ";
+	$person_SQLinsert .=  "'Spiers', ";
+	$person_SQLinsert .=  "'' ";
+	$person_SQLinsert .=  "), ";
+}
+{ // insert Person 2
+	$person_SQLinsert .=  "(";
+	//$person_SQLinsert .=  "'&lt;autoincremented ID value&gt;', ";
+	$person_SQLinsert .=  "'Mrs', ";
+	$person_SQLinsert .=  "'Shiela', ";
+	$person_SQLinsert .=  "'Dannett', ";
+	$person_SQLinsert .=  "'1' ";
+	$person_SQLinsert .=  "), ";
+}
+{ // insert Person 3
+	$person_SQLinsert .=  "(";
+	//$person_SQLinsert .=  "'&lt;autoincremented ID value&gt;', ";
+	$person_SQLinsert .=  "'M', ";
+	$person_SQLinsert .=  "'Pierre', ";
+	$person_SQLinsert .=  "'Troute', ";
+	$person_SQLinsert .=  "'3' ";
+	$person_SQLinsert .=  "), ";
+}
+{ // insert Person 4	
+	$person_SQLinsert .=  "(";
+	//$person_SQLinsert .=  "'&lt;autoincremented ID value&gt;', ";
+	$person_SQLinsert .=  "'Ms', ";
+	$person_SQLinsert .=  "'Sally', ";
+	$person_SQLinsert .=  "'Smith', ";
+	$person_SQLinsert .=  "'1' ";
+	$person_SQLinsert .=  ") ";
+}
+
+
+if (mysql_query($person_SQLinsert))  {	
+	echo "INSERT INTO tPerson - SUCCESSFUL.&lt;br /&gt;&lt;br /&gt;";
+} else {
+	echo "INSERT INTO tPerson - FAILED.&lt;br /&gt;&lt;br /&gt;";
+}
+</before><after/></leaf><leaf type="insert" title="UPDATE companies"><before>
+// SQL to change country value from UK to United Kingdom 
+$company_SQLupdate = "UPDATE tCompany SET ";
+
+$company_SQLupdate .= "COUNTRY = 'United Kingdom' ";
+
+$company_SQLupdate .= "WHERE COUNTRY = 'UK' "; 
+
+if (mysql_query($company_SQLupdate))  {	
+	echo "UPDATE tCompany.COUNTRY - SUCCESSFUL.&lt;br /&gt;&lt;br /&gt;";
+} else {
+	echo "UPDATE tCompany.COUNTRY - FAILED.&lt;br /&gt;&lt;br /&gt;";
+}
+		
+</before><after/></leaf></branch><branch title="Action Queries"><leaf type="insert" title="php execute"><before>if (mysql_query($%0_SQL))  {	
+	</before><after>
+} else {
+	
+}</after><param name="SQL variable prefix"/></leaf><leaf type="insert" title="DROP DATABASE"><before>
+$dbName = "%0";
+$drop_SQL = "DROP DATABASE ".$dbName;
+
+if (mysql_query($drop_SQL))  {	
+	echo "'DROP DATABASE ".$dbName."' -  Successful.";
+} else {
+	echo "'DROP DATABASE ".$dbName."' - Failed.";
+}
+
+</before><after/><param name="database name"/></leaf><leaf type="insert" title="CREATE DATABASE"><before>$dbName = "%0";
+$create_SQL = "Create DATABASE ".$dbName;
+
+if (mysql_query($create_SQL))  {	
+	echo "'Create DATABASE ".$dbName."' -  Successful.";
+} else {
+	echo "'Create DATABASE ".$dbName."' - Failed.";
+}</before><after/><param name="database name"/></leaf><leaf type="insert" title="php SQL INSERT"><before>$%0_SQLinsert = "INSERT INTO tablename ( ";
+$%0_SQLinsert .=  "Fieldname, ";
+
+$%0_SQLinsert .=  "Fieldname ";
+$%0_SQLinsert .=  ") ";
+$%0_SQLinsert .=  "VALUES (";
+$%0_SQLinsert .=  "'".$thisDateValue."', ";
+
+$%0_SQLinsert .=  "'".$thisDateValue."' ";
+$%0_SQLinsert .=  ") ";
+
+if (mysql_query($%0_SQLinsert))  {	
+	
+} else {
+	
+}</before><after/><param name="variable prefix"/></leaf><leaf type="insert" title="php SQL UPDATE"><before>//	SQL = "UPDATE tableName SET fldName = fldValue WHERE indexName = indexValue"
+
+$%0_SQLupdate = "UPDATE tableName SET ";
+
+$%0_SQLupdate .= "fldNameA = '".$fldValueA."', ";
+
+$%0_SQLupdate .= "fldNameB = '".$fldValueB."' ";
+
+$%0_SQLupdate .= "WHERE indexName = '".$indexValue."' "; 
+
+if (mysql_query($%0_SQLupdate))  {
+	
+} else {	
+	
+}</before><after/><param name="variable prefix"/></leaf><leaf type="insert" title="php SQL DELETE"><before>//	SQL = "DELETE FROM tableName WHERE indexname = indexValue"
+
+$indexValue = "";
+$%0_SQLdelete = "DELETE FROM tableName ";
+$%0_SQLdelete .= "WHERE ";
+$%0_SQLdelete .= "indexname = '".$indexValue."' ";
+
+if (mysql_query($%0_SQLdelete))  {
+	echo "SUCCESS&lt;br/&gt;";
+} else {	
+	echo "ERROR saving details.&lt;br/&gt;";								
+}	
+</before><after/><param name="variable prefix"/></leaf></branch><branch title="SELECT Queries"><leaf type="insert" title="php SQL SELECT"><before>$%0_SQLselect = "SELECT ";
+$%0_SQLselect .= "</before><after>  ";		// &lt;&lt;  attributes
+$%0_SQLselect .= "FROM ";
+$%0_SQLselect .= " ";			//	&lt;&lt; table name
+$%0_SQLselect .= "WHERE ";
+$%0_SQLselect .= " ";			//	&lt;&lt; attribute = $value
+$%0_SQLselect .= " AND ";
+$%0_SQLselect .= " ";			// &lt;&lt; attribute = $value
+	
+$%0_SQLselect_Query = mysql_query($%0_SQLselect); 	
+while ($row = mysql_fetch_object($%0_SQLselect_Query)) {
+		$fieldVar = $row-&gt;fieldName;			//		fieldName = an attribute name
+}</after><param name="variable prefix"/></leaf></branch></branch><branch title="Replacements"><leaf type="snr" title="remove ` in SQL" region="s" matchtype="normal" casesens="0" escapechars="0"><searchpat>`</searchpat><replacepat/></leaf><leaf type="snr" title="convert SQL to php" region="s" matchtype="normal" casesens="0" escapechars="1"><searchpat>\n</searchpat><replacepat> ";\n$%0_SQL .= "</replacepat><param name="variable name"/></leaf></branch><branch title="Examplets"><branch title="basics"><leaf type="insert" title="comment simple"><before>
+// This is a comment
+// comprising 3 lines of text
+// each line starts with //
+</before><after/></leaf><leaf type="insert" title="comment block"><before>/*	this is a block of comment
+	lines
+
+	they start with slash-asterisk
+	and terminate with asterisk-slash
+*/</before><after/></leaf><leaf type="insert" title="comment block 2"><before>/*	
+*	this is a block of comment
+*	lines
+*
+*	they start with slash-asterisk
+*	and terminate with asterisk-slash
+*
+*	it is customary but not necessary
+*	to start each line with an asterisk
+*	to make it clear that it's 
+*	ALL a comment
+*
+*/</before><after/></leaf><leaf type="insert" title="table empty"><before>echo "&lt;table&gt;";
+echo "&lt;tr&gt;";
+echo "&lt;td&gt;</before><after>&lt;/td&gt;";
+echo "&lt;td&gt;&lt;/td&gt;";
+echo "&lt;td&gt;&lt;/td&gt;";
+echo "&lt;/tr&gt;";
+echo "&lt;tr&gt;";
+echo "&lt;td&gt;&lt;/td&gt;";
+echo "&lt;td&gt;&lt;/td&gt;";
+echo "&lt;td&gt;&lt;/td&gt;";
+echo "&lt;/tr&gt;";
+echo "&lt;tr&gt;";
+echo "&lt;td&gt;&lt;/td&gt;";
+echo "&lt;td&gt;&lt;/td&gt;";
+echo "&lt;td&gt;&lt;/td&gt;";
+echo "&lt;/tr&gt;";
+echo "&lt;/table&gt;";</after></leaf><leaf type="insert" title="table data example"><before>//      3 x 3 table with data
+echo "&lt;table&gt;";
+	echo "&lt;tr&gt;";
+		echo "&lt;td&gt;%0&lt;/td&gt;";
+		echo "&lt;td&gt;%1&lt;/td&gt;";
+		echo "&lt;td&gt;%2&lt;/td&gt;";
+	echo "&lt;/tr&gt;";
+	echo "&lt;tr&gt;";
+		echo "&lt;td&gt;</before><after>&lt;/td&gt;";
+		echo "&lt;td&gt;&lt;/td&gt;";
+		echo "&lt;td&gt;&lt;/td&gt;";
+	echo "&lt;/tr&gt;";
+	echo "&lt;tr&gt;";
+		echo "&lt;td&gt;&lt;/td&gt;";
+		echo "&lt;td&gt;&lt;/td&gt;";
+		echo "&lt;td&gt;&lt;/td&gt;";
+	echo "&lt;/tr&gt;";
+echo "&lt;/table&gt;";</after><param name="Header1"/><param name="Header2"/><param name="Header3"/></leaf><leaf type="insert" title="list empty"><before>echo "&lt;ul&gt;";
+	echo "&lt;li&gt;</before><after>&lt;/li&gt;";
+	echo "&lt;li&gt;&lt;/li&gt;";
+	echo "&lt;li&gt;&lt;/li&gt;";
+echo "&lt;/ul&gt;";</after></leaf><leaf type="insert" title="Variables"><before/><after/></leaf><leaf type="insert" title="Arithmetic Operators"><before>&lt;?php
+	
+/*
+
+*	File:		phpOperatorsArith.php
+*	By:		TMIT
+*	Date:		2010-07-05
+*
+*	This script demonstrates php Arithmetic Operators
+*
+*
+*
+*=====================================
+*/
+
+{
+	echo "&lt;p &gt;There's a whole load of examples here to demonstrate ";
+	echo "variables and operators in php.&lt;/p&gt;";
+	echo "&lt;br /&gt;&lt;hr /&gt;&lt;br /&gt;";
+	
+	echo "Notice in the code how some special characters ($ of variables and double quotes) ";
+	echo "in the echo statements need to be 'escaped' ";
+	echo "with the backslash ";
+	echo "so that they are not interpreted as part of the php code.&lt;br /&gt;&lt;br /&gt;";
+}
+echo "&lt;div style=\"padding-left: 60px; font-family: Arial, Helvetica, sans-serif;\"&gt;";
+{ //     Arithmetic Operators
+
+	echo "&lt;span style=\"color:red;\"&gt;&lt;strong&gt;Arithmetic Operators&lt;/strong&gt;&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;";
+
+	$x = 3; $y = 4;
+	$result = $x + $y;
+	echo "&lt;u&gt;CODE: - demonstrating binary operator '+'&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "\$result = \$x + \$y; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+
+	$x = 13; $y = 4;
+	$result = $x - $y;
+	echo "&lt;u&gt;CODE: - demonstrating binary operator '-'&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "	\$result = \$x - \$y;&lt;br /&gt;";
+	echo "	echo \"result = \".\$result;&lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+
+	$x = 3; $y = 4;
+	$result = $x * $y;
+	echo "&lt;u&gt;CODE: - demonstrating binary operator '*'&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "	\$result = \$x * \$y;&lt;br /&gt;";
+	echo "	echo \"result = \".\$result;&lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+
+	$x = 18;  $y = 3;
+	$result = $x / $y;
+	echo "&lt;u&gt;CODE: - demonstrating binary operator '/'&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "	\$result = \$x / \$y;&lt;br /&gt;";
+	echo "	echo \"result = \".\$result;&lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+
+	$x = 13;  $y = 5;
+	$result = $x % $y;
+	echo "&lt;u&gt;CODE: - demonstrating binary operator '%'&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "	\$result = \$x % \$y;&lt;br /&gt;";
+	echo "	echo \"result = \".\$result;&lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";
+	echo "result = ".$result." &amp;nbsp;&amp;nbsp;&amp;nbsp;(ie. remainder when ".$x." divided by ".$y." )";
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+
+	$x = 13;
+	echo "&lt;u&gt;CODE: - demonstrating UNARY operator '++'&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = ".$x.";&lt;br /&gt;";
+	$x++;
+	$result = $x;
+	echo "	\$x++;&lt;br /&gt;";
+	echo "	\$result = \$x;&lt;br /&gt;";
+	echo "	echo \"result = \".\$result;&lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	$x = 13;
+	echo "&lt;u&gt;CODE: - demonstrating UNARY operator '--'&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = ".$x.";&lt;br /&gt;";
+	$x--;
+	$result = $x;
+	echo "	\$x--;&lt;br /&gt;";
+	echo "	\$result = \$x;&lt;br /&gt;";
+	echo "	echo \"result = \".\$result;&lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+
+
+}
+
+echo "&lt;/div&gt;";
+
+?&gt;</before><after/></leaf><leaf type="insert" title="Logic Operators"><before>&lt;?php
+/*
+
+*	File:		phpOperatorsLogic.php
+*	By:		TMIT
+*	Date:		2010-07-05
+*
+*	This script demonstrates php Logic Operators
+*
+*
+*
+*=====================================
+*/
+
+{
+	echo "&lt;p &gt;There's a whole load of examples here to demonstrate ";
+	echo "variables and operators in php.&lt;/p&gt;";
+	echo "&lt;br /&gt;&lt;hr /&gt;&lt;br /&gt;";
+	
+	echo "Notice in the code how some special characters ($ of variables and double quotes) ";
+	echo "in the echo statements need to be 'escaped' ";
+	echo "with the backslash ";
+	echo "so that they are not interpreted as part of the php code.&lt;br /&gt;&lt;br /&gt;";
+}
+
+echo "&lt;div style=\"padding-left: 60px; font-family: Arial, Helvetica, sans-serif;\"&gt;";
+
+{ //     Logic Operators
+
+	echo "&lt;span style=\"color:red;\"&gt;&lt;strong&gt;LOGIC Operators&lt;/strong&gt;&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;";
+
+	$x = TRUE; $y = FALSE;
+	$result = $x &amp;&amp; $y;
+	echo "&lt;u&gt;CODE: - demonstrating LOGIC operator '&amp;&amp;'&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = TRUE;  \$y = FALSE;&lt;br /&gt;";
+	echo "\$result = \$x &amp;&amp; \$y; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	$x = TRUE; $y = TRUE;
+	$result = $x AND $y;
+	echo "&lt;u&gt;CODE: - demonstrating LOGIC operator 'AND'&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = TRUE;  \$y = TRUE;&lt;br /&gt;";
+	echo "\$result = \$x AND \$y; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	$x = FALSE; $y = FALSE;
+	$result = $x &amp;&amp; $y;
+	echo "&lt;u&gt;CODE: - demonstrating LOGIC operator '&amp;&amp;'&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = FALSE;  \$y = FALSE;&lt;br /&gt;";
+	echo "\$result = \$x &amp;&amp; \$y; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+
+	$x = NULL; $y = FALSE;
+	$result = $x &amp;&amp; $y;
+	echo "&lt;u&gt;CODE: - demonstrating LOGIC operator '&amp;&amp;'&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = NULL;  \$y = FALSE;&lt;br /&gt;";
+	echo "\$result = \$x &amp;&amp; \$y; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	//						OR operator
+
+	$x = TRUE; $y = FALSE;
+	$result = $x || $y;
+	echo "&lt;u&gt;CODE: - demonstrating LOGIC operator '||'&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = TRUE;  \$y = FALSE;&lt;br /&gt;";
+	echo "\$result = \$x || \$y; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	$x = TRUE; $y = TRUE;
+	$result = $x OR $y;
+	echo "&lt;u&gt;CODE: - demonstrating LOGIC operator 'OR'&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = TRUE;  \$y = TRUE;&lt;br /&gt;";
+	echo "\$result = \$x OR \$y; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	$x = FALSE; $y = FALSE;
+	$result = $x || $y;
+	echo "&lt;u&gt;CODE: - demonstrating LOGIC operator '||'&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = FALSE;  \$y = FALSE;&lt;br /&gt;";
+	echo "\$result = \$x || \$y; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+
+	$x = NULL; $y = FALSE;
+	$result = $x || $y;
+	echo "&lt;u&gt;CODE: - demonstrating LOGIC operator '||'&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = NULL;  \$y = FALSE;&lt;br /&gt;";
+	echo "\$result = \$x || \$y; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	//						NOT operator   or    !
+
+	$x = TRUE;
+	$result = !$x;
+	echo "&lt;u&gt;CODE: - demonstrating LOGIC operator '!' ie the NOT operator&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = TRUE;&lt;br /&gt;";
+	echo "\$result = !\$x; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	$x = FALSE;
+	$result = !$x;
+	echo "&lt;u&gt;CODE: - demonstrating LOGIC operator '!' ie the NOT operator&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = TRUE;&lt;br /&gt;";
+	echo "\$result = !\$x; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+}
+
+
+echo "&lt;/div&gt;";
+
+?&gt;</before><after/></leaf><leaf type="insert" title="Comparison Operators"><before>&lt;?php
+	
+/*
+
+*	File:		phpOperatorsCompare.php
+*	By:		TMIT
+*	Date:		2010-07-05
+*
+*	This script demonstrates php Comparison Operators
+*
+*
+*
+*=====================================
+*/
+
+{
+	echo "&lt;p &gt;There's a whole load of examples here to demonstrate ";
+	echo "variables and operators in php.&lt;/p&gt;";
+	echo "&lt;br /&gt;&lt;hr /&gt;&lt;br /&gt;";
+	
+	echo "Notice 'escaped' characters&lt;br /&gt;";
+	echo "\\\" to escape double quotes&lt;br /&gt;";
+	echo "\\\$ to escape a dollar symbol&lt;br /&gt;";
+	echo "and the use of '&amp;amp;nbsp;' to force a non-breaking space.&lt;br /&gt;";
+	
+	echo "so that they are not interpreted as part of the php code.&lt;br /&gt;&lt;br /&gt;";
+}
+echo "&lt;div style=\"padding-left: 60px; font-family: Arial, Helvetica, sans-serif;\"&gt;";
+{ //     Comparison Operators
+
+	echo "&lt;span style=\"color:red;\"&gt;&lt;strong&gt;Comparison Operators&lt;/strong&gt;&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;";
+
+	echo " == , &lt; , &lt;= , &gt; , &gt;= , != , &lt;&gt; &lt;br /&gt;&lt;br /&gt;";
+	
+	$x = 3; $y = 4;	
+	if ($x == $y) {
+		$result = "TRUE";
+	} else {
+		$result = "FALSE";
+	}	
+	echo "&lt;u&gt;CODE: - demonstrating Comparison operator ' == '&lt;/u&gt;&lt;br /&gt;";	
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "	if (\$x == \$y) {&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;";
+	echo "	// &amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;&lt; REMEMBER THIS ! &amp;nbsp;&amp;nbsp;&amp;nbsp;  it's ";
+	echo "	&lt;span style=\"color:red;\"&gt;&lt;strong&gt;==&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;";
+	echo "	&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\$result = \"TRUE\";&lt;br /&gt;";
+	echo "	} else {&lt;br /&gt;";
+	echo "	&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\$result = \"FALSE\";&lt;br /&gt;";
+	echo "	}&lt;br /&gt;";
+	echo "	echo \"result = \".\$result;&lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	$x = 3; $y = 4;	
+	if ($x &lt; $y) {
+		$result = "TRUE";
+	} else {
+		$result = "FALSE";
+	}	
+	echo "&lt;u&gt;CODE: - demonstrating Comparison operator ' &lt; '&lt;/u&gt;&lt;br /&gt;";	
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "	if (\$x &lt; \$y) {&lt;br /&gt;";
+	echo "	&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\$result = \"TRUE\";&lt;br /&gt;";
+	echo "	} else {&lt;br /&gt;";
+	echo "	&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\$result = \"FALSE\";&lt;br /&gt;";
+	echo "	}&lt;br /&gt;";
+	echo "	echo \"result = \".\$result;&lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	$x = 3; $y = 4;	
+	if ($x &lt;= $y) {
+		$result = "TRUE";
+	} else {
+		$result = "FALSE";
+	}	
+	echo "&lt;u&gt;CODE: - demonstrating Comparison operator ' &lt;= '&lt;/u&gt;&lt;br /&gt;";	
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "	if (\$x &lt;= \$y) {&lt;br /&gt;";
+	echo "	&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\$result = \"TRUE\";&lt;br /&gt;";
+	echo "	} else {&lt;br /&gt;";
+	echo "	&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\$result = \"FALSE\";&lt;br /&gt;";
+	echo "	}&lt;br /&gt;";
+	echo "	echo \"result = \".\$result;&lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	$x = 3; $y = 4;	
+	if ($x &gt; $y) {
+		$result = "TRUE";
+	} else {
+		$result = "FALSE";
+	}	
+	echo "&lt;u&gt;CODE: - demonstrating Comparison operator ' &gt; '&lt;/u&gt;&lt;br /&gt;";	
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "	if (\$x &gt; \$y) {&lt;br /&gt;";
+	echo "	&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\$result = \"TRUE\";&lt;br /&gt;";
+	echo "	} else {&lt;br /&gt;";
+	echo "	&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\$result = \"FALSE\";&lt;br /&gt;";
+	echo "	}&lt;br /&gt;";
+	echo "	echo \"result = \".\$result;&lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	$x = 3; $y = 4;	
+	if ($x &gt;= $y) {
+		$result = "TRUE";
+	} else {
+		$result = "FALSE";
+	}	
+	echo "&lt;u&gt;CODE: - demonstrating Comparison operator ' &gt;= '&lt;/u&gt;&lt;br /&gt;";	
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "	if (\$x &gt;= \$y) {&lt;br /&gt;";
+	echo "	&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\$result = \"TRUE\";&lt;br /&gt;";
+	echo "	} else {&lt;br /&gt;";
+	echo "	&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\$result = \"FALSE\";&lt;br /&gt;";
+	echo "	}&lt;br /&gt;";
+	echo "	echo \"result = \".\$result;&lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	
+	$x = 3; $y = 4;	
+	if ($x != $y) {
+		$result = "TRUE";
+	} else {
+		$result = "FALSE";
+	}	
+	echo "&lt;u&gt;CODE: - demonstrating Comparison operator ' != '&lt;/u&gt;&lt;br /&gt;";	
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "	if (\$x != \$y) {&lt;br /&gt;";
+	echo "	&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\$result = \"TRUE\";&lt;br /&gt;";
+	echo "	} else {&lt;br /&gt;";
+	echo "	&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\$result = \"FALSE\";&lt;br /&gt;";
+	echo "	}&lt;br /&gt;";
+	echo "	echo \"result = \".\$result;&lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	$x = 3; $y = 4;	
+	if ($x &lt;&gt; $y) {
+		$result = "TRUE";
+	} else {
+		$result = "FALSE";
+	}	
+	echo "&lt;u&gt;CODE: - demonstrating Comparison operator ' &lt;&gt; '&lt;/u&gt;&lt;br /&gt;";	
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "	if (\$x &lt;&gt; \$y) {&lt;br /&gt;";
+	echo "	&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\$result = \"TRUE\";&lt;br /&gt;";
+	echo "	} else {&lt;br /&gt;";
+	echo "	&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\$result = \"FALSE\";&lt;br /&gt;";
+	echo "	}&lt;br /&gt;";
+	echo "	echo \"result = \".\$result;&lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+
+
+}
+
+echo "&lt;/div&gt;";
+
+?&gt;</before><after/></leaf><leaf type="insert" title="Assignment Operators"><before>&lt;?php
+	
+/*
+
+*	File:		phpOperatorsAssig.php
+*	By:		TMIT
+*	Date:		2010-07-05
+*
+*	This script demonstrates php Assignment Operators
+*
+*
+*
+*=====================================
+*/
+
+{
+	echo "&lt;p &gt;There's a whole load of examples here to demonstrate ";
+	echo "variables and operators in php.&lt;/p&gt;";
+	echo "&lt;br /&gt;&lt;hr /&gt;&lt;br /&gt;";
+	
+	echo "Notice 'escaped' characters&lt;br /&gt;";
+	echo "\\\" to escape double quotes&lt;br /&gt;";
+	echo "\\\$ to escape a dollar symbol&lt;br /&gt;";
+	echo "and the use of '&amp;amp;nbsp;' to force a non-breaking space.&lt;br /&gt;";
+	
+	echo "so that they are not interpreted as part of the php code.&lt;br /&gt;&lt;br /&gt;";
+}
+echo "&lt;div style=\"padding-left: 60px; font-family: Arial, Helvetica, sans-serif;\"&gt;";
+{ //     Comparison Operators
+
+	echo "&lt;span style=\"color:red;\"&gt;&lt;strong&gt;Assignment Operators&lt;/strong&gt;&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;";
+
+	echo " = , += , -= , *= , /= , %=  , .= &lt;br /&gt;&lt;br /&gt;";
+	
+	$x = 3; $y = 4;
+	echo "&lt;u&gt;CODE: - demonstrating assignment operator '+='&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "\$y += \$x;  &amp;nbsp;&amp;nbsp;&amp;nbsp; // (same as \$y = \$y + \$x )&lt;br /&gt;";
+	echo "\$result = \$y; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	$y += $x;
+	$result = $y;
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	$x = 3; $y = 4;
+	echo "&lt;u&gt;CODE: - demonstrating assignment operator '-='&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "\$y -= \$x;  &amp;nbsp;&amp;nbsp;&amp;nbsp; // (same as \$y = \$y - \$x )&lt;br /&gt;";
+	echo "\$result = \$y; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	$y -= $x;
+	$result = $y;
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	$x = 3; $y = 4;
+	echo "&lt;u&gt;CODE: - demonstrating assignment operator '*='&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "\$y *= \$x;  &amp;nbsp;&amp;nbsp;&amp;nbsp; // (same as \$y = \$y * \$x )&lt;br /&gt;";
+	echo "\$result = \$y; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	$y *= $x;
+	$result = $y;
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	$x = 3; $y = 414;
+	echo "&lt;u&gt;CODE: - demonstrating assignment operator '/='&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "\$y /= \$x;  &amp;nbsp;&amp;nbsp;&amp;nbsp; // (same as \$y = \$y / \$x )&lt;br /&gt;";
+	echo "\$result = \$y; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	$y /= $x;
+	$result = $y;
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	$x = 17; $y = 39;
+	echo "&lt;u&gt;CODE: - demonstrating assignment operator '%='&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "\$y %= \$x; &amp;nbsp;&amp;nbsp;&amp;nbsp; // (remainder of ".$y." / ".$x."&lt;br /&gt;";
+	echo "\$result = \$y; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	$y %= $x;
+	$result = $y;
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+	echo "&lt;span style=\"color:red;\"&gt;&lt;strong&gt;Concatenation&lt;/strong&gt;&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;";
+
+	$x = "First part "; $y = "Second part ";
+	echo "&lt;u&gt;CODE: - demonstrating assignment operator '.=' for strings&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "\$y .= \$x; &lt;br /&gt;";
+	echo "\$result = \$y; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	$y .= $x;
+	$result = $y;
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+
+	$x = 7.3; $y = 8.6;
+	echo "&lt;u&gt;CODE: - demonstrating assignment operator '.=' for numbers&lt;/u&gt;&lt;br /&gt;";
+	echo "	\$x = ".$x.";  \$y = ".$y.";&lt;br /&gt;";
+	echo "\$y .= \$x; &lt;br /&gt;";
+	echo "\$result = \$y; &lt;br /&gt;";
+	echo "echo \"result = \".\$result; &lt;br /&gt;";
+	echo "-------------------------------------------&lt;br /&gt;";	
+	$y .= $x;
+	$result = $y;
+	echo "result = ".$result;
+	echo "&lt;br /&gt;===========================================&lt;br /&gt;&lt;br /&gt;";
+
+
+
+}
+
+echo "&lt;/div&gt;";
+
+?&gt;</before><after/></leaf></branch><branch title="dbConnections"><leaf type="insert" title="or die"><before>or die("Could not connect to Database".$databaseName);</before><after/></leaf><leaf type="insert" title="test db connection"><before>
+if ($dbConnected) {
+	echo "MySQL connected OK&lt;br /&gt;&lt;br /&gt;";
+
+	if ($dbSelected) {
+		echo "DB connected OK&lt;br /&gt;&lt;br /&gt;";
+	} else {
+		echo "DB connection FAILED&lt;br /&gt;&lt;br /&gt;";
+	}		
+} else {
+	echo "MySQL connection FAILED&lt;br /&gt;&lt;br /&gt;";
+}
+</before><after/></leaf></branch><branch title="Constructs"><leaf type="insert" title="if ... elseif ... else"><before>$test = 4;
+	
+if ( TRUE ) {
+	echo "this is true";
+} else {
+	echo "this is false";
+}
+echo "&lt;br /&gt;&lt;br /&gt;";
+
+
+if ( $test == 4 ) {
+	echo "The value is 4";
+} else {
+	echo "The value is NOT 4";
+}
+
+
+
+echo "&lt;br /&gt;&lt;br /&gt;";
+
+if ( $test &gt;= 5 ) {
+	echo "testvalue is GTE 5";
+} elseif ($test &gt;= 3) {
+	echo "testvalue is GTE 3 and LT 5";
+} else {
+	echo "testvalue is LT 3";
+}
+
+</before><after/></leaf></branch><branch title="SQL"><leaf type="insert" title="mysql_query TEXT"><before>mysql_query("DROP DATABASE alphacrm");</before><after/></leaf><leaf type="insert" title="mysql_query VAR"><before>
+$%0_SQL = "DROP DATABASE %1";
+mysql_query($%0_SQL);
+</before><after/><param name="variable prefix"/><param name="database name"/></leaf><leaf type="insert" title="INSERT"><before>INSERT INTO &lt;tablename&gt; 
+(
+fieldA,
+fieldB,
+fieldC
+)
+VALUES
+(
+'value1',
+'value2',
+'value3'
+)
+</before><after/></leaf><leaf type="insert" title="people to delete"><before>		//	INSERT 4 deletable records into table tPeople 
+			
+		$person_SQLinsert = "INSERT INTO tPerson ( ";
+		// $person_SQLinsert .=  "ID, ";
+		$person_SQLinsert .=  "Salutation, ";
+		$person_SQLinsert .=  "FirstName, ";
+		$person_SQLinsert .=  "LastName, ";
+		$person_SQLinsert .=  "CompanyID ";
+		$person_SQLinsert .=  ") ";
+		
+		$person_SQLinsert .=  "VALUES ";
+		
+		{ // insert Person 1
+			$person_SQLinsert .=  "(";
+			//$person_SQLinsert .=  "'&lt;autoincremented ID value&gt;', ";
+			$person_SQLinsert .=  "'Mr', ";
+			$person_SQLinsert .=  "'Bill', ";
+			$person_SQLinsert .=  "'Bloggs', ";
+			$person_SQLinsert .=  "'' ";
+			$person_SQLinsert .=  "), ";
+		}
+		{ // insert Person 2
+			$person_SQLinsert .=  "(";
+			//$person_SQLinsert .=  "'&lt;autoincremented ID value&gt;', ";
+			$person_SQLinsert .=  "'Mrs', ";
+			$person_SQLinsert .=  "'Wilhelmina', ";
+			$person_SQLinsert .=  "'Bloggs', ";
+			$person_SQLinsert .=  "'1' ";
+			$person_SQLinsert .=  "), ";
+		}
+		{ // insert Person 3
+			$person_SQLinsert .=  "(";
+			//$person_SQLinsert .=  "'&lt;autoincremented ID value&gt;', ";
+			$person_SQLinsert .=  "'Mrs', ";
+			$person_SQLinsert .=  "'Hermione', ";
+			$person_SQLinsert .=  "'Hermit', ";
+			$person_SQLinsert .=  "'300' ";
+			$person_SQLinsert .=  "), ";
+		}
+		{ // insert Person 4	
+			$person_SQLinsert .=  "(";
+			//$person_SQLinsert .=  "'&lt;autoincremented ID value&gt;', ";
+			$person_SQLinsert .=  "'Ms', ";
+			$person_SQLinsert .=  "'Sally', ";
+			$person_SQLinsert .=  "'Smith', ";
+			$person_SQLinsert .=  "'300' ";
+			$person_SQLinsert .=  ") ";
+		}
+		
+		
+		if (mysql_query($person_SQLinsert))  {	
+			echo "INSERT INTO tPerson - SUCCESSFUL.&lt;br /&gt;&lt;br /&gt;";
+		} else {
+			echo "INSERT INTO tPerson - FAILED.&lt;br /&gt;&lt;br /&gt;";
+		}
+
+</before><after/></leaf><leaf type="insert" title="DELETE people 1"><before>	
+	$people_SQLdelete = "DELETE FROM tPerson WHERE LastName = 'Bloggs'"; 
+	
+	if (mysql_query($people_SQLdelete))  {	
+		echo "DELETE tPerson  - SUCCESSFUL.&lt;br /&gt;&lt;br /&gt;";
+	} else {
+		echo "DELETE tPerson  - FAILED.&lt;br /&gt;&lt;br /&gt;";
+	}
+			
+</before><after/></leaf><leaf type="insert" title="DELETE people 2"><before>
+	$people_SQLdelete = "DELETE FROM tPerson WHERE CompanyID &gt; '200'"; 
+	
+	if (mysql_query($people_SQLdelete))  {	
+		echo "DELETE tPerson  - SUCCESSFUL.&lt;br /&gt;&lt;br /&gt;";
+	} else {
+		echo "DELETE tPerson  - FAILED.&lt;br /&gt;&lt;br /&gt;";
+	}
+			
+</before><after/></leaf><leaf type="insert" title="INSERT people VARS"><before>&lt;?php
+/*
+
+*	File:		insertPersonData.php
+*	By:			TMIT
+*	Date:		20100601
+*
+*	This script sets up an ARRAY for tPerson field names
+*						and an ARRAY for 3 tPerson ROWs of data
+*
+*	the script creates an SQL INSERT statement to insert these rows into tPerson 
+*
+*	We then modify the script to
+*			a)		use a 'while () {}' construct to create the INSERT statement
+*					irrespective of how many ROWS of data existed
+*			b)		use php:  fopen, feof, fgets and fclose to read the data
+*					from a file instead of inside the script
+*			c)		use the php 'explode' construct to set a variable to 
+*					an array comprising a the line of data in the datafile
+*
+*=====================================
+*/
+
+{ // Connect and Test MySQL and specific DB (return $dbSuccess = T/F)
+				
+			$hostname = "localhost";
+			$username = "root";
+			$password = "";			
+			$databaseName = "alphacrm";
+
+			$dbConnected = @mysql_connect($hostname, $username, $password);
+			$dbSelected = @mysql_select_db($databaseName,$dbConnected);
+
+			$dbSuccess = true;
+			if ($dbConnected) {
+				if (!$dbSelected) {
+					echo "DB connection FAILED&lt;br /&gt;&lt;br /&gt;";
+					$dbSuccess = false;
+				}		
+			} else {
+				echo "MySQL connection FAILED&lt;br /&gt;&lt;br /&gt;";
+				$dbSuccess = false;
+			}
+}  
+
+//	 Execute code ONLY if connections were successful 	
+if ($dbSuccess) {
+	
+	{	//	setup ARRAY of field names 
+		$personField = array(
+					'Salutation' =&gt; 'Salutation',
+					'FirstName' =&gt; 'FirstName',
+					'LastName' =&gt; 'LastName',
+					'CompanyID' =&gt; 'CompanyID',			
+		);
+	}
+	
+	{	// setup ARRAY of data ROWS
+
+		$personData[0] = array('Mr','Morris','Sparrow','4');
+		$personData[1] = array('Mrs','Mary','Haslett','2');
+		$personData[2] = array('Ms','Gill','Hennesey','1');
+		
+		$numRows = sizeof($personData);
+	}	
+
+		
+	{	//	SQL statement with ARRAYS 
+		
+		//   Fieldnames part of INSERT statement 
+		$person_SQLinsert = "INSERT INTO tPerson (
+									".$personField['Salutation'].",
+									".$personField['FirstName'].",
+									".$personField['LastName'].",
+									".$personField['CompanyID']."							
+									) ";
+								
+		//   VALUES  part of INSERT statement 									
+		$person_SQLinsert .=  "VALUES ";			
+		
+						$indx = 0;					
+						$person_SQLinsert .=  "(
+													'".$personData[$indx][0]."',
+													'".$personData[$indx][1]."',
+													'".$personData[$indx][2]."',
+													'".$personData[$indx][3]."'
+													), ";
+						$indx++;
+						$person_SQLinsert .=  "(
+													'".$personData[$indx][0]."',
+													'".$personData[$indx][1]."',
+													'".$personData[$indx][2]."',
+													'".$personData[$indx][3]."'
+													), ";
+						$indx++;												
+						$person_SQLinsert .=  "(
+													'".$personData[$indx][0]."',
+													'".$personData[$indx][1]."',
+													'".$personData[$indx][2]."',
+													'".$personData[$indx][3]."'
+													) ";							
+
+	
+	}
+		
+			
+		
+	{	//	Echo and Execute the SQL and test for success   
+		
+		echo "&lt;strong&gt;&lt;u&gt;SQL:&lt;br /&gt;&lt;/u&gt;&lt;/strong&gt;";
+		echo $person_SQLinsert."&lt;br /&gt;&lt;br /&gt;";
+			
+		if (mysql_query($person_SQLinsert))  {				
+			echo "was SUCCESSFUL.&lt;br /&gt;&lt;br /&gt;";
+		} else {
+			echo "FAILED.&lt;br /&gt;&lt;br /&gt;";		
+		}
+
+	}
+			
+}	//		END ($dbSuccess)
+
+?&gt;</before><after/></leaf><leaf type="insert" title="INSERT people WHILE"><before>
+
+		$indx = 0;		
+		while($indx &lt; $numRows) {			
+			$person_SQLinsert .=  "(
+										'".$personData[$indx][0]."',
+										'".$personData[$indx][1]."',
+										'".$personData[$indx][2]."',
+										'".$personData[$indx][3]."'
+										) ";
+			if ($indx &lt; ($numRows - 1)) {
+				$person_SQLinsert .=  ",";
+			}
+			
+			$indx++;
+		}
+	
+	</before><after/></leaf><leaf type="insert" title="INSERT people datafile"><before>
+			//		read CSV data file
+	
+			$file = fopen("datafile", "r");					//		open the file 'datafile' for 'r'eading 		
+			$i = 0;
+			while(!feof($file))									//		while NOT the End Of File 
+			  {		  	
+				$thisLine = fgets($file);						//		gets the next line from 'datafile'				
+				$personData[$i] = explode(",", $thisLine);//    sets 
+																		//		$personData[$i] = array( $thisLine );
+																		//		whatever's in $thisline separated by commas .
+				$i++;  												//		increment $i 
+			  }
+			fclose($file); 										//		close the file 
+			
+			$numRows = sizeof($personData);
+
+		</before><after/></leaf></branch><branch title="Arrays"><leaf type="insert" title="Numeric"><before>&lt;?php
+/*
+*	File:		arrayNumeric.php
+*	By:			TMIT
+*	Date:		20100601
+*
+*	This script demonstrates a Numeric array
+
+*=====================================
+*/
+		$company[0]="Quiches 4 You";
+		$company[1]="Pie and Sauce";
+		$company[2]="Sandwich Bar";
+		$company[3]="Flantastic";
+		$company[4]="Cake on Cake";
+		$company[5]="Pizzaeria Superia";
+		$company[6]="Burger Jack";
+		
+		$regtype[0]="";
+		$regtype[1]="Partners";
+		$regtype[2]="Limited";
+		$regtype[3]="PLC";
+		$regtype[4]="";
+		$regtype[5]="Inc";
+		$regtype[6]="PLC";
+	
+		echo "&lt;u&gt;List of Companies&lt;/u&gt;&lt;br /&gt;";
+		echo $company[0]." ".$regtype[0]."&lt;br /&gt;";
+		echo $company[1]." ".$regtype[1]."&lt;br /&gt;";
+		echo $company[2]." ".$regtype[2]."&lt;br /&gt;";
+		echo $company[3]." ".$regtype[3]."&lt;br /&gt;";
+		echo $company[4]." ".$regtype[4]."&lt;br /&gt;";
+		echo $company[5]." ".$regtype[5]."&lt;br /&gt;";
+		echo $company[6]." ".$regtype[6]."&lt;br /&gt;";
+
+?&gt;</before><after/></leaf><leaf type="insert" title="Numeric - autoIndex"><before>&lt;?php
+/*
+*	File:		arrayAutoIndex.php
+*	By:			TMIT
+*	Date:		20100601
+*
+*	This script demonstrates Assigning an array index automatically 
+
+*=====================================
+*/
+
+	$company=array(
+						"Quiches 4 You",
+						"Pie and Sauce",
+						"Sandwich Bar",
+						"Flantastic",
+						"Cake on Cake",
+						"Pizzaeria Superia",
+						"Burger Jack"
+	);
+
+	$regtype=array(
+						"",
+						"Partners",
+						"Limited",
+						"PLC",
+						"",
+						"Inc",
+						"PLC"
+	);
+	
+	//					$regtype=array("","Partners","Limited","PLC","","Inc","PLC");
+	//			====================================================================
+		
+		echo "&lt;u&gt;List of Companies&lt;/u&gt;&lt;br /&gt;";
+		echo $company[0]." ".$regtype[0]."&lt;br /&gt;";
+		echo $company[1]." ".$regtype[1]."&lt;br /&gt;";
+		echo $company[2]." ".$regtype[2]."&lt;br /&gt;";
+		echo $company[3]." ".$regtype[3]."&lt;br /&gt;";
+		echo $company[4]." ".$regtype[4]."&lt;br /&gt;";
+		echo $company[5]." ".$regtype[5]."&lt;br /&gt;";
+		echo $company[6]." ".$regtype[6]."&lt;br /&gt;";
+
+
+?&gt;</before><after/></leaf><leaf type="insert" title="Associative"><before>&lt;?php
+	
+/*
+*	File:		arrayAssociative.php
+*	By:			TMIT
+*	Date:		20100601
+*
+*	This script demonstrates an Associative Array
+*=====================================
+*/	
+	
+$dbConnection = array(
+	'hostname' =&gt; 'localhost',
+	'username' =&gt; 'root',
+	'password' =&gt; '',
+	'database' =&gt; 'alphacrm'
+); 
+
+echo "The hostname for our dbConnection is: ".$dbConnection['hostname'];
+echo "&lt;br /&gt;&lt;br /&gt;";
+
+echo "The database we connect to: ".$dbConnection['database'];
+echo "&lt;br /&gt;&lt;br /&gt;";
+
+
+//$dbConnected = @mysql_connect($hostname, $username, $password);
+$dbConnected = @mysql_connect(
+						$dbConnection['hostname'], 
+						$dbConnection['username'], 
+						$dbConnection['password']
+						);
+
+//$dbSelected = @mysql_select_db($databaseName,$dbConnected);						
+$dbSelected = @mysql_select_db(
+						$dbConnection['database'],
+						$dbConnected
+						);
+?&gt;</before><after/></leaf><leaf type="insert" title="Associative 2 DIM"><before>&lt;?php
+/*
+*	File:		arrayAssoc2Dim.php
+*	By:			TMIT
+*	Date:		20100601
+*
+*	This script demonstrates a 2 dimensional Array
+
+*=====================================
+*/
+
+	$company[0] = array('companyName' =&gt; 'Quiches 4 You','regtype' =&gt; ''); 
+	$company[1] = array('companyName' =&gt; 'Pie and Sauce','regtype' =&gt; 'Partners'); 
+	$company[2] = array('companyName' =&gt; 'Sandwich Bar','regtype' =&gt; 'Limited'); 
+	$company[3] = array('companyName' =&gt; 'Flantastic','regtype' =&gt; 'PLC'); 
+	$company[4] = array('companyName' =&gt; 'Cake on Cake','regtype' =&gt; ''); 
+	$company[5] = array('companyName' =&gt; 'Pizzaeria Superia','regtype' =&gt; 'Inc'); 
+	$company[6] = array('companyName' =&gt; 'Burger Jack','regtype' =&gt; 'PLC'); 
+
+	
+	echo "&lt;u&gt;List of Companies&lt;/u&gt;&lt;br /&gt;";
+	echo $company[0]['companyName']." ".$company[0]['regtype']."&lt;br /&gt;";	
+	echo $company[1]['companyName']." ".$company[1]['regtype']."&lt;br /&gt;";	
+	echo $company[2]['companyName']." ".$company[2]['regtype']."&lt;br /&gt;";		
+	echo $company[3]['companyName']." ".$company[3]['regtype']."&lt;br /&gt;";		
+	echo $company[4]['companyName']." ".$company[4]['regtype']."&lt;br /&gt;";		
+	echo $company[5]['companyName']." ".$company[5]['regtype']."&lt;br /&gt;";		
+	echo $company[6]['companyName']." ".$company[6]['regtype']."&lt;br /&gt;";		
+	
+	echo "&lt;br /&gt;&lt;br /&gt;";
+	
+	//		EXTRA 
+	//		putting the list in a while loop 
+	$i =0;
+	echo "&lt;u&gt;List of Companies - with index&lt;/u&gt;&lt;br /&gt;";
+
+	while($i &lt; 7 ) {
+		 echo $i.":".$company[$i]['companyName']." ".$company[$i]['regtype']."&lt;br /&gt;";	
+		 $i++;
+	}
+
+
+?&gt;</before><after/></leaf></branch><branch title="Files"><leaf type="insert" title="datafile People"><before>Mr,Mike,Freighn,4
+Mrs,Kathie,Arnott,2
+Ms,Zeta,Flowers,1
+M,Guy,Donnet,3
+Mrs,Harriet,Hennesey,3
+Dr,George,Terry,2
+Sir,Geoffrey,Paul,1
+Mrs,Laura,Winalott,
+Mr,Peter,Bellows,1</before><after/></leaf></branch></branch><branch title="Exercise Answers"><branch title="Getting Started"><leaf type="insert" title="Ex 1 (0207)"><before>// Getting started - Exercise 1
+//	Create a Bluefish snippet to render a 3-point HTML unordered list.
+
+echo "&lt;ul&gt;";
+	echo "&lt;li&gt;&lt;/li&gt;";
+	echo "&lt;li&gt;&lt;/li&gt;";
+	echo "&lt;li&gt;&lt;/li&gt;";
+echo "&lt;/ul&gt;";
+
+</before><after/></leaf><leaf type="insert" title="Ex 2 (0207)" tooltip="&#9;&#9;"><before>&lt;?php
+	
+// Getting started - Exercise 2
+//	Create a php script using your list from 1 above 
+
+//	FIRST create the php tags (using snippet "Basics:php Tags simple")
+//		then paste your Exercise 1 snippet between the tags
+
+echo "&lt;ul&gt;";
+	echo "&lt;li&gt;&lt;/li&gt;";
+	echo "&lt;li&gt;&lt;/li&gt;";
+	echo "&lt;li&gt;&lt;/li&gt;";
+echo "&lt;/ul&gt;";
+
+?&gt;</before><after/></leaf><leaf type="insert" title="Ex 3 (0207)"><before>&lt;?php
+	
+/*			Exercise 3 - database and table creation:
+
+			save this snippet as "exercise3.php"  in the htdocs directory
+			
+			the open:   http://localhost/exercise3.php
+			
+			The result will tell you if you correctly completed exercise 3
+
+*/
+
+$databaseName = "DVD";
+$username = "root";
+$password = "";
+$hostname = "localhost";
+
+$dbh = mysql_connect($hostname, $username, $password) 
+or die("Unable to connect to MySQL");
+
+$selected = mysql_select_db($databaseName,$dbh) 
+or die("Could not connect to Database".$databaseName);
+
+echo "Exercise 3: database DVD correctly created.&lt;br /&gt;&lt;br /&gt;";
+
+
+$sqlTxt = "SELECT * FROM tArtists";
+	
+	if (mysql_query($sqlTxt)) {
+		echo "Exercise 3: table tArtists correctly created.&lt;br /&gt;&lt;br /&gt;";
+	} else {
+		echo "Exercise 3: table tArtists NOT created.&lt;br /&gt;&lt;br /&gt;";
+		
+	}; 	
+
+$sqlTxt = "SELECT * FROM tRecordings";
+	
+	if (mysql_query($sqlTxt)) {
+		echo "Exercise 3: table tRecordings correctly created.&lt;br /&gt;&lt;br /&gt;";
+	} else {
+		echo "Exercise 3: table tRecordings NOT created.&lt;br /&gt;&lt;br /&gt;";
+		
+	}; 	
+
+
+?&gt;</before><after/></leaf></branch><branch title="MySQL &amp; php together"><leaf type="insert" title="Ex 1 (0309)"><before/><after/></leaf></branch><branch title="Echo to a Browser"><leaf type="insert" title="Ex 1 (0409)"><before/><after/></leaf></branch></branch></branch>
+</snippets>

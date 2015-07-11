@@ -1,0 +1,81 @@
+<?php
+/*					
+*		INCLUDE FILE:        includes/inc_crmMenu.php
+*
+*			used in:          index.php
+*
+*			Version:    		0808   date: 2010-07-01
+*/
+			
+	echo '<div class="textNormal">';
+	echo '<h2>
+				Infinite Skills - php/MySQL Training
+			</h2>';
+
+		echo '<div class=pad60>';
+			echo '<a href="forms/companyListOrder.php">
+					<span class="mainMenuItem">List Companies</span>
+					</a>';
+			echo '<br /><br />';
+	
+			
+		//		update code:   0807_04
+		{		//				Restrict Access to Editor or higher
+			$accessLevel = $_COOKIE["accessLevel"];
+			if (isset($accessLevel) AND $accessLevel >= 21) {
+			
+				echo '<a href="forms/companyCreate.php">
+						<span class="mainMenuItem">Create New company</span>
+						</a>';
+				echo '<br /><br />';
+		
+				echo '<a href="forms/companyEdit.php">
+						<span class="mainMenuItem">Edit company</span>
+						</a>';
+				echo '<br /><br />';
+		
+				echo '<a href="forms/companyPeopleEdit.php">
+						<span class="mainMenuItem">List People in a Company</span>
+						</a>';
+				echo '<br /><br />';
+				
+			}
+		//		END:		Restrict Access
+		}
+
+		//		Restrict Access to Admin
+		//		update code:   0808_01 NEW USER
+		if (isset($accessLevel) AND $accessLevel >= 99) {	
+			echo '<a href="forms/userCreate.php">
+					<span class="mainMenuItem">create NEW USER</span>
+					</a>';
+			echo '<br /><br />';
+		}
+
+		echo '<br /><hr /><br />';
+
+		
+		{	//	Horizontal menu
+			
+			echo '<a href="index.php?status=logout">
+					<span class="mainMenuItem">Logout</span>
+					</a>';
+
+			if (isset($accessLevel) AND $accessLevel >= 99) {	
+	
+				echo '<a href="DEMO/" class="pad60">
+						<span class="mainMenuItem">DEMO list</span>
+						</a>';
+		
+				echo '<a href="initialise/" class="pad60">
+						<span class="mainMenuItem">initialise</span>
+						</a>';
+		
+				echo '<a href="forms/" class="pad60">
+						<span class="mainMenuItem">FORMS</span>
+						</a>';
+			}
+		}	//	END:  Horizontal menu
+
+
+?>

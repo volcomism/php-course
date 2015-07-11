@@ -1,0 +1,13 @@
+/*	
+*	this is a block of comment
+*	lines
+*
+*	they start with slash-asterisk
+*	and terminate with asterisk-slash
+*
+*	it is customary but not necessary
+*	to start each line with an asterisk
+*	to make it clear that it's 
+*	ALL a comment
+*
+*/

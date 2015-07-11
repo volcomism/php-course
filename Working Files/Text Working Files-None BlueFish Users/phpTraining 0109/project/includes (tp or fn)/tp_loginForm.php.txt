@@ -1,0 +1,30 @@
+<?php
+
+/*		INCLUDE FILE:   tp_loginForm.php
+*
+*		folder:			includes/
+*
+*		used in:        index.php
+*
+*		version:    	0901   date: 2010-07-01
+*
+*		purpose:		login FORM for teh TEMPLATE version of alpha CRM
+*
+*	===========================================================================
+*/
+
+
+		echo '<p>Login Form alphaCRM</p>';
+
+		echo '<form name="postLoginHid" action="index.php" method="post">';	
+				echo '
+					<P>User name: 
+					<INPUT TYPE=text NAME=username value="" SIZE=12 MAXLENGTH=16></P>
+					<P>Password: 
+					<INPUT TYPE=password NAME=password value="" SIZE=12 MAXLENGTH=16></P>
+					<input type="submit"  value="Login" />
+				';
+		echo '</form>';
+	
+
+?>

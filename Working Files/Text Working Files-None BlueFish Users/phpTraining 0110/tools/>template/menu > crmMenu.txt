@@ -1,0 +1,9 @@
+//	Restricted - Admin Only menu items
+	if (isset($accessLevel) AND $accessLevel >= 99) {
+		echo '<br /><br /><br />Tools:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';	
+		
+		echo '<a href="index.php?content=toolButtons">
+				<span class="mainMenuItem">Button Tool</span>
+				</a>';
+		echo '<br /><br />';
+	}

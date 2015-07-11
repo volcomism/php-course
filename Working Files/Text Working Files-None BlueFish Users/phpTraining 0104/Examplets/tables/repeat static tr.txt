@@ -1,0 +1,14 @@
+	
+	$ii = 0;
+	while($ii < $numRows) {
+		echo "<tr>";
+		
+		echo "<td>Mr</td>";
+		echo "<td>Joe</td>";
+		echo "<td>Bloggs</td>";
+		echo "<td>3</td>";
+	
+		echo "</tr>";
+		$ii++;
+	}
+

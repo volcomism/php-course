@@ -1,0 +1,103 @@
+<?php
+/*
+
+*	File:			companyList.php
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	This script Lists the records in tCompany
+*
+*
+*=====================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+if ($dbSuccess) {
+	
+	{	//		SELECT all companies in Name order and execute 
+		$tCompany_SQLselect = "SELECT * ";
+		$tCompany_SQLselect .= "FROM ";
+		$tCompany_SQLselect .= "tCompany ";	
+		$tPerson_SQLselect .= "ORDER BY ";
+		$tPerson_SQLselect .= "tCompany.Name";
+	
+		$tCompany_SQLselect_Query = mysql_query($tCompany_SQLselect); 	
+
+	}
+	
+	{	//		Output 
+	echo '<div style=" font-family: arial, helvetica, sans-serif; ">';
+	
+			echo '<h2>Company List</h2>';
+		
+			echo "<table border='1'>";	
+				echo "<tr style = \" font-family: arial, helvetica, sans-serif; color:maroon; \">";		
+					echo "<td>ID</td>";
+					echo "<td>Company</td>";
+					echo "<td>Address</td>";
+				echo "</tr>";
+		
+			while ($row = mysql_fetch_array($tCompany_SQLselect_Query, MYSQL_ASSOC)) {
+				
+			    $ID = $row['ID'];
+			    $preName = $row['preName'];
+			    $CompanyName = $row['Name'];
+			    $regType = $row['regType'];
+			    
+			    $CompanyFullName = trim($preName." ".$CompanyName." ".$regType);
+			   
+			    $StreetA = $row['StreetA'];
+			    $StreetB = $row['StreetB'];
+			    $StreetC = $row['StreetC'];
+			    $Town = $row['Town'];
+			    $County = $row['County'];
+			    $Postcode = $row['Postcode'];
+			    $COUNTRY = $row['COUNTRY'];
+		
+			    $CompanyFullAddress = $StreetA;
+		
+					if (!empty($StreetB)) { $CompanyFullAddress .=  ", ".$StreetB; }
+					if (!empty($StreetC)) { $CompanyFullAddress .=  ", ".$StreetC; }
+					if (!empty($Town)) { $CompanyFullAddress .=  ", ".$Town; }
+					if (!empty($County)) { $CompanyFullAddress .=  ", ".$County; } 
+					if (!empty($Postcode)) { $CompanyFullAddress .=  ", ".$Postcode; }			
+					if (!empty($COUNTRY)) { $CompanyFullAddress .=  ", ".$COUNTRY; }	   
+			    
+				echo "<tr>";
+				
+					echo "<td>".$ID."</td>"; 
+					echo "<td>".$CompanyFullName."</td>";
+					echo "<td>".$CompanyFullAddress."</td>";
+			
+				echo "</tr>";
+		  
+			}
+			
+			echo "</table>";	
+
+	echo '</div>';
+	
+	}
+	
+	mysql_free_result($tCompany_SQLselect_Query);	
+	
+}
+
+echo "<br /><hr /><br />";
+
+echo '<a href="../index.php">Quit - to homepage</a>';
+
+?>

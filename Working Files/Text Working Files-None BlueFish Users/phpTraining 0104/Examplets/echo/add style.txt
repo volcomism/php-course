@@ -1,0 +1,3 @@
+			<p style="font-family: sans-serif; color:red">
+				This is a styled paragraph
+			</p>

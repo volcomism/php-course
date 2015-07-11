@@ -1,0 +1,66 @@
+<?php
+
+/*		INCLUDE FILE:   fn_strings.php
+*
+*		folder:			includes/
+*
+*		used in:       index.php
+*
+*		version:    	1003   date: 2010-07-01
+*
+*		purpose:			string functions for use in alphaCRM		
+*
+*		Contents:		todGreeting()
+*							fullCoName($coID, $preName, $coName, $regType)
+*							shortCoName($coName, $regType)
+*							coAddress($A, $B, $C)
+*
+*	===========================================================================
+*/		
+	
+		function todGreeting()
+		{	
+			$todAMPM = date("A");
+			$todHour = date("H");
+			if ($todAMPM == "AM") {
+				$todReturn = "Good Morning";	
+			} else {
+				if ($todHour > 18) {
+					$todReturn = "Good Evening";	
+				} else {
+					$todReturn = "Good Afternoon";	
+				}
+			}
+			$todReturn = '<span class="greeting">'.$todReturn.' ';
+			$todReturn .= '<span class="greetingName">'.$_COOKIE["username"].'</span></span>';
+							  
+			return $todReturn;
+		}
+
+		function fullCoName($coID, $preName, $coName, $regType)
+		{
+			if (empty($coID)) {
+				$temp = "Un-Allocated";
+			} else {
+				$temp = trim($preName." ".$coName." ".$regType);
+			}
+			return $temp;
+		}
+
+
+		function shortCoName($coName, $regType)
+		{
+			$temp = trim($coName." ".$regType);
+			return $temp;
+		}
+
+		function coAddress($A, $B, $C)
+		{
+			$temp = $A;
+			if (!empty($B)) { $temp .=  ", ".$B; }
+			if (!empty($C)) { $temp .=  ", ".$C; }
+			return $temp;
+		}
+
+
+?>

@@ -1,0 +1,30 @@
+<?php
+
+echo "fnTest_arrayArgs<br /><br />";
+
+function noArgs() {
+	echo "function arrayArgs() &nbsp;&nbsp;&nbsp;";
+	
+  $arr = func_get_args();
+  $n = sizeof($arr);
+  
+
+    for ($i =0; $i < $n; $i++) {
+      $x = $arr[$i];
+ 			echo $x;
+      }
+
+  echo "<br /><hr /><br />";
+
+  }
+
+
+	$p = noArgs(2);
+	$q = noArgs(2, 3);
+	$r = noArgs(2, "x", 4);
+	$r = noArgs(2, "p", 4, "q");
+
+echo "<br /><hr /><br />";
+
+
+?>

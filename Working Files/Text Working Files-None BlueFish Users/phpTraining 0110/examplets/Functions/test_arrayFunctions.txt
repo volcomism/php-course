@@ -1,0 +1,76 @@
+<style type="text/css">
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.scriptcolour {
+	color: maroon;	
+}
+</style>
+
+<?php
+
+		$arrayP[0] = explode(",", "3,Orange");
+		$arrayP[1] = explode(",", "4,Apple");
+		$arrayP[2] = explode(",", "1,Lemon");
+
+		$arrayQ[0] = explode(",", "19,Grape");
+		$arrayQ[1] = explode(",", "7,Banana");
+		$arrayQ[2] = explode(",", "6,Melon");
+		$arrayQ[3] = explode(",", "9,Peach");
+		$arrayQ[4] = explode(",", "2,Pear");
+		$arrayQ[5] = explode(",", "6,Melon");
+		$arrayQ[7] = explode(",", "15,Peach");
+		$arrayQ[8] = explode(",", "10,Apricot");
+				
+		$arrayW = explode(",", "Grape,Banana,Melon,Peach,Pear,Melon, Pineapple,Apricot");
+
+		$arrayP_name = var_name($arrayP, get_defined_vars());
+		$arrayQ_name = var_name($arrayQ, get_defined_vars());
+		$arrayW_name = var_name($arrayW, get_defined_vars());
+				
+		echo "<p><strong><u>Array Functions:</u></strong></p>";
+
+		//	vvv Test
+						
+			echo '<p><strong>In-Built array dump function:</strong></p>';
+			echo '<p class="scriptcolour">$p = print_r($tableData);</p>';
+			$p = print_r($arrayP);
+	
+		echo "<br /><hr /><br />";
+	
+			echo '<p><strong>Custom function to dump array:</strong></p>';
+			echo '<p class="scriptcolour">$p = dumpArray($tableData, $arrName);</p>';
+			$p = dumpArray($arrayP, $arrNameP);
+
+		//	^^^ Test
+		
+function dumpArray($arr, $arrName){	
+		
+		foreach ($arr as $key => $value)
+		{
+	      echo  $arrName."[",$key."] => ".$value."<br />";
+	      if (is_array($value)) {
+				foreach ($value as $key2 => $value2)
+				{
+				      echo  str_repeat("&nbsp;", 8).$arrName."[",$key."][".$key2."] => ".$value2."<br />";
+				}
+			}
+	      echo "<br />";		      
+		}
+}
+
+function var_name (&$iVar, &$aDefinedVars){
+	
+    foreach ($aDefinedVars as $k=>$v){
+        $aDefinedVars_0[$k] = $v;}
+ 
+    $iVarSave = $iVar;
+    $iVar     =!$iVar;
+ 
+    $aDiffKeys = array_keys (array_diff_assoc ($aDefinedVars_0, $aDefinedVars));
+    $iVar      = $iVarSave;
+ 
+    return $aDiffKeys[0];
+}
+ 
+?>

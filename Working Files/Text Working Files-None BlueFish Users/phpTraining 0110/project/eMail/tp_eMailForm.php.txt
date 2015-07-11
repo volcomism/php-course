@@ -1,0 +1,141 @@
+<?php
+
+/*		INCLUDE FILE:   tp_eMailForm.php
+*
+*		folder:			includes/
+*
+*		used in:       tp_companyPeopleEdit.php
+*
+*		version:    	1202   date: 2010-07-03
+*
+*		purpose:		   send eMail to email address in tPerson
+*
+*	===========================================================================
+*/
+
+
+$personID = $_POST["personID"];
+if(!isset($personID)) {$personID = $_GET["personID"]; }
+
+{	//  Get the details of tPerson where ID = $personID
+
+		$tPerson_SQLselect = "SELECT * ";
+		$tPerson_SQLselect .= "FROM ";
+		$tPerson_SQLselect .= "tPerson ";
+		$tPerson_SQLselect .= "WHERE ID = '".$personID."' ";
+		
+		$tPerson_SQLselect_Query = mysql_query($tPerson_SQLselect);	
+		
+		while ($row = mysql_fetch_array($tPerson_SQLselect_Query, MYSQL_ASSOC)) {
+
+			$Salutation = $row['Salutation'];
+			$FirstName = $row['FirstName'];
+			$LastName = $row['LastName'];
+			$Tel = $row['Tel'];
+			$eMail = $row['eMail'];	
+			$CompanyID = $row['CompanyID'];	
+		}
+}
+	
+{	//  Get the SMTP server	and default FROM address	
+		$tLookup_SQLselect = "SELECT * ";
+		$tLookup_SQLselect .= "FROM tLookup ";
+		$tLookup_SQLselect .= "WHERE lookupType LIKE 'eMail_%' ";
+		
+		$tLookup_SQLselect_Query = mysql_query($tLookup_SQLselect);	
+		
+		while ($row = mysql_fetch_array($tLookup_SQLselect_Query, MYSQL_ASSOC)) {
+			if ($row['lookupType'] == "eMail_server") { 
+				$SMTPserver= $row['lookupValue'];
+			}		
+			if ($row['lookupType'] == "eMail_fromAddress") { 
+				$FromMail= $row['lookupValue'];
+			}				 
+		}
+}			
+		
+$sendWasClicked = 0;
+$sendWasClicked = $_POST['sendWasClicked'];
+if (isset($sendWasClicked) AND $sendWasClicked == 1) {
+	
+		{	//		if $sendWasClicked 
+
+				//		$ToMail  comes from SELECT from tPersons 
+				$ToMail = $eMail;
+				// 	$FromMail comes from SELECT from tLookup
+				
+				$subject = $_POST['subject'];
+				$message = $_POST['message'];
+		
+				$headers =   'From: '.$FromMail."\r\n" .
+							    'Reply-To: '.$FromMail."\r\n" .
+							    'X-Mailer: PHP/' . phpversion();
+				
+				ini_set("SMTP",$SMTPserver);		
+				$mailSent = mail($ToMail, $subject, $message, $headers);
+						
+				//		vvvvvvvvvvvvvvvvvvvvv  eMail SENT HERE vvvvvvvvvvvvvvvvvvvvvvvvv		
+				if ($mailSent) {
+					echo 'Mail SENT.<br /><br />';
+					$msg = eMailSentLog("P", $personID, 1, 0, $subject, $message);
+					//		>>   error trap here if needed ^^^^^
+					
+				} else {
+					echo 'Mail FAILED.<br /><br />';	
+					$backLink = 'index.php?content=eMailFormLink&personID='.$personID;
+					echo '<a href="'.$backLink.'">try again...</a>';		
+				}		
+				//    ^^^^^^^^^^^^^^^^^^^^^^^   eMail Out ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+		}
+		
+} else {
+			
+
+		{	//		FORM to get eMail details 
+
+				$sendWasClicked_fld = '<input type="hidden" name="sendWasClicked" value=1>';
+				$personID_fld = '<input type="hidden" name="personID" value='.$personID.'>';	
+				
+				$subject_fld = '<input type="text" name="subject" size="43"/>';
+				$message_fld = '<textarea name="message" cols="50" rows="10"></textarea>';
+		
+				$submit_fld = '<input type="submit" value="Send"/>';
+						
+				echo '<form method="post" action="index.php?content=eMailFormLink">';
+						echo $sendWasClicked_fld;
+						echo $personID_fld;
+						echo '<table>';
+						echo '<tr>';
+							echo '<td>To:</td>';
+							echo '<td class="textEmph">'.$eMail.'</td>';
+						echo '</tr>';
+						echo '<tr>';
+							echo '<td>From:</td>';
+							echo '<td class="textEmph">'.$FromMail.'</td>';
+						echo '</tr>';
+		
+						echo '<tr>';
+							echo '<td>Subject</td>';
+							echo '<td>'.$subject_fld.'</td>';
+						echo '</tr>';
+						echo '<tr>';
+							echo '<td>Message</td>';
+							echo '<td>'.$message_fld.'</td>';
+						echo '</tr>';
+						echo '<tr>';
+							echo '<td></td>';
+							echo '<td align="right">'.$submit_fld.'</td>';
+						echo '</tr>';
+				
+						echo '</table>		';
+				echo '</form>';
+				
+		//		END: FORM to get eMail details			
+		} 
+		
+} 
+
+echo '<br /><hr /><br />';
+echo '<a href="index.php?content=companyPeopleEdit&companyID='.$CompanyID.'">Back to Company List</a>';
+
+?>

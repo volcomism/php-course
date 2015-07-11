@@ -1,0 +1,156 @@
+<?php
+
+/*		INCLUDE FILE:   fn_tPerson_SQL.php
+*
+*		folder:			includes/
+*
+*		used in:       index.php
+*
+*		version:    	1302   date: 2010-07-03
+*
+*		purpose:			FUNCTIONS:
+*							personInsert - INSERTS new tPerson record
+*							personUpdate - UPDATES edits from tp_personEditForm.php
+*							personSuspend - make records as suspended
+*
+*		revisions  
+*						1010 validates eMail addresses
+*						1301 suspendRecord($tableName ,$recordID)
+*						1302 restoreRecord($tableName ,$recordID)
+*						1303 add fld notes to personUpdate
+*
+*	===========================================================================
+*/		
+	function restoreRecord($tableName ,$recordID) {
+
+			$delUserID = $_COOKIE["userID"];
+			$delTime = date("Y-m-d H:i:s",strtotime("now"));
+
+			$suspend_SQL = "UPDATE ".$tableName." SET ";			
+			$suspend_SQL .=  "delUserID = NULL , "; 		
+			$suspend_SQL .=  "delTime = 0 ";
+
+			$suspend_SQL .=  "WHERE ID = '".$recordID."' "; 	
+		
+			if (mysql_query($suspend_SQL))  {
+				$errorMsg = "Record Restored.";							
+			} else {
+				$errorMsg =  dataError("FAILED to restore record.");
+			}
+			
+			return $errorMsg;
+					
+	}
+
+	function suspendRecord($tableName ,$recordID) {
+
+			$delUserID = $_COOKIE["userID"];
+			$delTime = date("Y-m-d H:i:s",strtotime("now"));
+
+			$suspend_SQL = "UPDATE ".$tableName." SET ";			
+			$suspend_SQL .=  "delUserID = '".$delUserID."', "; 		
+			$suspend_SQL .=  "delTime = '".$delTime."' ";
+
+			$suspend_SQL .=  "WHERE ID = '".$recordID."' "; 	
+		
+			if (mysql_query($suspend_SQL))  {
+				$errorMsg = "Record Deleted.";							
+			} else {
+				$errorMsg =  dataError("FAILED to delete record.");
+			}
+			
+			return $errorMsg;
+					
+	}
+	
+	function personInsert($Salutation, $FirstName, $LastName, $Tel, $eMail, $companyID) {
+		
+		//		revision:    1010
+
+		{	//		check the data before processing it
+			$errorMsg = "";		 
+			if (empty($LastName)) { $errorMsg = "Cannot add person with no Lastname.<br />"; }
+
+			if (!empty($eMail)) {
+				if (!check_email($eMail)) { 
+					$errorMsg = "Invalid eMail address format.<br />";
+				} else {
+					if (!check_email_mx($eMail)) { 
+						$errorMsg = "No MX server detected for that eMail address.<br />";
+					}
+				}
+			}				
+		}
+
+		if (empty($errorMsg)) {
+			$tPerson_SQLinsert = "INSERT INTO tPerson (";			
+			$tPerson_SQLinsert .=  "Salutation, ";
+			$tPerson_SQLinsert .=  "FirstName, ";
+			$tPerson_SQLinsert .=  "LastName, ";
+			$tPerson_SQLinsert .=  "Tel, ";	
+			$tPerson_SQLinsert .=  "eMail, ";		
+			$tPerson_SQLinsert .=  "companyID ";
+			$tPerson_SQLinsert .=  ") ";
+			
+			$tPerson_SQLinsert .=  "VALUES (";
+			$tPerson_SQLinsert .=  "'".$Salutation."', ";
+			$tPerson_SQLinsert .=  "'".$FirstName."', ";
+			$tPerson_SQLinsert .=  "'".$LastName."', ";
+			$tPerson_SQLinsert .=  "'".$Tel."', ";	
+			$tPerson_SQLinsert .=  "'".$eMail."', ";		
+			$tPerson_SQLinsert .=  "'".$companyID."' ";
+			$tPerson_SQLinsert .=  ") ";
+	
+
+			if (!mysql_query($tPerson_SQLinsert))  {	
+				$errorMsg = dataError("FAILED to add new person.");
+			}
+		
+		} 	else {
+			$errorMsg = dataError($errorMsg)."<br />";
+		}
+			
+		return $errorMsg;
+	}	
+
+	function personUpdate($personID, $Salutation, $FirstName, $LastName, $Tel, $eMail, $notes, $companyID) {
+
+
+		if (empty($LastName)) { $errorMsg = "Cannot add person with no Lastname.<br />"; }
+
+		if (!empty($eMail)) {
+			if (!check_email($eMail)) { 
+				$errorMsg = "Invalid eMail address format.<br />";
+			} else {
+				if (!check_email_mx($eMail)) { 
+					$errorMsg = "No MX server detected for that eMail address.<br />";
+				}
+			}
+		}				
+
+		if (empty($errorMsg)) {
+		
+			$tPerson_SQLupdate = "UPDATE tPerson SET ";			
+			$tPerson_SQLupdate .=  "CompanyID = '".$companyID."', "; 
+			
+			$tPerson_SQLupdate .=  "Salutation = '".$Salutation."', ";
+			$tPerson_SQLupdate .=  "FirstName = '".$FirstName."', ";
+			$tPerson_SQLupdate .=  "LastName = '".$LastName."', ";
+			$tPerson_SQLupdate .=  "Tel = '".$Tel."', ";
+			$tPerson_SQLupdate .=  "eMail = '".$eMail."', ";
+			$tPerson_SQLupdate .=  "notes = '".$notes."' ";
+			$tPerson_SQLupdate .=  "WHERE ID = '".$personID."' "; 	
+		
+			if (!mysql_query($tPerson_SQLupdate))  {	
+				$errorMsg = dataError("FAILED to update person.");
+			}
+		
+		} 	else {
+			$errorMsg = dataError($errorMsg)."<br />";
+		}
+			
+		return $errorMsg;
+	}	
+
+
+?>

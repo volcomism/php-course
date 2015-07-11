@@ -1,0 +1,14 @@
+		{	//		Insert New tUser Record
+			//												revision    1005
+			//												uses:     userInsert(..)  r1005 		
+		
+			if(isset($userInserted) AND $userInserted == '1'){
+				
+				$newUserMsg = userInsert($username, $password, $passwordValidate, $eMail, $accessLevel);
+				
+				echo $newUserMsg;
+				
+				unset($userInserted);
+			}		
+		//		END:  Insert New tUser Record		
+		}

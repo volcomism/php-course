@@ -1,0 +1,4 @@
+
+	$userName = $_GET["userName"];
+	echo "The userName sent was: ".$userName;
+	

@@ -1,0 +1,56 @@
+<?php
+
+/*		INCLUDE FILE:   fn_eMailLog.php
+*
+*		folder:			includes/
+*
+*		used in:       tp_eMailForm.php
+*
+*		version:    	1205   date: 2010-07-03
+*
+*		purpose:		   log eMail sent
+*
+*	===========================================================================
+*/
+
+//			mailTargetType = P or C  - for Person or Company 
+//			targetID  =  ID from tPerson or tCompany 
+
+function eMailSentLog( 	$mailTargetType, $targetID, 
+								$templateID, 
+								$contentID, $subjectText, $contentText) {
+	
+		$mailDateTime = date("Y-m-d H:i:s",strtotime("now"));
+		
+		$errorMsg = "";	
+		$tMailLog_SQLinsert = "INSERT INTO tMailLog (";			
+		$tMailLog_SQLinsert .=  "mailTargetType, ";
+		$tMailLog_SQLinsert .=  "targetID, ";
+		$tMailLog_SQLinsert .=  "templateID, ";
+		$tMailLog_SQLinsert .=  "contentID, ";	
+		$tMailLog_SQLinsert .=  "subjectText, ";	
+		$tMailLog_SQLinsert .=  "contentText, ";	
+		$tMailLog_SQLinsert .=  "mailDateTime ";
+		$tMailLog_SQLinsert .=  ") ";
+		
+		$tMailLog_SQLinsert .=  "VALUES (";
+		$tMailLog_SQLinsert .=  "'".$mailTargetType."', ";
+		$tMailLog_SQLinsert .=  "'".$targetID."', ";
+		$tMailLog_SQLinsert .=  "'".$templateID."', ";
+		$tMailLog_SQLinsert .=  "'".$contentID."', ";	
+		$tMailLog_SQLinsert .=  "'".$subjectText."', ";	
+		$tMailLog_SQLinsert .=  "'".$contentText."', ";	
+		$tMailLog_SQLinsert .=  "'".$mailDateTime."' ";
+		$tMailLog_SQLinsert .=  ") ";
+
+
+		if (!mysql_query($tMailLog_SQLinsert))  {	
+			$errorMsg = dataError("FAILED to add new mail log.");
+		}
+
+		return $errorMsg;
+	
+}
+
+
+?>

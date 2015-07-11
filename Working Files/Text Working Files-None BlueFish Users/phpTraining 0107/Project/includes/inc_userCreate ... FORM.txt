@@ -1,0 +1,52 @@
+<?php
+/*
+
+*	File:				/includes/inc_userCreateForm.php
+*	Used in 			/forms/userCreate.php
+*
+*	Uses:			$fld_access   from    inc_userCreateACLdropdown.php
+*
+*	By:			TMIT
+*	Date:			2010-06-01
+*
+*	This script provides the FORM for  userCreate.php
+*
+*
+*=====================================
+*/
+			{	//	FORM postUser
+			echo '<form name="postUser" action="userCreate.php" method="post">';
+					echo '<input type="hidden" name="saveClicked" value="saveClicked"/>';
+					echo '
+					<table>
+						<tr>
+							<td>username</td>
+							<td><input type="text" name="username" /></td>
+						</tr>
+						<tr>
+							<td>password</td>
+							<td><input type="text" name="password" /></td>
+						</tr>
+						<tr>
+							<td>retype password</td>
+							<td><input type="text" name="passwordValidate" /></td>
+						</tr>
+						<tr>
+							<td>eMail</td>
+							<td><input type="text" name="eMail" /></td>
+						</tr>
+						<tr>
+							<td>access level</td>
+							<td>'.$fld_access.'</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td align="right"><input type="submit"  value="Save" /></td>
+						</tr>
+					</table>
+					';
+						
+			echo '</form>';
+			//	END: FORM postUser 
+			}	
+?>

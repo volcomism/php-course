@@ -1,0 +1,3 @@
+			    	//		update code:   0807_02 cookies	
+					setcookie("accessLevel", $accessLevel, time()+7200, "/");	
+					setcookie("userID", $userID, time()+7200, "/");	

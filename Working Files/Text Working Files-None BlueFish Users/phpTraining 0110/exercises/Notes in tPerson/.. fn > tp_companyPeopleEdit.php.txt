@@ -1,0 +1,5 @@
+				$notes = $_POST["notes"];	
+				
+				$updateMsg = personUpdate($personID, $Salutation, $FirstName, $LastName, 
+													$Tel, $eMail, $notes, $companyID);			//	<<< 1302
+													

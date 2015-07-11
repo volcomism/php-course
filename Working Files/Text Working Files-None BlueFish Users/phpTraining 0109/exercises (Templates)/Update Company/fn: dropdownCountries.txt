@@ -1,0 +1,23 @@
+	function dropdownCountries($currentValue) {
+
+		$lookup_SQL =  "SELECT lookupValue FROM tLookup ";
+		$lookup_SQL .= "WHERE lookupType = 'country' ";
+		$lookup_SQL .= "ORDER By lookupOrder ";
+		
+		$lookup_SQL_Query = mysql_query($lookup_SQL);	
+
+		$rendering = '<select name="COUNTRY">';		 
+		$rendering .= '<option></option>';	
+			while ($row = mysql_fetch_array($lookup_SQL_Query, MYSQL_ASSOC)) {
+			    $itmeValue = $row['lookupValue'];
+			    if ($currentValue == $itmeValue) { 
+			    	$selectedFlag = " selected";
+			    } else { 
+			    	$selectedFlag = "";
+			    }
+			    $rendering .= '<option'.$selectedFlag.'>'.$itmeValue.'</option>';
+			}			
+		$rendering .= '</select>';
+		
+		return $rendering;
+	}		

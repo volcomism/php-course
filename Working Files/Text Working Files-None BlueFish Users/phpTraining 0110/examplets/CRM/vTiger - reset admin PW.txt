@@ -1,0 +1,1 @@
+UPDATE vtiger_users SET user_password = 'adpexzg3FUZAk', crypt_type=' ' WHERE id=1;

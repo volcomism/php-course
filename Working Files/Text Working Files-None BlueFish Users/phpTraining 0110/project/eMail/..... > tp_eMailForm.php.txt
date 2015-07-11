@@ -1,0 +1,12 @@
+				//		vvvvvvvvvvvvvvvvvvvvv  eMail SENT HERE vvvvvvvvvvvvvvvvvvvvvvvvv		
+				if ($mailSent) {
+					echo 'Mail SENT.<br /><br />';
+					$msg = eMailSentLog("P", $personID, 1, 0, $subject, $message);
+					//		>>   error trap here if needed ^^^^^
+					
+				} else {
+					echo 'Mail FAILED.<br /><br />';	
+					$backLink = 'index.php?content=eMailFormLink&personID='.$personID;
+					echo '<a href="'.$backLink.'">try again...</a>';		
+				}		
+				//    ^^^^^^^^^^^^^^^^^^^^^^^   eMail Out ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

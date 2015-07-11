@@ -1,0 +1,49 @@
+<?php
+	
+//		File in initialise folder:              table_tUser.php
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+	$newTableName = "tUser";
+	
+	{		//	drop & create table
+		$dropTestTable = 'DROP TABLE '.$newTableName;
+			if (mysql_query($dropTestTable))  {	
+				echo 'Table Dropped.<br /><br />';
+			} else {
+				echo '<span style="color:red; ">
+						FAILED to DROP table.'.$newTableName.'</span>
+						<br /><br />';
+				echo mysql_error();
+			}
+	
+		$createTestTable = 'CREATE TABLE alphacrm.'.$newTableName.' (
+									ID INT NOT NULL  AUTO_INCREMENT PRIMARY KEY ,
+									username VARCHAR( 16 ) NOT NULL, 
+									password VARCHAR( 70 ) NOT NULL, 
+									email VARCHAR( 250 ) NOT NULL, 
+									UNIQUE (username)
+								)';		
+											
+			if (mysql_query($createTestTable))  {	
+				echo '<br />Table '.$newTableName.' Added.<br /><br />';
+			} else {
+				echo '<span style="color:red; "><br />FAILED to Add table '
+						.$newTableName.'.</span><br /><br />';
+				echo mysql_error();
+			}
+	}
+
+?>

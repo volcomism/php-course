@@ -1,0 +1,29 @@
+This is a plain text file called plainTextFile
+It comprises several LINES of text
+and can be read by php using the fopen() function
+
+//  this is a comment line and can be tested with
+//  $isComment = (substr(trim($thisLine),0,2) == "//");
+
+/*   this is the start of a php or css comment
+		which could be tested with
+		
+		$startComment = (substr(trim($thisLine),0,2) == "/*");
+		
+		and the end of the comment would be tested with
+		
+		$endComment = (substr(trim($thisLine),-2,2) == "*/");
+		
+*/
+
+
+<html>
+<head>
+<title>This is an example HTML file</title>
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+
+</head>
+<body>
+This is in the body tags of an HTML script  
+</body>
+</html>

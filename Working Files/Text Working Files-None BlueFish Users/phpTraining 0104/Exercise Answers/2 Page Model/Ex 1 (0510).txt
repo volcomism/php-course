@@ -1,0 +1,194 @@
+<?php
+/*
+
+*	File:			exercise4.php
+*	By:			TMIT
+*	Date:		
+*
+*	This script INSERTS contents of csv file csvExercise4 into tPerson
+*
+*
+*=====================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+if ($dbSuccess) {
+	
+		$tableName = "tPerson";	
+		$CSVfilename = "csvExercise4";
+		
+		$tableField = array(
+					'Salutation',
+					'FirstName',
+					'LastName',
+					'CompanyID'
+		);
+		$numFields = sizeof($tableField);
+
+
+
+	//	=======^^^^^^^^^^^^^^^^^^^^^^^=========  End of Definition Part ======^^^^^^^^^=====
+
+										
+		{  //		read CSV data file
+	
+			$file = fopen($CSVfilename, "r"); 		
+			$i = 0;
+			while(!feof($file))
+			  {		  	
+				$thisLine = fgets($file);		
+				$tableData[$i] = explode(",", $thisLine);
+				$i++; 
+			  }
+			fclose($file);
+			
+			$numRows = sizeof($tableData);
+		}
+		echo '$numRows : '.$numRows.'<br />';
+		echo '$tableField[$numFields-1] : '.$tableField[$numFields-1].'<br />';
+
+		
+			$table_SQLinsert = "INSERT INTO ".$tableName." (";
+			
+			//$table_SQLinsert .=   "x"; 
+			foreach($tableField as $tableFieldName) {
+				$table_SQLinsert .=  $tableFieldName;
+				if($tableFieldName <> $tableField[$numFields-1]) {
+					$table_SQLinsert .=  ", ";
+				}
+			}
+			$table_SQLinsert .=  ") VALUES ";
+
+			$indx = 0;		
+			while($indx < $numRows) {			
+				$table_SQLinsert .=  "(";
+				
+				foreach($tableField as $key => $tableFieldName) {
+					
+					$table_SQLinsert .=  "'".$tableData[$indx][$key]."'";
+					if($tableFieldName <> $tableField[$numFields-1]) {
+						$table_SQLinsert .=  ", ";
+					}
+
+				}
+
+				$table_SQLinsert .=  ") ";
+				if ($indx < ($numRows - 1)) {
+					$table_SQLinsert .=  ",\n";
+				}
+				
+				$indx++;
+			}
+		
+			{	//	Echo and Execute the SQL and test for success   
+			
+						echo "<strong><u>SQL:<br /></u></strong>";
+						echo $table_SQLinsert."<br /><br />";
+							
+						if (mysql_query($table_SQLinsert))  {				
+							echo "was SUCCESSFUL.<br /><br />";
+						} else {
+							echo "FAILED.<br /><br />";		
+						}
+			}
+}
+
+?><?php
+/*
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+if ($dbSuccess) {
+	
+	{	//		SELECT all companies in Name order and execute 
+		$tCompany_SQLselect = "SELECT * ";
+		$tCompany_SQLselect .= "FROM ";
+		$tCompany_SQLselect .= "tCompany ";	
+		$tPerson_SQLselect .= "ORDER BY ";
+		$tPerson_SQLselect .= "tCompany.Name";
+	
+		$tCompany_SQLselect_Query = mysql_query($tCompany_SQLselect); 	
+
+	}
+	
+	echo '<div style=" font-family: arial, helvetica, sans-serif; ">';
+			echo "<table border='1'>";	
+				echo "<tr style = \" font-family: arial, helvetica, sans-serif; color:maroon; \">";		
+					echo "<td>ID</td>";
+					echo "<td>Company</td>";
+					echo "<td>Address</td>";
+				echo "</tr>";
+		
+			while ($row = mysql_fetch_array($tCompany_SQLselect_Query, MYSQL_ASSOC)) {
+				
+			    $ID = $row['ID'];
+			    $preName = $row['preName'];
+			    $CompanyName = $row['Name'];
+			    $regType = $row['regType'];
+			    
+			    $CompanyFullName = trim($preName." ".$CompanyName." ".$regType);
+			   
+			    $StreetA = $row['StreetA'];
+			    $StreetB = $row['StreetB'];
+			    $StreetC = $row['StreetC'];
+			    $Town = $row['Town'];
+			    $County = $row['County'];
+			    $Postcode = $row['Postcode'];
+			    $COUNTRY = $row['COUNTRY'];
+		
+			    $CompanyFullAddress = $StreetA;
+		
+					if (!empty($StreetB)) { $CompanyFullAddress .=  ", ".$StreetB; }
+					if (!empty($StreetC)) { $CompanyFullAddress .=  ", ".$StreetC; }
+					if (!empty($Town)) { $CompanyFullAddress .=  ", ".$Town; }
+					if (!empty($County)) { $CompanyFullAddress .=  ", ".$County; } 
+					if (!empty($Postcode)) { $CompanyFullAddress .=  ", ".$Postcode; }			
+					if (!empty($COUNTRY)) { $CompanyFullAddress .=  ", ".$COUNTRY; }	   
+			    
+				echo "<tr>";
+				
+					echo "<td>".$ID."</td>"; 
+					echo "<td>".$CompanyFullName."</td>";
+					echo "<td>".$CompanyFullAddress."</td>";
+			
+				echo "</tr>";
+		  
+			}
+			
+			echo "</table>";	
+
+	echo '</div>';
+	
+	mysql_free_result($tCompany_SQLselect_Query);	
+	
+}
+
+echo "<br /><hr /><br />";
+
+echo '<a href="../index.php">Quit - to homepage</a>';
+
+?>

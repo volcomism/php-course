@@ -1,0 +1,273 @@
+Salutation,Mr,1
+Salutation,Mrs,2
+Salutation,Ms,3
+Salutation,Miss,4
+Salutation,Dr,5
+Salutation,Prof.,6
+Salutation,Sir,7
+Salutation,Lord,8
+Salutation,Lady,9
+Salutation,Hon.,10
+Salutation,Rt.Hon.,11
+Salutation,Rev.,12
+Salutation,Rt.Rev.,13
+Salutation,Baron,14
+Salutation,Baroness,15
+Salutation,Count,16
+Salutation,Countess,17
+Salutation,Capt.,18
+Salutation,Major,19
+Salutation,Col.,20
+Salutation,Gen.,21
+Salutation,M.,22country,United Kingdom,1
+country,Eire,2
+country,Afghanistan,3
+country,Akrotiri,4
+country,Albania,5
+country,Algeria,6
+country,American Samoa,7
+country,Andorra,8
+country,Angola,9
+country,Anguilla,10
+country,Antarctica,11
+country,Antigua and Barbuda,12
+country,Argentina,13
+country,Armenia,14
+country,Aruba,15
+country,Ashmore and Cartier Islands,16
+country,Australia,17
+country,Austria,18
+country,Azerbaijan,19
+country,Bahamas,20
+country,Bahrain,21
+country,Bangladesh,22
+country,Barbados,23
+country,Bassas da India,24
+country,Belarus,25
+country,Belgium,26
+country,Belize,27
+country,Benin,28
+country,Bermuda,29
+country,Bhutan,30
+country,Bolivia,31
+country,Bosnia and Herzegovina,32
+country,Botswana,33
+country,Bouvet Island,34
+country,Brazil,35
+country,British Indian Ocean Territory,36
+country,British Virgin Islands,37
+country,Brunei,38
+country,Bulgaria,39
+country,Burkina Faso,40
+country,Burma,41
+country,Burundi,42
+country,Cambodia,43
+country,Cameroon,44
+country,Canada,45
+country,Cape Verde,46
+country,Cayman Islands,47
+country,Central African Republic,48
+country,Chad,49
+country,Chile,50
+country,China,51
+country,Christmas Island,52
+country,Clipperton Island,53
+country,Cocos (Keeling) Islands,54
+country,Colombia,55
+country,Comoros,56
+country,Congo - Democratic Republic,57
+country,Congo - Republic,58
+country,Cook Islands,59
+country,Coral Sea Islands,60
+country,Costa Rica,61
+country,Cote d Ivoire,62
+country,Croatia,63
+country,Cuba,64
+country,Cyprus,65
+country,Czech Republic,66
+country,Denmark,67
+country,Dhekelia,68
+country,Djibouti,69
+country,Dominica,70
+country,Dominican Republic,71
+country,Ecuador,72
+country,Egypt,73
+country,El Salvador,74
+country,Equatorial Guinea,75
+country,Eritrea,76
+country,Estonia,77
+country,Ethiopia,78
+country,Europa Island,79
+country,Falkland Islands (Islas Malvinas),80
+country,Faroe Islands,81
+country,Fiji,82
+country,Finland,83
+country,France,84
+country,French Guiana,85
+country,French Polynesia,86
+country,French Southern and Antarctic Lands,87
+country,Gabon,88
+country,Gambia,89
+country,Gaza Strip,90
+country,Georgia,91
+country,Germany,92
+country,Ghana,93
+country,Gibraltar,94
+country,Glorioso Islands,95
+country,Greece,96
+country,Greenland,97
+country,Grenada,98
+country,Guadeloupe,99
+country,Guam,100
+country,Guatemala,101
+country,Guernsey,102
+country,Guinea,103
+country,Guinea-Bissau,104
+country,Guyana,105
+country,Haiti,106
+country,Heard Island and McDonald Islands,107
+country,Holy See (Vatican City),108
+country,Honduras,109
+country,Hong Kong,110
+country,Hungary,111
+country,Iceland,112
+country,India,113
+country,Indonesia,114
+country,Iran,115
+country,Iraq,116
+country,Israel,117
+country,Italy,118
+country,Jamaica,119
+country,Jan Mayen,120
+country,Japan,121
+country,Jersey,122
+country,Jordan,123
+country,Juan de Nova Island,124
+country,Kazakhstan,125
+country,Kenya,126
+country,Kiribati,127
+country,Korea - North,128
+country,Korea - South,129
+country,Kuwait,130
+country,Kyrgyzstan,131
+country,Laos,132
+country,Latvia,133
+country,Lebanon,134
+country,Lesotho,135
+country,Liberia,136
+country,Libya,137
+country,Liechtenstein,138
+country,Lithuania,139
+country,Luxembourg,140
+country,Macau,141
+country,Macedonia,142
+country,Madagascar,143
+country,Malawi,144
+country,Malaysia,145
+country,Maldives,146
+country,Mali,147
+country,Malta,148
+country,Marshall Islands,149
+country,Martinique,150
+country,Mauritania,151
+country,Mauritius,152
+country,Mayotte,153
+country,Mexico,154
+country,Micronesia,155
+country,Moldova,156
+country,Monaco,157
+country,Mongolia,158
+country,Montserrat,159
+country,Morocco,160
+country,Mozambique,161
+country,Namibia,162
+country,Nauru,163
+country,Navassa Island,164
+country,Nepal,165
+country,Netherlands,166
+country,Netherlands Antilles,167
+country,New Caledonia,168
+country,New Zealand,169
+country,Nicaragua,170
+country,Niger,171
+country,Nigeria,172
+country,Niue,173
+country,Norfolk Island,174
+country,Northern Mariana Islands,175
+country,Norway,176
+country,Oman,177
+country,Pakistan,178
+country,Palau,179
+country,Panama,180
+country,Papua New Guinea,181
+country,Paracel Islands,182
+country,Paraguay,183
+country,Peru,184
+country,Philippines,185
+country,Pitcairn Islands,186
+country,Poland,187
+country,Portugal,188
+country,Puerto Rico,189
+country,Qatar,190
+country,Reunion,191
+country,Romania,192
+country,Russia,193
+country,Rwanda,194
+country,Saint Helena,195
+country,Saint Kitts and Nevis,196
+country,Saint Lucia,197
+country,Saint Pierre and Miquelon,198
+country,Saint Vincent and the Grenadines,199
+country,Samoa,200
+country,San Marino,201
+country,Sao Tome and Principe,202
+country,Saudi Arabia,203
+country,Senegal,204
+country,Serbia and Montenegro,205
+country,Seychelles,206
+country,Sierra Leone,207
+country,Singapore,208
+country,Slovakia,209
+country,Slovenia,210
+country,Solomon Islands,211
+country,Somalia,212
+country,South Africa,213
+country,South Georgia and South Sandwich Islands,214
+country,Spain,215
+country,Spratly Islands,216
+country,Sri Lanka,217
+country,Sudan,218
+country,Suriname,219
+country,Svalbard,220
+country,Swaziland,221
+country,Sweden,222
+country,Switzerland,223
+country,Syria,224
+country,Taiwan,225
+country,Tajikistan,226
+country,Tanzania,227
+country,Thailand,228
+country,Timor-Leste,229
+country,Togo,230
+country,Tokelau,231
+country,Tonga,232
+country,Trinidad and Tobago,233
+country,Tromelin Island,234
+country,Tunisia,235
+country,Turkey,236
+country,Turkmenistan,237
+country,Turks and Caicos Islands,238
+country,Tuvalu,239
+country,Uganda,240
+country,Ukraine,241
+country,United Arab Emirates,242
+country,United States,243
+country,Uruguay,244
+country,Uzbekistan,245
+country,Vanuatu,246
+country,Venezuela,247
+country,Vietnam,248
+country,Virgin Islands,249
+country,Wake Island,250
+country,Wallis and Futuna,251
+country,West Bank,252

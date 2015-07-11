@@ -1,0 +1,3 @@
+*	This script defines an HTML form using a dropdown
+* 		to select a company from tCompany
+*		and passes tCompany.ID to companyListPeople.php

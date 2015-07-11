@@ -1,0 +1,5 @@
+				    //	revision  1202:   eMailForm as link in tp_companyPeopleEdit.php
+				    //							opens   tp_eMailForm.php
+				    case "eMailFormLink":
+				        $contentFile = "includes/tp_eMailForm.php";
+				        break;

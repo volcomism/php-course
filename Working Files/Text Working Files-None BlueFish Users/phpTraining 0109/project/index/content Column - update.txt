@@ -1,0 +1,2 @@
+  	      			
+						if (!empty($contentMsg)) { echo $contentMsg; }

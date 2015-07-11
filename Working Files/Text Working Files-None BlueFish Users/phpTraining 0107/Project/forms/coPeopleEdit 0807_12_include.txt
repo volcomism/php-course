@@ -1,0 +1,6 @@
+							//		update code:   coPeopleEdit 0807_12_include
+							if (isset($accessLevel) AND $accessLevel >= 21) {
+	
+								include_once('../includes/inc_personAddForm.php');
+								
+							}

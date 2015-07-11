@@ -1,0 +1,43 @@
+<?php
+
+		//		path and name of source
+		$source_file = 'testImage2.png';
+		$source_path = '../images/'.$source_file;
+
+		//		path and name of image to be saved 
+		$image_file = 'testImageThumb.png';
+		$image_path = '../images/'.$image_file;
+
+		//		resize factor		
+		$thumbNailSize = 0.5;
+					
+		// Get new sizes
+		list($width, $height) = getimagesize($source_path);
+		
+		$newwidth = $width * $thumbNailSize;
+		$newheight = $height * $thumbNailSize;
+		
+		//		create an image resource from source
+		$source = imagecreatefrompng($source_path);
+	
+		// Load
+		$image = imagecreate($newwidth, $newheight);
+
+		// Resize
+		imagecopyresized($image, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+		
+	
+	//		save the image (MAKE SURE PERMISSIONS of the target directory are set to 'WRITE')
+		if (imagepng ( $image, $image_path)) {
+			chmod($image_path, 0666);			//		used for commercial grade systems 		
+			echo 'The image is "'.$image_path.'"<br /><br /><br />';	
+			echo '<img src="'.$image_path.'" alt="Test Image from GD Library" />';
+		} else {
+			echo "Failed to create image.";
+		}
+
+	//		release the memory used by the image 
+		imagedestroy($image);
+	
+
+?>

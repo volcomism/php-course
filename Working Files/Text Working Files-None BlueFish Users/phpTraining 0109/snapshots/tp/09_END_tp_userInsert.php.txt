@@ -1,0 +1,92 @@
+<?php
+
+/*		INCLUDE FILE:   tp_userInsert.php
+*
+*		folder:			includes/
+*
+*		used in:       index.php
+*
+*		version:    	0901   date: 2010-07-01
+*
+*		purpose:			FORM to enter new user details
+*							POST fields to itself via index.php?content=insertCompany
+*							invoke function companyInsert(...) [from file fn_tCompany_SQL.php]
+*
+*	=====================================================================================
+*/		
+
+		include_once('includes/fn_tLookup_SQL.php');
+		include_once('includes/fn_tUser_SQL.php');
+
+		{  //   collect the data with $_POST
+			$username = $_POST["username"];	
+			$password = $_POST["password"];	
+			$passwordValidate = $_POST["passwordValidate"];	
+			$eMail = $_POST["eMail"];	
+			$accessLevel = $_POST["accessLevel"];	
+							
+			$userInserted = $_POST["userInserted"];
+
+		}
+		
+		{	//		Insert New tUser Record
+			if(isset($userInserted) AND $userInserted == '1'){
+				
+				$insertMsg = userInsert($username, $password, $passwordValidate, $eMail, $accessLevel);
+					
+				if (empty($insertMsg)) {
+					echo "User <strong>".$username."</strong> was successfully inserted.<br /><br />";
+				} else {
+					echo $insertMsg;
+				}
+				
+				unset($userInserted);
+			}		
+		//		END:  Insert New tUser Record		
+		}
+		
+		$fld_userInserted = '<input type="hidden" name="userInserted" value="1"/>';
+		$fld_access = dropdownUserAccess('');
+		
+			{	//	FORM postUser
+			echo '<form name="postUser" action="index.php?content=insertUser" method="post">';
+					echo $fld_userInserted;
+					echo '
+					<table>
+						<tr>
+							<td>username</td>
+							<td><input type="text" name="username" /></td>
+						</tr>
+						<tr>
+							<td>password</td>
+							<td><input type="text" name="password" /></td>
+						</tr>
+						<tr>
+							<td>retype password</td>
+							<td><input type="text" name="passwordValidate" /></td>
+						</tr>
+						<tr>
+							<td>eMail</td>
+							<td><input type="text" name="eMail" /></td>
+						</tr>
+						<tr>
+							<td>access level</td>
+							<td>'.$fld_access.'</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td align="right"><input type="submit"  value="Save" /></td>
+						</tr>
+					</table>
+					';
+						
+			echo '</form>';
+			//	END: FORM postUser 
+			}			
+		
+		
+	echo "<br /><hr /><br />";
+
+	echo '<a href="../index.php">homepage</a>';
+
+?>

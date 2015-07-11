@@ -1,0 +1,83 @@
+<?php
+
+/*		INCLUDE FILE:   tp_personAddForm.php
+*
+*		folder:			includes/
+*
+*		used in:       index.php
+*
+*		version:    	0901   date: 2010-07-01
+*
+*		purpose:			list of people associated with company selected in 
+*							tp_companyList.php
+*
+*	===========================================================================
+*/		
+
+	{	//		Create the personAdd form fields
+	$fld_FirstName = '<input type="text" name="FirstName"  size="10" maxlength="50"/>';
+	$fld_LastName = '<input type="text" name="LastName"  size="10" maxlength="50"/>';
+	$fld_Tel = '<input type="text" name="Tel"  size="10" maxlength="50"/>';			
+	$fld_eMail = '<input type="text" name="eMail"  size="10" maxlength="50"/>';			
+	//		END: Create the personAdd form fields
+	}			
+	{	//	create the Salutation DROPDOWN  FIELD 
+		$salut_SQL =  "SELECT lookupValue FROM tLookup ";
+		$salut_SQL .= "WHERE lookupType = 'Salutation' ";
+		$salut_SQL .= "ORDER By lookupOrder ";
+		
+		$salut_SQL_Query = mysql_query($salut_SQL);	
+
+		$fld_Salutation = '<select name="Salutation">';
+			//$fld_Salutation .= '<option selected="selected"></option>';
+ 	
+			while ($row = mysql_fetch_array($salut_SQL_Query, MYSQL_ASSOC)) {
+			    $salutValue = $row['lookupValue'];
+			    if ($current_Salutation == $salutValue) { 
+			    	$selectedFlag = " selected";
+			    } else { 
+			    	$selectedFlag = "";
+			    }
+			    $fld_Salutation .= '<option'.$selectedFlag.'>'.$salutValue.'</option>';
+			}
+
+		$fld_Salutation .= '</select>';
+		
+	//	END: create the Salutation DROPDOWN  FIELD 
+	}	
+		
+	echo '<form action="index.php?content=companyPeopleEdit" method="post">';
+		echo '<input type="hidden" name="companyID" value="'.$companyID.'" />';
+		echo '<input type="hidden" name="newPersonInserted" value="1" />';
+		
+		echo '<table>';		
+				echo '<tr>
+						<td colspan="6"></td>
+					</tr>	';	
+				echo '<tr>
+						<td colspan="6"><hr /></td>
+					</tr>	';	
+				echo '<tr>
+						<td colspan="6"></td>
+					</tr>	';	
+				echo '<tr>
+						<td>Salutation</td>
+						<td>FirstName</td>
+						<td>LastName</td>
+						<td>Telelphone</td>
+						<td>eMail</td>
+						<td>&nbsp;</td>
+					</tr>	';												
+				echo '<tr>
+						<td>'.$fld_Salutation.'</td>
+						<td>'.$fld_FirstName.'</td>
+						<td>'.$fld_LastName.'</td>
+						<td>'.$fld_Tel.'</td>
+						<td>'.$fld_eMail.'</td>
+						<td><input type="submit" value="Add" /></td>
+					</tr>	';	
+		echo '</table>';
+	echo '</form>';
+	//		END: FORM to INSERT person	
+
+?>

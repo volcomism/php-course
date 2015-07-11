@@ -1,0 +1,9 @@
+					//		update code:   loginForm 0809_02 log access
+					$sessionLogged = insertLogin($userID);
+					if ($sessionLogged) {
+							header("Location: ../index.php");
+					} else {
+						echo 'Session Logging ERROR.<br /><br />';
+						echo $sessionLogged;
+						echo '<a href="../index.php">Login Anyway</a>';
+					}	

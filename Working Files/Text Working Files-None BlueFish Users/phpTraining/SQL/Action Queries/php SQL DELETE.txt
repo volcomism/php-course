@@ -1,0 +1,12 @@
+//	SQL = "DELETE FROM tableName WHERE indexname = indexValue"
+
+$indexValue = "";
+$_SQLdelete = "DELETE FROM tableName ";
+$_SQLdelete .= "WHERE ";
+$_SQLdelete .= "indexname = '".$indexValue."' ";
+
+if (mysql_query($_SQLdelete))  {
+	echo "SUCCESS<br/>";
+} else {	
+	echo "ERROR saving details.<br/>";								
+}	

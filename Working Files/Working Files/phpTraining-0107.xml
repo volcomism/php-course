@@ -1,0 +1,3151 @@
+<?xml version="1.0"?>
+<snippets>
+  <branch title="phpTraining-0107">
+    <branch title="New File">
+      <leaf type="insert" title="New php Script File">
+        <before>&lt;?php
+/*
+
+*	File:			%1
+*	By:			TMIT
+*	Date:		%0
+*
+*	This script </before>
+        <after>
+*
+*
+*=====================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+if ($dbSuccess) {
+	
+	
+	
+}
+
+?&gt;</after>
+        <param name="date"/>
+        <param name="file name"/>
+      </leaf>
+      <leaf type="insert" title="php simple tags" tooltip="&lt;?php ... ?&gt;&#10;">
+        <before>&lt;?php
+	
+</before>
+        <after>
+
+?&gt;</after>
+      </leaf>
+      <leaf type="insert" title="app level connection script ">
+        <before>
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+</before>
+        <after/>
+      </leaf>
+    </branch>
+    <branch title="Project">
+      <branch title="index">
+        <leaf type="insert" title="index.php ch6">
+          <before>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;php MySQL Training&lt;/title&gt;
+&lt;meta name="generator" content="Bluefish 2.0.0" &gt;
+&lt;meta name="author" content="ks106" &gt;
+&lt;meta name="date" content="2010-07-17T14:58:59+0100" &gt;
+&lt;meta name="copyright" content="TMIT World Limited"&gt;
+&lt;meta name="keywords" content="Infinite Skills - php/MySQL Training"&gt;
+&lt;meta name="description" content="Infinite Skills - php/MySQL Training"&gt;
+&lt;meta name="ROBOTS" content="NOINDEX, NOFOLLOW"&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;?php
+	
+	echo '&lt;h2 style="font-family: arial, helvetica, sans-serif;" &gt;
+				Infinite Skills - php/MySQL Training
+			&lt;/h2&gt;';
+	echo '&lt;div align="left",
+				  style="
+				  font-family: arial, helvetica, sans-serif; 
+				  font-style: sans-serif; 
+				  padding-left: 50px;
+			"&gt;';
+				
+
+		echo '&lt;a href="forms/companyCreate.php"&gt;
+				&lt;span style="color: maroon; "&gt;Create New company&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+		echo '&lt;a href="forms/companyEdit.php"&gt;
+				&lt;span style="color: maroon; "&gt;Edit company&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+		echo '&lt;a href="forms/companyPeopleEdit.php"&gt;
+				&lt;span style="color: maroon; "&gt;List People in a Company&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+
+
+	echo '&lt;/div&gt;';
+
+?&gt;
+
+
+&lt;/body&gt;
+&lt;/html&gt;</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="... ch8 .. include $contentFile">
+          <before>	include_once($contentFile);
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="... ch8 .. login Auth">
+          <before>&lt;?php
+
+	$loginAuthorised = $_GET["auth"];
+	
+	if ($loginAuthorised) {
+		$contentFile = 'includes/inc_crmMenu.php';
+	} else {
+		header("Location: forms/loginForm.php");
+	}	
+
+?&gt;
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="... ch8 .. link stylesheet">
+          <before>&lt;link rel="stylesheet" href="css/alphacrm.css" type="text/css" /&gt;
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="... ch8 .. get Cookie">
+          <before>	//		update code:   0806_02 
+	$loginAuthorised = ($_COOKIE["loginAuthorised"] == "loginAuthorised");
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="... ch8 .. get status or cookie">
+          <before>	//		update code:   0806_04
+	$status = $_GET['status'];
+	if (isset($status) AND ($status == "logout")) {
+		setcookie("loginAuthorised", "", time()-7200);	
+		$loginAuthorised = false;
+	} else {
+		$loginAuthorised = ($_COOKIE["loginAuthorised"] == "loginAuthorised");
+	}
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="index restore">
+          <before>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;?php
+	echo '&lt;link rel="stylesheet" href="css/alphacrm.css" type="text/css" &gt;';
+	include_once('includes/stringFunctions.php');
+
+	$status = $_GET['status'];
+	if (isset($status) AND ($status == "logout")) {
+		setcookie("loginAuthorised", "", time()-7200);	
+		$loginAuthorised = false;
+	} else {
+		$loginAuthorised = ($_COOKIE["loginAuthorised"] == "loginAuthorised");
+	}
+	
+	if ($loginAuthorised) {
+		$contentFile = 'includes/crmMenu.inc';
+		//include_once('includes/crmMenu.inc');
+	} else {
+		$contentFile = 'includes/loginForm.inc';
+		//include_once('includes/loginForm.inc');
+	}	
+		
+
+?&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;php MySQL Training&lt;/title&gt;
+&lt;meta name="generator" content="Bluefish 2.0.0" &gt;
+&lt;meta name="author" content="ks106" &gt;
+&lt;meta name="date" content="2010-07-25T07:09:17+0100" &gt;
+&lt;meta name="copyright" content="TMIT World Limited"&gt;
+&lt;meta name="keywords" content="Infinite Skills - php/MySQL Training"&gt;
+&lt;meta name="description" content="Infinite Skills - php/MySQL Training"&gt;
+&lt;meta name="ROBOTS" content="NOINDEX, NOFOLLOW"&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;?php
+
+	include_once($contentFile);
+
+?&gt;
+
+
+&lt;/body&gt;
+&lt;/html&gt;</before>
+          <after/>
+        </leaf>
+      </branch>
+      <branch title="includes">
+        <leaf type="insert" title="inc_crmMenu.php">
+          <before>&lt;?php
+/*
+*	INCLUDE FILE
+*	=================================
+*	File:			inc_crmMenu.php			
+*	Folder:		/includes/
+*  Used in:		index.php
+*	By:			TMIT
+*	Date:		   2010-06-01 
+*
+*	This script is the CRM menu.
+*
+*
+*=====================================
+*/
+
+
+
+
+?&gt;</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="..... + logoutForm">
+          <before>		echo '&lt;br /&gt;&lt;hr /&gt;&lt;br /&gt;';
+		
+		echo '&lt;form name="logoutForm" action="index.php" method="post"&gt;';	
+				echo '
+					&lt;input type="hidden" name="auth" value="0" /&gt;
+					&lt;input type="submit"  value="Logout" /&gt;
+				';
+		echo '&lt;/form&gt;';
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="..... + logout href">
+          <before>		//		update code:   0806_03
+		echo '&lt;a href="index.php?status=logout"&gt;
+				&lt;span style="color: maroon; "&gt;Logout&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;';
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="..... + 0807 04 user restrict">
+          <before>		//		update code:   0807_04
+		{		//				Restrict Access to Editor or higher
+			$accessLevel = $_COOKIE["accessLevel"];
+			if (isset($accessLevel) AND $accessLevel &gt;= 21) {
+</before>
+          <after>			}
+		//		END:		Restrict Access
+		}
+</after>
+        </leaf>
+        <leaf type="insert" title="..... + userCreate link">
+          <before>		if (isset($accessLevel) AND $accessLevel &gt;= 99) {	
+			echo '&lt;a href="forms/createUser.php"&gt;
+					&lt;span style="color: maroon; "&gt;create NEW USER&lt;/span&gt;
+					&lt;/a&gt;';
+			echo '&lt;br /&gt;&lt;br /&gt;';
+		}
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="inc_userCreate ... SAVE">
+          <before>&lt;?php
+/*
+
+*	File:					/includes/inc_userCreateSave.php
+*		used in 			/forms/userCreate.php
+*
+*	By:			TMIT
+*	Date:			2010-06-01
+*
+*	This script checks data from userCreate form 
+*		&amp; saves if its OK
+*
+*=====================================
+*/
+		{  //   collect the data with $_POST
+			$username = $_POST["username"];	
+			$password = $_POST["password"];	
+			$passwordValidate = $_POST["passwordValidate"];	
+			$eMail = $_POST["eMail"];	
+		}
+			
+		{	//		check the data before processing it
+			$errorMsg = "";		 
+			if (strlen($username) &lt; 5) { $errorMsg = "Username cannot be less than 5 characters&lt;br /&gt;"; }
+			if (strlen($password) &lt; 5) { $errorMsg .= "Password cannot be less than 5 characters&lt;br /&gt;"; }
+			if ($password &lt;&gt; $passwordValidate) { $errorMsg .= "Password retypedoes not match.&lt;br /&gt;"; }
+		}
+			
+		if (empty($errorMsg)) {		
+		
+			{  //   SQL:     $tUser_SQLinsert				
+				$tUser_SQLinsert = "INSERT INTO tUser (";			
+				$tUser_SQLinsert .=  "username, ";
+				$tUser_SQLinsert .=  "password, ";
+				$tUser_SQLinsert .=  "eMail ";
+				$tUser_SQLinsert .=  ") ";
+				
+				$tUser_SQLinsert .=  "VALUES (";
+				$tUser_SQLinsert .=  "'".$username."', ";
+				$tUser_SQLinsert .=  "'".$password."', ";	
+				$tUser_SQLinsert .=  "'".$eMail."' ";
+				$tUser_SQLinsert .=  ") ";
+			}
+			
+			{	//		run the SQL 
+						if (mysql_query($tUser_SQLinsert))  {	
+							echo 'New user successfully added.&lt;br /&gt;&lt;br /&gt;';
+						} else {
+							echo '&lt;span style="color:red; "&gt;FAILED to add new user.&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;';
+							echo mysql_error();	
+							echo '&lt;br /&gt;&lt;br /&gt;';
+						}						
+			}
+		
+		} else {
+			{	//		error handling
+			echo "There are errors in the data:&lt;br /&gt;&lt;br /&gt;";
+			echo 	$errorMsg."&lt;br /&gt;&lt;br /&gt;";
+			echo '&lt;a href="userCreate.php"&gt;
+						&lt;span class="mainMenuItem"&gt;Click to Try Again&lt;/span&gt;
+						&lt;/a&gt;';
+			echo '&lt;br /&gt;&lt;br /&gt;';		
+			}	
+		}
+
+?&gt;</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="inc_userCreate ... ACL">
+          <before>&lt;?php
+/*
+
+*	File:					/includes/inc_userCreateACLdropdown.php
+*		used in 			/forms/userCreate.php
+*
+*	By:			TMIT
+*	Date:			2010-06-01
+*
+*	This script creates the accessLevel DROPDOWN  FIELD 
+*		used in 				inc_userCreateForm.php 
+*
+*
+*=====================================
+*/
+
+			{	//	create the accessLevel DROPDOWN  FIELD 
+				$access_SQL =  "SELECT accessLevel, userType FROM tAccessControl ";
+				$access_SQL .= "ORDER By accessLevel ";
+				
+				$access_SQL_Query = mysql_query($access_SQL);	
+	
+				$fld_access = '&lt;select name="accessLevel"&gt;';		 
+				$fld_access .= '&lt;option value="0"&gt; -- access level -- &lt;/option&gt;';	
+					while ($row = mysql_fetch_array($access_SQL_Query, MYSQL_ASSOC)) {
+					    $ID = $row['ID'];
+					    $accessLevel = $row['accessLevel'];
+					    $userType = $row['userType'];
+					    
+					    $fld_access .= '&lt;option value="'.$ID.'"&gt;'.$userType.'&lt;/option&gt;';
+					}			
+					mysql_free_result($access_SQL_Query);			
+				$fld_access .= '&lt;/select&gt;';				
+			//	END: create the accessLevel DROPDOWN  FIELD 
+			}	
+			
+?&gt;			</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="inc_userCreate ... FORM">
+          <before>&lt;?php
+/*
+
+*	File:				/includes/inc_userCreateForm.php
+*	Used in 			/forms/userCreate.php
+*
+*	Uses:			$fld_access   from    inc_userCreateACLdropdown.php
+*
+*	By:			TMIT
+*	Date:			2010-06-01
+*
+*	This script provides the FORM for  userCreate.php
+*
+*
+*=====================================
+*/
+			{	//	FORM postUser
+			echo '&lt;form name="postUser" action="userCreate.php" method="post"&gt;';
+					echo '&lt;input type="hidden" name="saveClicked" value="saveClicked"/&gt;';
+					echo '
+					&lt;table&gt;
+						&lt;tr&gt;
+							&lt;td&gt;username&lt;/td&gt;
+							&lt;td&gt;&lt;input type="text" name="username" /&gt;&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;td&gt;password&lt;/td&gt;
+							&lt;td&gt;&lt;input type="text" name="password" /&gt;&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;td&gt;retype password&lt;/td&gt;
+							&lt;td&gt;&lt;input type="text" name="passwordValidate" /&gt;&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;td&gt;eMail&lt;/td&gt;
+							&lt;td&gt;&lt;input type="text" name="eMail" /&gt;&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;td&gt;access level&lt;/td&gt;
+							&lt;td&gt;'.$fld_access.'&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;td&gt;&lt;/td&gt;
+							&lt;td align="right"&gt;&lt;input type="submit"  value="Save" /&gt;&lt;/td&gt;
+						&lt;/tr&gt;
+					&lt;/table&gt;
+					';
+						
+			echo '&lt;/form&gt;';
+			//	END: FORM postUser 
+			}	
+?&gt;</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="inc_crmMenu.php - update 8.8">
+          <before>&lt;?php
+/*					
+*		INCLUDE FILE:        includes/inc_crmMenu.php
+*
+*			used in:          index.php
+*
+*			Version:    		0808   date: 2010-07-01
+*/
+			
+	echo '&lt;div class="textNormal"&gt;';
+	echo '&lt;h2&gt;
+				Infinite Skills - php/MySQL Training
+			&lt;/h2&gt;';
+
+		echo '&lt;div class=pad60&gt;';
+			echo '&lt;a href="forms/companyListOrder.php"&gt;
+					&lt;span class="mainMenuItem"&gt;List Companies&lt;/span&gt;
+					&lt;/a&gt;';
+			echo '&lt;br /&gt;&lt;br /&gt;';
+	
+			
+		//		update code:   0807_04
+		{		//				Restrict Access to Editor or higher
+			$accessLevel = $_COOKIE["accessLevel"];
+			if (isset($accessLevel) AND $accessLevel &gt;= 21) {
+			
+				echo '&lt;a href="forms/companyCreate.php"&gt;
+						&lt;span class="mainMenuItem"&gt;Create New company&lt;/span&gt;
+						&lt;/a&gt;';
+				echo '&lt;br /&gt;&lt;br /&gt;';
+		
+				echo '&lt;a href="forms/companyEdit.php"&gt;
+						&lt;span class="mainMenuItem"&gt;Edit company&lt;/span&gt;
+						&lt;/a&gt;';
+				echo '&lt;br /&gt;&lt;br /&gt;';
+		
+				echo '&lt;a href="forms/companyPeopleEdit.php"&gt;
+						&lt;span class="mainMenuItem"&gt;List People in a Company&lt;/span&gt;
+						&lt;/a&gt;';
+				echo '&lt;br /&gt;&lt;br /&gt;';
+				
+			}
+		//		END:		Restrict Access
+		}
+
+		//		Restrict Access to Admin
+		//		update code:   0808_01 NEW USER
+		if (isset($accessLevel) AND $accessLevel &gt;= 99) {	
+			echo '&lt;a href="forms/userCreate.php"&gt;
+					&lt;span class="mainMenuItem"&gt;create NEW USER&lt;/span&gt;
+					&lt;/a&gt;';
+			echo '&lt;br /&gt;&lt;br /&gt;';
+		}
+
+		echo '&lt;br /&gt;&lt;hr /&gt;&lt;br /&gt;';
+
+		
+		{	//	Horizontal menu
+			
+			echo '&lt;a href="index.php?status=logout"&gt;
+					&lt;span class="mainMenuItem"&gt;Logout&lt;/span&gt;
+					&lt;/a&gt;';
+
+			if (isset($accessLevel) AND $accessLevel &gt;= 99) {	
+	
+				echo '&lt;a href="DEMO/" class="pad60"&gt;
+						&lt;span class="mainMenuItem"&gt;DEMO list&lt;/span&gt;
+						&lt;/a&gt;';
+		
+				echo '&lt;a href="initialise/" class="pad60"&gt;
+						&lt;span class="mainMenuItem"&gt;initialise&lt;/span&gt;
+						&lt;/a&gt;';
+		
+				echo '&lt;a href="forms/" class="pad60"&gt;
+						&lt;span class="mainMenuItem"&gt;FORMS&lt;/span&gt;
+						&lt;/a&gt;';
+			}
+		}	//	END:  Horizontal menu
+
+
+?&gt;</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="functions_accessLog.php">
+          <before>&lt;?php
+/*
+
+*	File:			functions_accessLog.php
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	a set of functions to record access in table tAccesLog
+*
+*
+*=====================================
+*/
+
+
+	function insertLogin($userID) {
+		$success = false;
+		//	Get current date-time in MySQL format
+		$nowTimeStamp = date("Y-m-d H:i:s");
+		//	Get user's IP address
+		$userIP = $_SERVER['REMOTE_ADDR'];
+	
+		$insertLogin_SQL = 'INSERT INTO tAccessLog (
+										userID, 
+										timeLogin, 
+										IPaddress
+									) VALUES (
+										'.$userID.',
+										"'.$nowTimeStamp.'",
+										"'.$userIP.'"
+									)';
+									
+			if (mysql_query($insertLogin_SQL))  {	
+				$success = true;
+			} else {
+				$success = $insertLogin_SQL."&lt;br /&gt;".mysql_error();		
+			}	
+			
+		return $success;	
+	}
+
+
+?&gt;</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="loginForm.inc 8.9 update">
+          <before>&lt;?php
+	
+/*
+
+*	File:			inc_loginForm.php
+*		folder:	/includes/
+*		used in:		index.php
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	This script is the login FORM for alpha CRM
+*
+*
+*============================================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+$thisScriptName = "index.php";
+include_once('includes/functions_accessLog.php');
+
+echo '&lt;h2&gt;Login Form alphaCRM&lt;/h2&gt;';
+
+	$username = $_POST['username'];
+	
+	if(isset($username)) {
+		$password = $_POST['password'];
+		$md5Password = md5($password);		
+		
+		{	//		SELECT password for this user from the DB and see it it matches 
+			$tUser_SQLselect = "SELECT ID, password, accessLevel FROM tUser ";
+			$tUser_SQLselect .= "WHERE username = '".$username."' ";	
+
+			$tUser_SQLselect_Query = mysql_query($tUser_SQLselect); 	
+			while ($row = mysql_fetch_array($tUser_SQLselect_Query, MYSQL_ASSOC)) {
+			    $userID = $row['ID'];
+			    $passwordRetrieved = $row['password'];
+			    $accessLevel = $row['accessLevel'];
+			}
+			mysql_free_result($tUser_SQLselect_Query);
+					
+			if (!empty($passwordRetrieved) AND ($md5Password == $passwordRetrieved)) {			
+					setcookie("loginAuthorised", "loginAuthorised", time()+7200);
+					setcookie("accessLevel", $accessLevel, time()+7200);
+					setcookie("userID", $userID, time()+7200);
+					
+					$sessionLogged = insertLogin($userID);
+					if ($sessionLogged) {
+							header("Location: ".$thisScriptName);
+					} else {
+						echo 'Session Logging ERROR.&lt;br /&gt;&lt;br /&gt;';
+						echo $sessionLogged;
+						echo '&lt;a href="'.$thisScriptName.'"&gt;Login Anyway&lt;/a&gt;';
+					}	
+										
+			} else {
+				echo "Access denied.&lt;br /&gt;&lt;br /&gt;";		
+				echo '&lt;a href="'.$thisScriptName.'"&gt;Try again&lt;/a&gt;';			
+			}
+		}
+		
+	} else {
+
+		echo '&lt;form name="postLoginHid" action="'.$thisScriptName.'" method="post"&gt;';	
+				echo '
+					&lt;P&gt;User name: 
+					&lt;INPUT TYPE=text NAME=username value="" SIZE=12 MAXLENGTH=16&gt;&lt;/P&gt;
+					&lt;P&gt;Password: 
+					&lt;INPUT TYPE=password NAME=password value="" SIZE=12 MAXLENGTH=16&gt;&lt;/P&gt;
+					&lt;input type="submit"  value="Login" /&gt;
+				';
+		echo '&lt;/form&gt;';
+
+	}
+	
+echo '&lt;h2&gt;--------- END Login Form --------&lt;/h2&gt;';
+
+?&gt;</before>
+          <after/>
+        </leaf>
+      </branch>
+      <branch title="tables">
+        <leaf type="insert" title="table_tUser.php">
+          <before>&lt;?php
+	
+//		File in initialise folder:              table_tUser.php
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+	$newTableName = "tUser";
+	
+	{		//	drop &amp; create table
+		$dropTestTable = 'DROP TABLE '.$newTableName;
+			if (mysql_query($dropTestTable))  {	
+				echo 'Table Dropped.&lt;br /&gt;&lt;br /&gt;';
+			} else {
+				echo '&lt;span style="color:red; "&gt;
+						FAILED to DROP table.'.$newTableName.'&lt;/span&gt;
+						&lt;br /&gt;&lt;br /&gt;';
+				echo mysql_error();
+			}
+	
+		$createTestTable = 'CREATE TABLE alphacrm.'.$newTableName.' (
+									ID INT NOT NULL  AUTO_INCREMENT PRIMARY KEY ,
+									username VARCHAR( 16 ) NOT NULL, 
+									password VARCHAR( 70 ) NOT NULL, 
+									email VARCHAR( 250 ) NOT NULL, 
+									UNIQUE (username)
+								)';		
+											
+			if (mysql_query($createTestTable))  {	
+				echo '&lt;br /&gt;Table '.$newTableName.' Added.&lt;br /&gt;&lt;br /&gt;';
+			} else {
+				echo '&lt;span style="color:red; "&gt;&lt;br /&gt;FAILED to Add table '
+						.$newTableName.'.&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;';
+				echo mysql_error();
+			}
+	}
+
+?&gt;</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="table_tAccessControl.php">
+          <before>&lt;?php
+/*
+
+*	File:			table_tAccessControl.php
+*	By:			TMIT
+*	Date:		
+*
+*	This script initialises the tAccessControl TABLE
+*		by populating it with a list of ACL
+*
+*
+*=====================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+if ($dbSuccess) {
+
+	
+	{	//		Table Definition 
+		$tableName = "tAccessControl";	
+
+		//		ONLY the fields to insert - NOT any auto_inc field	
+		$tableField = array(
+					'accessLevel',
+					'userType' 
+		);
+		$numFields = sizeof($tableField);
+		
+		echo '$numFields : '.$numFields.'&lt;br /&gt;';
+
+		$createTable_SQL = 'CREATE TABLE alphacrm.'.$tableName.' (
+									ID INT( 11 ) NOT NULL  AUTO_INCREMENT,
+									accessLevel INT( 11 ) NOT NULL ,
+									userType VARCHAR( 50 ) NOT NULL ,
+									PRIMARY KEY ( ID ) ,
+									UNIQUE (
+									accessLevel ,
+									userType)
+									)';	
+										
+		echo $createTable_SQL."&lt;br /&gt;&lt;br /&gt;";	
+		
+		//		set startInsertsField to 1 if first field is auto_increment
+		//			otherwise set to 0.
+
+	}
+
+	//	=======^^^^^^^^^^^^^^^^^^^^^^^=========  End of Definition Part ======^^^^^^^^^=====
+										
+		{  //		the Data
+
+			$tableData[0] = explode(",", "99,Administrator");
+			$tableData[1] = explode(",", "21,Editor");
+			$tableData[2] = explode(",", "11,Registered User");
+			
+			$numRows = sizeof($tableData);
+		}
+		
+		echo '$numRows : '.$numRows.'&lt;br /&gt;';
+		echo '$tableField[$numFields-1] : '.$tableField[$numFields-1].'&lt;br /&gt;';
+
+		{	//		DROP table		
+			
+			$drop_SQL = "DROP TABLE ".$tableName;
+			
+			if (mysql_query($drop_SQL))  {	
+				echo "'DROP ".$tableName."' -  Successful.";
+			} else {
+				echo "'DROP ".$tableName."' - Failed.";
+			}
+		}
+		
+		echo "&lt;br /&gt;&lt;hr /&gt;&lt;br /&gt;";
+	
+		{	//		CREATE table		
+			
+			if (mysql_query($createTable_SQL))  {	
+				echo "'CREATE ".$tableName."' -  Successful.";
+			} else {
+				echo "'CREATE ".$tableName."' - Failed.";
+			}
+		}		
+		echo "&lt;br /&gt;&lt;hr /&gt;&lt;br /&gt;";
+			
+			$table_SQLinsert = "INSERT INTO ".$tableName." (";
+			
+			//$table_SQLinsert .=   "x"; 
+			foreach($tableField as $tableFieldName) {
+				$table_SQLinsert .=  $tableFieldName;
+				if($tableFieldName &lt;&gt; $tableField[$numFields-1]) {
+					$table_SQLinsert .=  ", ";
+				}
+			}
+			$table_SQLinsert .=  ") VALUES ";
+
+			$indx = 0;		
+			while($indx &lt; $numRows) {			
+				$table_SQLinsert .=  "(";
+				
+				foreach($tableField as $key =&gt; $tableFieldName) {
+					
+					$table_SQLinsert .=  "'".$tableData[$indx][$key]."'";
+					if($tableFieldName &lt;&gt; $tableField[$numFields-1]) {
+						$table_SQLinsert .=  ", ";
+					}
+
+				}
+
+				$table_SQLinsert .=  ") ";
+				if ($indx &lt; ($numRows - 1)) {
+					$table_SQLinsert .=  ",\n";
+				}
+				
+				$indx++;
+			}
+		
+			{	//	Echo and Execute the SQL and test for success   
+			
+						echo "&lt;strong&gt;&lt;u&gt;SQL:&lt;br /&gt;&lt;/u&gt;&lt;/strong&gt;";
+						echo $table_SQLinsert."&lt;br /&gt;&lt;br /&gt;";
+							
+						if (mysql_query($table_SQLinsert))  {				
+							echo "was SUCCESSFUL.&lt;br /&gt;&lt;br /&gt;";
+						} else {
+							echo "FAILED.&lt;br /&gt;&lt;br /&gt;";		
+						}
+			}
+}
+
+?&gt;</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="table_tAccessLog.php">
+          <before>&lt;?php
+	
+//		File in initialise folder:              table_tAccessLog.php
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+	$newTableName = "tAccessLog";
+	
+	{		//	drop &amp; create table
+		$dropTestTable = 'DROP TABLE '.$newTableName;
+			if (mysql_query($dropTestTable))  {	
+				echo 'Table Dropped.&lt;br /&gt;&lt;br /&gt;';
+			} else {
+				echo '&lt;span style="color:red; "&gt;
+						FAILED to DROP table.'.$newTableName.'&lt;/span&gt;
+						&lt;br /&gt;&lt;br /&gt;';
+				echo mysql_error();
+			}
+
+		$createTestTable = 'CREATE TABLE alphacrm.'.$newTableName.' (
+									ID INT (11) NOT NULL  AUTO_INCREMENT PRIMARY KEY ,
+									userID INT( 11 ) NOT NULL, 
+									timeLogin DATETIME, 
+									timeLogout DATETIME, 
+									IPaddress VARCHAR (15) 
+								)';		
+											
+			if (mysql_query($createTestTable))  {	
+				echo '&lt;br /&gt;Table '.$newTableName.' Added.&lt;br /&gt;&lt;br /&gt;';
+			} else {
+				echo '&lt;span style="color:red; "&gt;&lt;br /&gt;FAILED to Add table '
+						.$newTableName.'.&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;';
+				echo mysql_error();
+			}
+	}
+
+?&gt;</before>
+          <after/>
+        </leaf>
+      </branch>
+      <branch title="SQL">
+        <leaf type="insert" title="ADD accessLevel to tUser">
+          <before>ALTER TABLE tUser ADD accessLevel INT NOT NULL </before>
+          <after/>
+        </leaf>
+      </branch>
+      <branch title="forms">
+        <leaf type="insert" title="loginForm 0807_01 SQL">
+          <before>			//		update code:   0807_01
+			$tUser_SQLselect = "SELECT ID, password, accessLevel FROM tUser ";
+			$tUser_SQLselect .= "WHERE username = '".$username."' ";	
+
+			$tUser_SQLselect_Query = mysql_query($tUser_SQLselect); 	
+			while ($row = mysql_fetch_array($tUser_SQLselect_Query, MYSQL_ASSOC)) {
+			    $userID = $row['ID'];
+			    $passwordRetrieved = $row['password'];
+			    $accessLevel = $row['accessLevel'];
+			}
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="... 0807_02 cookies">
+          <before>			    	//		update code:   0807_02 cookies	
+					setcookie("accessLevel", $accessLevel, time()+7200, "/");	
+					setcookie("userID", $userID, time()+7200, "/");	
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="coPeopleEdit 0807_11_cookie">
+          <before>//		update code:   coPeopleEdit 0807_11_cookie
+$accessLevel = $_COOKIE["accessLevel"];
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="coPeopleEdit 0807_12_include">
+          <before>							//		update code:   coPeopleEdit 0807_12_include
+							if (isset($accessLevel) AND $accessLevel &gt;= 21) {
+	
+								include_once('../includes/inc_personAddForm.php');
+								
+							}
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="coPeopleEdit 0807_13_restrict_21">
+          <before>									echo '&lt;tr '.$rowClass.' height="20"&gt;
+									
+												&lt;td&gt;'.$personArray[$indx]['Salutation'].'&amp;nbsp;&lt;/td&gt;
+												
+												&lt;td&gt;'.$personArray[$indx]['FirstName'].'&amp;nbsp;&lt;/td&gt;
+		
+												&lt;td&gt;'.$personArray[$indx]['LastName'].'&amp;nbsp;&lt;/td&gt;
+		
+												&lt;td&gt;'.$personArray[$indx]['Tel'].'&amp;nbsp;&lt;/td&gt;
+												
+												&lt;td&gt;'.$personArray[$indx]['eMail'].'&amp;nbsp;&lt;/td&gt;';
+				
+									//		update code:   coPeopleEdit 0807_13_restrict_21
+									if (isset($accessLevel) AND $accessLevel &gt;= 21) {
+											echo '&lt;td&gt;'.$personEditLink.'&amp;nbsp;&lt;/td&gt;';
+									}
+									echo '&lt;/tr&gt;	';	
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="coPeopleEdit 0807_14_restrict_21">
+          <before>								echo '&lt;tr&gt;
+											&lt;td&gt;Salutation&lt;/td&gt;
+											&lt;td&gt;FirstName&lt;/td&gt;
+											&lt;td&gt;LastName&lt;/td&gt;
+											&lt;td&gt;Telephone&lt;/td&gt;
+											&lt;td&gt;eMail&lt;/td&gt;';
+											
+								//		update code:   coPeopleEdit 0807_13_restrict_21
+								if (isset($accessLevel) AND $accessLevel &gt;= 21) {
+									echo '&lt;td&gt;&amp;nbsp;&lt;/td&gt;';
+								}
+								echo '&lt;/tr&gt;	';	
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="userCreate.php">
+          <before>&lt;?php
+/*
+
+*	File:			userCreate.php
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	This script provides ADMIN with a form to 
+*	create a new user login
+*	checks data integrity and SAVES if OK
+*
+*
+*=====================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} else {
+				echo "DB Selection FAILed";
+			}
+		} else {
+				echo "MySQL Connection FAILed";
+		}
+		//	END	Secure Connection Script
+}
+
+$loginAuthorised = ($_COOKIE["loginAuthorised"] == "loginAuthorised");
+
+if ($dbSuccess AND $loginAuthorised) {
+	//	external style sheet 
+	echo '&lt;link rel="stylesheet" href="../css/alphacrm.css" type="text/css" &gt;';
+	include_once('../includes/stringFunctions.php');
+	
+	$thisScriptName = 'userCreate.php';
+
+	echo '&lt;h2&gt;New User Creation Form&lt;/h2&gt;';
+		
+	$saveClicked = $_POST["saveClicked"];
+	if (isset($saveClicked) AND ($saveClicked == 'saveClicked')) {
+		
+		//		Save the user 		
+				include_once('../includes/inc_userCreateSave.php');
+		 
+	} else {
+		echo "&lt;br /&gt;";
+
+		//		create the accessLevel DROPDOWN  FIELD 
+				include_once('../includes/inc_userCreateACLdropdown.php');
+								
+		//		FORM postUser
+				include_once('../includes/inc_userCreateForm.php');	
+	}	
+	echo "&lt;br /&gt;&lt;hr /&gt;&lt;br /&gt;";
+	echo '&lt;a href="../index.php"&gt;Quit - to homepage&lt;/a&gt;';
+
+} else {
+	
+	echo '&lt;h2&gt;You are not authorised to use this page.&lt;/h2&gt;';
+	echo "&lt;br /&gt;&lt;hr /&gt;&lt;br /&gt;";
+//		END:       if ($dbSuccess AND $loginAuthorised)
+}
+
+?&gt;</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="loginForm 0809_01 incl functions">
+          <before>//		update code:   0809_01
+include_once('../includes/functions_accessLog.php');
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="loginForm 0809_02 log access">
+          <before>					//		update code:   loginForm 0809_02 log access
+					$sessionLogged = insertLogin($userID);
+					if ($sessionLogged) {
+							header("Location: ../index.php");
+					} else {
+						echo 'Session Logging ERROR.&lt;br /&gt;&lt;br /&gt;';
+						echo $sessionLogged;
+						echo '&lt;a href="../index.php"&gt;Login Anyway&lt;/a&gt;';
+					}	
+</before>
+          <after/>
+        </leaf>
+      </branch>
+      <branch title="CSS">
+        <leaf type="insert" title="css update 8.8">
+          <before>	
+.pad60 {
+	margin-left: 60px;	
+}
+
+.pad120 {
+	margin-left: 120px;	
+}
+
+.mainMenuItem {
+	font-family: arial, helvetica, sans-serif;
+	color: maroon;	
+}
+
+a:hover .mainMenuItem {
+	color: blue;	
+	font-weight: bold;
+	border-bottom:1px solid;	
+}
+</before>
+          <after/>
+        </leaf>
+      </branch>
+    </branch>
+    <branch title="Examplets">
+      <branch title="Joins And Nests">
+        <leaf type="insert" title="SQL: JOIN">
+          <before>SELECT
+tPerson.ID,
+tPerson.Salutation,
+tPerson.FirstName,
+tPerson.LastName,
+tCompany.preName,
+tCompany.Name
+FROM tPerson JOIN tCompany
+ON tPerson.CompanyID = tCompany.ID</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="Elegant Nest">
+          <before>&lt;?php
+/*
+
+*	File:			nest_Demo.php
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	This script demonstrates elegant nested rendering
+* 		using SQL rather than a language construct
+*		
+*
+*=========================================================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} else {
+				echo "DB Selection FAILed";
+			}
+		} else {
+				echo "MySQL Connection FAILed";
+		}
+		//	END	Secure Connection Script
+}
+
+if ($dbSuccess) {
+
+	{  //   Style declarations
+			$trOdd = 'style = "background-color: #BFFFCF;"';
+			$trEven = 'style = "background-color: #FCCDFF;"';
+			
+			$textFont = 'style = " font-family: arial, helvetica, sans-serif; "';
+			$textRed = 'style = " font-family: arial, helvetica, sans-serif; color:maroon; "';
+			
+			$indent50 = 'style = " margin-left: 50; "';
+			$indent100 = 'style = " margin-left: 100; "';
+			
+	//   END: Style declarations	
+	}
+	
+	echo '&lt;h1&gt;All Persons by Company&lt;/h1&gt;';
+	
+	{	//		SQL
+	$tPerson_SQLselect = "SELECT  ";
+	$tPerson_SQLselect .= "tPerson.ID AS personID, ";	
+	$tPerson_SQLselect .= "tPerson.Salutation, ";	
+	$tPerson_SQLselect .= "tPerson.FirstName, tPerson.LastName, ";	
+	$tPerson_SQLselect .= "tCompany.ID AS companyID, ";		
+	$tPerson_SQLselect .= "tCompany.preName, tCompany.Name, tCompany.RegType ";	
+	$tPerson_SQLselect .= "FROM tPerson LEFT JOIN tCompany ";
+	$tPerson_SQLselect .= "ON tPerson.CompanyID = tCompany.ID ";
+	$tPerson_SQLselect .= "ORDER BY tCompany.Name, tCompany.preName, tCompany.ID, ";
+	$tPerson_SQLselect .= "tPerson.LastName, tPerson.FirstName ";
+
+	$tPerson_SQLselect_Query = mysql_query($tPerson_SQLselect);
+	//		END:  SQL 	
+	}		
+	$currentCompanyID = -1;
+	$indx = 0;
+	echo '&lt;div '.$textFont.'&gt;';
+
+	while ($row = mysql_fetch_array($tPerson_SQLselect_Query, MYSQL_ASSOC)) {
+		
+			{	//	assign variables to row data 
+				$personID = $row['personID'];
+				$Salutation = $row['Salutation'];
+				$FirstName = $row['FirstName'];
+				$LastName = $row['LastName'];
+				$Telephone = $row['Telephone'];
+				$eMail = $row['eMail'];
+		
+				$CompanyID = $row['companyID'];
+				$CompanypreName = $row['preName'];
+				$CompanyName = $row['Name'];
+				$CompanyRegType = $row['RegType'];
+			 
+				$CompanyFullName = trim($CompanypreName." ".$CompanyName." ".$CompanyRegType);
+			//	END:  assign variables to row data 
+			}
+			
+			{	//		Company header 
+				if (empty($CompanyID)) {
+					$CompanyID = 0;
+					$CompanyFullName = "UN-Allocated";
+				}	
+
+			   if ($CompanyID &lt;&gt; $currentCompanyID) {
+		
+				   if ($currentCompanyID &lt;&gt; -1) {
+			   	//		Render the table tail 
+		 				echo "&lt;/table&gt;";	
+		 				echo '&lt;/div&gt;';
+			   	}
+
+			   	//		Render the company header
+			   	echo '&lt;h2 '.$indent50.'&gt;'.$CompanyFullName.'&lt;/h2&gt;';
+			   	
+					echo '&lt;div '.$indent100.'&gt;';
+			   	echo "&lt;table border='1'&gt;";
+					echo "&lt;tr&gt;";
+					
+						echo "&lt;td&gt;#&lt;/td&gt;";
+						echo "&lt;td&gt;Salutation&lt;/td&gt;";
+						echo "&lt;td&gt;FirstName&lt;/td&gt;";
+						echo "&lt;td&gt;LastName&lt;/td&gt;";
+						echo "&lt;td&gt;Telephone&lt;/td&gt;";
+						echo "&lt;td&gt;eMail&lt;/td&gt;";
+				
+					echo "&lt;/tr&gt;";  
+		
+			   	//    	
+			   } 
+  					$currentCompanyID = $CompanyID;
+  			//	END:   Company header 
+			}	
+				
+ 			{	//		Create and format a row for each person
+			if (($indx % 2) == 1) {$rowClass = $trOdd; } else { $rowClass = $trEven; }
+			echo '&lt;tr '.$rowClass.'&gt;';
+ 			
+			
+				echo "&lt;td&gt;".$personID."&amp;nbsp;&lt;/td&gt;";       //  this is NOT  tPerson.ID
+				echo "&lt;td&gt;".$Salutation."&amp;nbsp;&lt;/td&gt;";
+				echo "&lt;td&gt;".$FirstName."&amp;nbsp;&lt;/td&gt;";
+				echo "&lt;td&gt;".$LastName."&amp;nbsp;&lt;/td&gt;";
+				echo "&lt;td&gt;".$Telephone."&amp;nbsp;&lt;/td&gt;";
+				echo "&lt;td&gt;".$eMail."&amp;nbsp;&lt;/td&gt;";
+		
+			echo "&lt;/tr&gt;";
+			}	//		END:  Create and format a row for each person
+			
+			$indx++;
+			
+	//	   END:  while ($row = mysql_fetch_array($tPerson_SQLselect_Query
+	}
+	
+	echo '&lt;/div&gt;';
+
+	mysql_free_result($tPerson_SQLselect_Query);		
+}
+
+?&gt;</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="Thrasher Nest">
+          <before>&lt;?php
+/*
+
+*	File:			nest_Demo_thrasher.php
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	This script demonstrates in-elegant database thrashing
+* 		with a nested processing loop
+*		
+*
+*=========================================================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} else {
+				echo "DB Selection FAILed";
+			}
+		} else {
+				echo "MySQL Connection FAILed";
+		}
+		//	END	Secure Connection Script
+}
+
+if ($dbSuccess) {
+
+	{  //   Style declarations
+			$trOdd = 'style = "background-color: #BFFFCF;"';
+			$trEven = 'style = "background-color: #FCCDFF;"';
+			
+			$textFont = 'style = " font-family: arial, helvetica, sans-serif; "';
+			$textRed = 'style = " font-family: arial, helvetica, sans-serif; color:maroon; "';
+			
+			$indent50 = 'style = " margin-left: 50; "';
+			$indent100 = 'style = " margin-left: 100; "';
+			
+	//   END: Style declarations	
+	}
+	
+	echo '&lt;h1&gt;All Persons by Company&lt;/h1&gt;';
+	
+	
+	//		Company SQL
+	$tCompany_SQLselect = "SELECT tCompany.ID AS companyID, ";		
+	$tCompany_SQLselect .= "tCompany.preName, tCompany.Name, tCompany.RegType ";
+	$tCompany_SQLselect .= "FROM tCompany ";
+	
+	$tCompany_SQLselect .= "ORDER BY tCompany.Name, tCompany.preName, tCompany.ID ";
+	
+	$tCompany_SQLselect_Query = mysql_query($tCompany_SQLselect);
+	
+	{	//	while  more company records
+	
+			while ($rowCompany = mysql_fetch_array($tCompany_SQLselect_Query, MYSQL_ASSOC)) {
+				
+				$CompanyID = $rowCompany['companyID'];
+				$CompanypreName = $rowCompany['preName'];
+				$CompanyName = $rowCompany['Name'];
+				$CompanyRegType = $rowCompany['RegType'];
+			 
+				$CompanyFullName = trim($CompanypreName." ".$CompanyName." ".$CompanyRegType);
+				echo '&lt;h2 '.$indent50.'&gt;'.$CompanyFullName.'&lt;/h2&gt;';
+				
+				echo '&lt;div '.$indent100.'&gt;';
+		   	echo "&lt;table border='1'&gt;";
+				echo "&lt;tr&gt;";
+				
+					echo "&lt;td&gt;#&lt;/td&gt;";
+					echo "&lt;td&gt;Salutation&lt;/td&gt;";
+					echo "&lt;td&gt;FirstName&lt;/td&gt;";
+					echo "&lt;td&gt;LastName&lt;/td&gt;";
+					echo "&lt;td&gt;Telephone&lt;/td&gt;";
+					echo "&lt;td&gt;eMail&lt;/td&gt;";
+			
+				echo "&lt;/tr&gt;";  
+				
+				{	//	Person Table for companyID
+					
+						{//		Person SQL
+							$tPerson_SQLselect = "SELECT  ";
+							$tPerson_SQLselect .= "tPerson.ID AS personID, ";	
+							$tPerson_SQLselect .= "tPerson.Salutation, ";	
+							$tPerson_SQLselect .= "tPerson.FirstName, tPerson.LastName ";	
+							$tPerson_SQLselect .= "FROM tPerson ";
+							$tPerson_SQLselect .= "WHERE tPerson.CompanyID = ".$CompanyID." ";		
+							$tPerson_SQLselect .= "ORDER BY tPerson.LastName, tPerson.FirstName ";
+		
+							$tPerson_SQLselect_Query = mysql_query($tPerson_SQLselect);
+						//		end person SQL
+						}
+						
+						$currentCompanyID = -1;
+						$indx = 0;
+						echo '&lt;div '.$textFont.'&gt;';
+					
+						{	//	while  more person records
+								while ($row = mysql_fetch_array($tPerson_SQLselect_Query, MYSQL_ASSOC)) {
+									
+									$personID = $row['personID'];
+									$Salutation = $row['Salutation'];
+									$FirstName = $row['FirstName'];
+									$LastName = $row['LastName'];
+									$Telephone = $row['Telephone'];
+									$eMail = $row['eMail'];
+						
+									{	//		Create and format a row for each person
+									if (($indx % 2) == 1) {$rowClass = $trOdd; } else { $rowClass = $trEven; }
+									echo '&lt;tr '.$rowClass.'&gt;';
+						 			
+										echo "&lt;td&gt;".$personID."&amp;nbsp;&lt;/td&gt;";       //  this is NOT  tPerson.ID
+										echo "&lt;td&gt;".$Salutation."&amp;nbsp;&lt;/td&gt;";
+										echo "&lt;td&gt;".$FirstName."&amp;nbsp;&lt;/td&gt;";
+										echo "&lt;td&gt;".$LastName."&amp;nbsp;&lt;/td&gt;";
+										echo "&lt;td&gt;".$Telephone."&amp;nbsp;&lt;/td&gt;";
+										echo "&lt;td&gt;".$eMail."&amp;nbsp;&lt;/td&gt;";
+								
+									echo "&lt;/tr&gt;";
+									//		END:  Create and format a row for each person
+									}	
+									$indx++;
+								}
+								
+						//		END:   //	while  more person records
+						}		
+				//	END: Person Table for companyID			
+				}				
+				
+				echo "&lt;/table&gt;";
+				echo '&lt;/div&gt;';
+			}
+	//	END: while more company records
+	}  
+	
+
+	echo '&lt;/div&gt;';
+
+	mysql_free_result($tPerson_SQLselect_Query);		
+}
+
+?&gt;</before>
+          <after/>
+        </leaf>
+      </branch>
+      <branch title="CSS">
+        <leaf type="insert" title="alphacrm.css">
+          <before>/*       CSS style sheet 			alphacrm.css         */
+/*																		*/
+/* 			for the ALPHA-CRM project						*/
+/* 																	*/
+/* 																	*/
+
+a {
+	color:#0000FF;
+	text-decoration: none;
+	
+}
+
+a:hover {
+	border-bottom:2px solid;
+	color:maroon;
+	
+}
+
+a .tableHeader {
+	background-color: #000000;	
+	color: white;	
+	font-weight: bold;
+	border-bottom:1px solid;	
+}
+
+
+a:hover .tableHeader {
+	background-color: #000000;	
+	color: red;	
+	font-weight: bold;
+	border-bottom:1px solid;	
+}
+
+.trOdd {
+	background-color: #BFFFCF;	
+}
+
+.trEven {
+	background-color: #FCCDFF;	
+}
+
+.textNormal {
+	font-family: arial, helvetica, sans-serif;
+	color: black;	
+}
+
+.textEmph {
+	color: maroon;	
+}
+.tableHeader {
+	background-color: #000000;	
+	color: white;	
+		
+}
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="companyListOrderStyle.php">
+          <before>&lt;?php
+/*
+
+*	File:			companyListOrderStyle.php
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	This script is the same as companyListOrder.php
+*	except with linked stylesheet
+*
+*
+*=============================================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+if ($dbSuccess) {
+
+	//	external style sheet 
+	echo '&lt;link rel="stylesheet" href="../css/alphacrm.css" type="text/css" /&gt;';
+	
+	$thisScriptName = 'companyListOrderStyle.php';
+	
+	
+	//		Get the sortorder with GET but default to Name
+	$orderClause = $_GET["orderClause"];	
+	if (!isset($orderClause)) {$orderClause = "Name"; }
+	
+	{	//		SELECT all companies in Name order and execute 
+		$tCompany_SQLselect = "SELECT * ";
+		$tCompany_SQLselect .= "FROM ";
+		$tCompany_SQLselect .= "tCompany ";	
+		$tCompany_SQLselect .= "ORDER BY ";
+		$tCompany_SQLselect .= "tCompany.".$orderClause;
+
+		$tCompany_SQLselect_Query = mysql_query($tCompany_SQLselect); 	
+
+	}
+	
+	{	//		Output 
+	
+	//		make each header a link to $thisScriptName with querystring or orderclause 
+	$header_ID = '&lt;a href="'.$thisScriptName.'?orderClause=ID"&gt;&lt;span class="tableHeader"&gt;ID&lt;/span&gt;&lt;/a&gt;';
+	$header_Name = '&lt;a href="'.$thisScriptName.'?orderClause=Name"&gt;&lt;span class="tableHeader"&gt;Company&lt;/span&gt;&lt;/a&gt;';
+	$header_Town = '&lt;a href="'.$thisScriptName.'?orderClause=Town"&gt;&lt;span class="tableHeader"&gt;Town&lt;/span&gt;&lt;/a&gt;';
+	$header_County = '&lt;a href="'.$thisScriptName.'?orderClause=County"&gt;&lt;span class="tableHeader"&gt;County&lt;/span&gt;&lt;/a&gt;';
+	$header_Postcode = '&lt;a href="'.$thisScriptName.'?orderClause=Postcode"&gt;&lt;span class="tableHeader"&gt;Postcode&lt;/span&gt;&lt;/a&gt;';
+	$header_COUNTRY = '&lt;a href="'.$thisScriptName.'?orderClause=COUNTRY"&gt;&lt;span class="tableHeader"&gt;COUNTRY&lt;/span&gt;&lt;/a&gt;';
+	
+	{	//		create a div for the whole rendering 
+	echo '&lt;div class="textNormal"&gt;';
+	
+		echo '&lt;h2&gt;Company List&lt;/h2&gt;';
+					
+		echo '&lt;table border="1"&gt;';	
+			echo '&lt;tr class="tableHeader" height="40px"&gt;';		
+				echo '&lt;td&gt;'.$header_ID.'&lt;/td&gt;';
+				echo '&lt;td&gt;&amp;nbsp;&lt;/td&gt;';
+				echo '&lt;td&gt;'.$header_Name.'&lt;/td&gt;';
+				echo '&lt;td&gt;Address&lt;/td&gt;';
+				echo '&lt;td&gt;'.$header_Town.'&lt;/td&gt;';
+				echo '&lt;td&gt;'.$header_County.'&lt;/td&gt;';
+				echo '&lt;td&gt;'.$header_Postcode.'&lt;/td&gt;';
+				echo '&lt;td&gt;'.$header_COUNTRY.'&lt;/td&gt;';
+
+			echo '&lt;/tr&gt;';
+	
+			$indx = 0;		//		count the rows to give alternating style 
+			while ($row = mysql_fetch_array($tCompany_SQLselect_Query, MYSQL_ASSOC)) {
+				
+				$ID = $row['ID'];
+				$preName = $row['preName'];
+				$CompanyName = $row['Name'];
+				$regType = $row['RegType'];				
+				$CompanyFullName = trim($CompanyName." ".$regType);
+				
+				$StreetA = $row['StreetA'];
+				$StreetB = $row['StreetB'];
+				$StreetC = $row['StreetC'];			    
+				$CompanyAddress = $StreetA;				
+				if (!empty($StreetB)) { $CompanyAddress .=  ", ".$StreetB; }
+				if (!empty($StreetC)) { $CompanyAddress .=  ", ".$StreetC; }		    
+					
+			   $Town = $row['Town'];
+			   $County = $row['County'];
+			   $Postcode = $row['Postcode'];
+			   $COUNTRY = $row['COUNTRY'];
+		
+				//		Link to companyPeopleEdit.php?companyID=$ID
+				$linkToList = '&lt;a href="companyPeopleEdit.php?companyID='.$ID.'"&gt;'.$ID.'&lt;/a&gt;';
+				
+				//		Set row style
+				if (($indx % 2) == 1) {$rowClass = 'class="trOdd"'; } else { $rowClass = 'class="trEven"'; }
+				echo '&lt;tr '.$rowClass.'&gt;';
+				
+					echo '&lt;td&gt;'.$linkToList.'&amp;nbsp;&lt;/td&gt;'; 
+					echo '&lt;td&gt;'.$preName.'&amp;nbsp;&lt;/td&gt;'; 
+					echo '&lt;td&gt;'.$CompanyFullName.'&amp;nbsp;&lt;/td&gt;';
+					echo '&lt;td&gt;'.$CompanyAddress.'&amp;nbsp;&lt;/td&gt;';
+					echo '&lt;td&gt;'.$Town.'&amp;nbsp;&lt;/td&gt;';
+					echo '&lt;td&gt;'.$County.'&amp;nbsp;&lt;/td&gt;';
+					echo '&lt;td&gt;'.$Postcode.'&amp;nbsp;&lt;/td&gt;';
+					echo '&lt;td&gt;'.$COUNTRY.'&amp;nbsp;&lt;/td&gt;';
+			
+				echo '&lt;/tr&gt;';
+		  
+		  		$indx++;
+		   //	END: while
+			}
+
+		echo '&lt;/table&gt;';	
+		echo ' &amp;nbsp;&amp;nbsp;^ click ID to edit record';
+
+	echo '&lt;/div&gt;';
+	//		END: create a div for the whole rendering 
+	}
+	
+	}	//		END: //		Output 
+	
+	mysql_free_result($tCompany_SQLselect_Query);	
+	
+}
+
+echo '&lt;br /&gt;&lt;hr /&gt;&lt;br /&gt;';
+
+echo '&lt;a href="../index.php"&gt;Quit - to homepage&lt;/a&gt;';
+
+?&gt;</before>
+          <after/>
+        </leaf>
+      </branch>
+      <branch title="functions">
+        <leaf type="insert" title="fullCoName">
+          <before>//	FUNCTIONS
+
+		function fullCoName($coID, $preName, $coName, $regType)
+		{
+			if (empty($coID)) {
+				$temp = "Un-Allocated";
+			} else {
+				$temp = trim($preName." ".$coName." ".$regType);
+			}
+			return $temp;
+		}
+
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="fullCoName usage">
+          <before>$CompanyFullName = fullCoName($CompanyID, $CompanypreName, $CompanyName, $CompanyRegType);
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="coAddress">
+          <before>		function coAddress($A, $B, $C)
+		{
+			$temp = $A;
+			if (!empty($B)) { $temp .=  ", ".$B; }
+			if (!empty($C)) { $temp .=  ", ".$C; }
+			return $temp;
+		}
+
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="coAddress usage">
+          <before>$CompanyAddress = coAddress($StreetA, $StreetB, $StreetC);</before>
+          <after/>
+        </leaf>
+      </branch>
+      <branch title="includes">
+        <leaf type="insert" title="stringFunctions.php">
+          <before>&lt;?php
+	
+/*
+
+*	INCLUDE File:          stringFunctions.php
+*	By:							TMIT
+*	Date:		
+*
+*	String Functions for project "ALPHA CRM" 
+*
+*
+*=====================================
+*/
+
+
+		function fullCoName($coID, $preName, $coName, $regType)
+		{
+			if (empty($coID)) {
+				$temp = "Un-Allocated";
+			} else {
+				$temp = trim($preName." ".$coName." ".$regType);
+			}
+			return $temp;
+		}
+
+
+		function shortCoName($coName, $regType)
+		{
+			$temp = trim($coName." ".$regType);
+			return $temp;
+		}
+
+		function coAddress($A, $B, $C)
+		{
+			$temp = $A;
+			if (!empty($B)) { $temp .=  ", ".$B; }
+			if (!empty($C)) { $temp .=  ", ".$C; }
+			return $temp;
+		}
+
+
+?&gt;</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="stringFunctions usage">
+          <before>include_once('../includes/stringFunctions.php');</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="coDropDown.php">
+          <before>&lt;?php
+	
+/*
+
+*	INCLUDE File:          coDropDown.php
+*	By:							TMIT
+*	Date:		
+*
+*	code to render a dropDown for companies
+*		and send the companyID to the script $postFormName
+*		as a POSTed variable.
+*
+*
+*=====================================
+*/
+				
+		$tCompany_SQLselect = "SELECT  ";
+		$tCompany_SQLselect .= "ID, preName, Name ";	
+		$tCompany_SQLselect .= "FROM ";
+		$tCompany_SQLselect .= "tCompany ";
+		$tCompany_SQLselect .= "Order By Name ";
+			
+		$tCompany_SQLselect_Query = mysql_query($tCompany_SQLselect);	
+		
+		echo '&lt;form action="'.$postFormName.'" method="post"&gt;';
+		
+		echo '&lt;select name="companyID"&gt;';
+		
+			echo '&lt;option value="0" label="coyvalue" selected="selected"&gt;..select company..&lt;/option&gt;';
+	 	
+				while ($row = mysql_fetch_array($tCompany_SQLselect_Query, MYSQL_ASSOC)) {
+				    $ID = $row['ID'];
+				    $preName = $row['preName'];
+				    $companyName = $row['Name'];
+				    $RegType = $row['RegType'];
+				    
+				    $fullCoyName = trim($preName." ".$companyName." ".$RegType);
+				    
+				    echo '&lt;option value="'.$ID.'"&gt;'.$fullCoyName.'&lt;/option&gt;';
+				}
+			
+				mysql_free_result($tCompany_SQLselect_Query);		
+		
+				echo '&lt;/select&gt;';
+		
+				echo '&lt;input type="submit" /&gt;';
+				
+		echo '&lt;/form&gt;';
+		//	END:  Select company from dropdowm
+
+?&gt;</before>
+          <after/>
+        </leaf>
+      </branch>
+      <branch title="errors">
+        <leaf type="insert" title="errorTemplate">
+          <before>&lt;?php
+	
+//		File in DEMO folder:              errorTesting.php
+echo '&lt;h2&gt;Error Testing:&lt;/h2&gt;';
+
+
+</before>
+          <after>
+
+
+echo '&lt;h2&gt;--------- END --------&lt;/h2&gt;';
+
+?&gt;</after>
+        </leaf>
+        <leaf type="insert" title="syntax errors">
+          <before>
+echo '&lt;h4&gt;Syntax Errors:&lt;/h4&gt;';
+
+$a = 8 x 5;
+echo "8 x 5 = ".$a
+
+
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="semantic error">
+          <before>
+echo '&lt;h4&gt;Semantic Error:&lt;/h4&gt;';
+
+for ($i = 5; $i &lt; 2; $i++) {
+	echo $i;
+}
+echo "&lt;br /&gt;";
+echo '$i = '.$i."&lt;br /&gt;";
+
+echo "&lt;br /&gt;";
+
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="semantic not logic">
+          <before>
+echo '&lt;h4&gt;Semantic (not Logic) Error:&lt;/h4&gt;';
+
+$i = 9;
+$test = 3;
+echo '$i = '.$i."&lt;br /&gt;";
+echo '$test = '.$test."&lt;br /&gt;";
+
+if ($i = $test) {echo '$i = $test'; } else {echo '$i &lt;&gt; $test'; }
+
+
+echo "&lt;br /&gt;";
+
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="logic error">
+          <before>
+echo '&lt;h4&gt;Logic Error:&lt;/h4&gt;';
+
+$ij = 4;
+$ji = 2;
+
+echo '$ij = '.$ij."&lt;br /&gt;";
+echo '$ji = '.$ji."&lt;br /&gt;";
+
+if ($ij &lt; $ji) {
+	echo '$ij &lt; $ji&lt;br /&gt;';
+} else if ($ij &gt; $ij) {
+	echo '$ij &gt; $ji&lt;br /&gt;'; 
+} else {
+	echo '$ij = $ji&lt;br /&gt;';
+}
+
+echo "&lt;br /&gt;";
+
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="*** database - create TEST">
+          <before>&lt;?php
+	
+//		File in DEMO folder:              createTestTable.php
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+{		//	drop &amp; create table
+		$dropTestTable = "DROP TABLE test";
+			if (mysql_query($dropTestTable))  {	
+				echo 'Table Dropped.&lt;br /&gt;&lt;br /&gt;';
+			} else {
+				echo '&lt;span style="color:red; "&gt;FAILED to DROP table.&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;';
+				echo mysql_error();
+			}
+	
+		$createTestTable = 'CREATE TABLE alphacrm.test (
+									ID INT NOT NULL  AUTO_INCREMENT PRIMARY KEY ,
+									testitem VARCHAR( 4 ) NOT NULL, 
+									UNIQUE (testitem)
+								)';		
+											
+			if (mysql_query($createTestTable))  {	
+				echo 'Table Added.&lt;br /&gt;&lt;br /&gt;';
+			} else {
+				echo '&lt;span style="color:red; "&gt;FAILED to Add table.&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;';
+				echo mysql_error();
+			}
+}
+
+?&gt;</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="database error">
+          <before>	
+	echo '&lt;h4&gt;Database Error test:&lt;/h4&gt;';
+	
+	$testValue = "abcdef1234";
+	
+	$thisSQL = "INSERT into test (testitem) VALUES ('".$testValue."')";
+	echo $thisSQL."&lt;br /&gt;";
+	
+	if (mysql_query($thisSQL))  {	
+		echo 'used to Successfully add new testitem '.$testValue.'.&lt;br /&gt;&lt;br /&gt;';
+	} else {
+		echo '&lt;span style="color:red; "&gt;FAILED to add new testitem '.$testValue.'.&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;';
+		echo mysql_error();
+	}	
+	
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="database FORMS error">
+          <before>
+	echo '&lt;h4&gt;Database Error - with FORMs:&lt;/h4&gt;';
+	
+	$testValue = $_POST['testValue'];
+	
+	if (isset($testValue)) {
+		
+			$thisSQL = "INSERT into test (testitem) VALUES ('".$testValue."')";
+			echo $thisSQL."&lt;br /&gt;";
+			
+			if (mysql_query($thisSQL))  {	
+				echo 'used to Successfully add new testitem '.$testValue.'.&lt;br /&gt;&lt;br /&gt;';
+			} else {
+				echo '&lt;span style="color:red; "&gt;FAILED to add new testitem '.$testValue.'.&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;';
+				echo mysql_error();
+			}		
+			
+			unset($testValue);
+			
+	} else {
+	
+			unset($testValue);
+			echo '&lt;form name="posttest" action="createTestTable.php" method="post"&gt;';	
+					echo '
+						&lt;input type="text" name="testValue" size="30" maxlength="10" /&gt;
+						&lt;input type="submit"  value="Save" /&gt;
+					';
+			echo '&lt;/form&gt;';
+	}
+
+		unset($testValue);
+		echo "&lt;br /&gt;&lt;br /&gt;";
+		echo '&lt;a href="createTestTable.php"&gt;
+				&lt;span style="color: maroon; "&gt;again&lt;/span&gt;
+				&lt;/a&gt;';
+
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="File - URL error">
+          <before>$fileName = "../forms/companyListOrder.php";
+if(!file_exists($fileName))
+  {
+  echo "bad file link in script";
+  }
+else
+  {
+	  echo '&lt;a href='.$fileName.'&gt;
+					&lt;span style="color: maroon; "&gt;List Companies&lt;/span&gt;
+				&lt;/a&gt;';
+  }
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="set_error_handler">
+          <before>&lt;?php
+	
+//		File in DEMO folder:              customErrorTesting.php
+echo '&lt;h2&gt;Custom Error Testing:&lt;/h2&gt;';
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+function customError($errLevel, $errMsg, $errFile, $errLine)
+  {
+	  echo "&lt;b&gt;Error parameters:&lt;/b&gt;&lt;br /&gt;";
+	  
+	  echo "&amp;nbsp;&amp;nbsp;&lt;b&gt;errLevel:&lt;/b&gt; [".$errLevel."]&lt;br /&gt;";
+	  echo "&amp;nbsp;&amp;nbsp;&lt;b&gt;errMsg:&lt;/b&gt; [".$errMsg."]&lt;br /&gt;";
+	  echo "&amp;nbsp;&amp;nbsp;&lt;b&gt;errFile:&lt;/b&gt; [".$errFile."]&lt;br /&gt;";
+	  echo "&amp;nbsp;&amp;nbsp;&lt;b&gt;errLine:&lt;/b&gt; [".$errLine."]&lt;br /&gt;";
+	  echo "&amp;nbsp;&amp;nbsp;&lt;b&gt;errLine:&lt;/b&gt; ================================&lt;br /&gt;";
+
+  } 
+ 
+set_error_handler("customError"); 
+
+</before>
+          <after>
+
+echo '&lt;h2&gt;--------- END custom error Testing--------&lt;/h2&gt;';
+?&gt;</after>
+        </leaf>
+        <leaf type="insert" title="trappable errors">
+          <before>	echo 3 * $a;
+	echo "&lt;br /&gt;---------------------------------&lt;br /&gt;";
+	$a = "asdf";
+	
+	echo strlen($a,3);
+	echo "&lt;br /&gt;---------------------------------&lt;br /&gt;";
+
+	$testValue = "abcdef1234";
+	$thisSQL = "INSERT into test (testitem) VALUES ('".$testValue."')";
+	$result = mysql_query($thisSQL);
+	echo mysql_error();
+	echo "&lt;br /&gt;---------------------------------&lt;br /&gt;";
+	
+</before>
+          <after/>
+        </leaf>
+      </branch>
+      <branch title="login">
+        <leaf type="insert" title="loginformExample.php">
+          <before>&lt;?php
+	
+//		File in DEMO folder:              loginformExample.php
+echo '&lt;h2&gt;Login Form Example:&lt;/h2&gt;';
+
+	$username = $_POST['username'];
+	if(isset($username)) {
+		$password = $_POST['password'];
+		echo "username = ".$username."&lt;br /&gt;";
+		echo "password = ".$password."&lt;br /&gt;";
+
+		unset($username);
+		unset($password);
+	} 
+
+	echo '&lt;form name="postLogin" action="loginformExample.php" method="post"&gt;';	
+			echo '
+				&lt;P&gt;User name: 
+				&lt;INPUT TYPE=text NAME=username value="" SIZE=12 MAXLENGTH=8&gt;&lt;/P&gt;
+				&lt;P&gt;Password: 
+				&lt;INPUT TYPE=text NAME=password value="" SIZE=12 MAXLENGTH=12&gt;&lt;/P&gt;
+				&lt;input type="submit"  value="Login" /&gt;
+			';
+	echo '&lt;/form&gt;';
+	echo '&lt;br /&gt;&lt;hr /&gt;&lt;br /&gt;';
+
+	echo '&lt;form name="postLoginHid" action="loginformExample.php" method="post"&gt;';	
+			echo '
+				&lt;P&gt;User name: 
+				&lt;INPUT TYPE=text NAME=username value="" SIZE=12 MAXLENGTH=16&gt;&lt;/P&gt;
+				&lt;P&gt;Password: 
+				&lt;INPUT TYPE=password NAME=password value="" SIZE=12 MAXLENGTH=16&gt;&lt;/P&gt;
+				&lt;input type="submit"  value="Login" /&gt;
+			';
+	echo '&lt;/form&gt;';
+
+echo '&lt;h2&gt;--------- END Login Form --------&lt;/h2&gt;';
+
+?&gt;</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="loginForm">
+          <before>&lt;?php
+	
+/*
+
+*	File:			loginForm.php
+*		folder:	/forms/
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	This script is the login FORM for alpha CRM
+*
+*
+*============================================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+$thisScriptName = "loginForm.php";
+
+echo '&lt;h2&gt;Login Form alphaCRM&lt;/h2&gt;';
+
+	$username = $_POST['username'];
+	
+	if(isset($username)) {
+		$password = $_POST['password'];
+		echo "username = ".$username."&lt;br /&gt;";
+		echo "password = ".$password."&lt;br /&gt;";
+		
+		{	//		SELECT password for this user from the DB and see it it matches 
+			$tUser_SQLselect = "SELECT password FROM tUser ";
+			$tUser_SQLselect .= "WHERE username = '".$username."' ";	
+
+			$tUser_SQLselect_Query = mysql_query($tUser_SQLselect); 	
+			while ($row = mysql_fetch_array($tUser_SQLselect_Query, MYSQL_ASSOC)) {
+			    $passwordRetrieved = $row['password'];
+			}
+			mysql_free_result($tUser_SQLselect_Query);
+			
+			echo "passwordRetrieved = ".$passwordRetrieved."&lt;br /&gt;";
+			
+			if (!empty($passwordRetrieved) AND ($password == $passwordRetrieved)) {
+			
+					echo "YES. Password matches.&lt;br /&gt;&lt;br /&gt;";
+					echo '&lt;a href="'.$thisScriptName.'"&gt;Logout&lt;/a&gt;';			
+			} else {
+				echo "Access denied.&lt;br /&gt;&lt;br /&gt;";		
+				echo '&lt;a href="'.$thisScriptName.'"&gt;Try again&lt;/a&gt;';			
+			}
+		}
+		
+	} else {
+
+		echo '&lt;form name="postLoginHid" action="'.$thisScriptName.'" method="post"&gt;';	
+				echo '
+					&lt;P&gt;User name: 
+					&lt;INPUT TYPE=text NAME=username value="" SIZE=12 MAXLENGTH=16&gt;&lt;/P&gt;
+					&lt;P&gt;Password: 
+					&lt;INPUT TYPE=password NAME=password value="" SIZE=12 MAXLENGTH=16&gt;&lt;/P&gt;
+					&lt;input type="submit"  value="Login" /&gt;
+				';
+		echo '&lt;/form&gt;';
+
+	}
+	
+echo '&lt;h2&gt;--------- END Login Form --------&lt;/h2&gt;';
+
+?&gt;</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="..... + $md5Password">
+          <before>		$md5Password = md5($password);
+		
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="loginForm.php - end 0804">
+          <before>&lt;?php
+	
+/*
+
+*	File:			loginForm.php
+*		folder:	/forms/
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	This script is the login FORM for alpha CRM
+*
+*
+*============================================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+$thisScriptName = "loginForm.php";
+
+echo '&lt;h2&gt;Login Form alphaCRM&lt;/h2&gt;';
+
+	$username = $_POST['username'];
+	
+	if(isset($username)) {
+		$password = $_POST['password'];
+		$md5Password = md5($password);
+		
+		
+		{	//		SELECT password for this user from the DB and see it it matches 
+			$tUser_SQLselect = "SELECT password FROM tUser ";
+			$tUser_SQLselect .= "WHERE username = '".$username."' ";	
+
+			$tUser_SQLselect_Query = mysql_query($tUser_SQLselect); 	
+			while ($row = mysql_fetch_array($tUser_SQLselect_Query, MYSQL_ASSOC)) {
+			    $passwordRetrieved = $row['password'];
+			}
+			mysql_free_result($tUser_SQLselect_Query);
+						
+			if (!empty($passwordRetrieved) AND ($md5Password == $passwordRetrieved)) {
+				
+					echo "YES. Password matches.&lt;br /&gt;&lt;br /&gt;";
+					echo '&lt;a href="'.$thisScriptName.'"&gt;Logout&lt;/a&gt;';	
+								
+			} else {
+				echo "Access denied.&lt;br /&gt;&lt;br /&gt;";		
+				echo '&lt;a href="'.$thisScriptName.'"&gt;Try again&lt;/a&gt;';			
+			}
+		}
+		
+	} else {
+
+		echo '&lt;form name="postLoginHid" action="'.$thisScriptName.'" method="post"&gt;';	
+				echo '
+					&lt;P&gt;User name: 
+					&lt;INPUT TYPE=text NAME=username value="" SIZE=12 MAXLENGTH=16&gt;&lt;/P&gt;
+					&lt;P&gt;Password: 
+					&lt;INPUT TYPE=password NAME=password value="" SIZE=12 MAXLENGTH=16&gt;&lt;/P&gt;
+					&lt;input type="submit"  value="Login" /&gt;
+				';
+		echo '&lt;/form&gt;';
+
+	}
+	
+echo '&lt;h2&gt;--------- END Login Form --------&lt;/h2&gt;';
+
+?&gt;</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="..... + header(&quot;Location..." tooltip="&#9;&#9;&#9;">
+          <before>					header("Location: ../index.php?auth=1");	
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="..... + authForm">
+          <before>						echo '&lt;form name="authForm" action="../index.php" method="post"&gt;';	
+								echo '
+									&lt;input type="hidden" name="auth" value="1" /&gt;
+									Password OK: 									
+									&lt;input type="submit"  value="Click to Proceed" /&gt;
+								';
+						echo '&lt;/form&gt;';
+</before>
+          <after/>
+        </leaf>
+        <leaf type="insert" title="..... + set Cookie">
+          <before>					//		update code:   0806_01 
+					setcookie("loginAuthorised", "loginAuthorised", time()+7200, "/");					
+					header("Location: ../index.php");	
+</before>
+          <after/>
+        </leaf>
+      </branch>
+    </branch>
+    <branch title="Exercise Answers">
+      <branch title="Joins and Nests"/>
+    </branch>
+    <branch title="snapshots">
+      <leaf type="insert" title="index.php - 0804 end">
+        <before>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;php MySQL Training&lt;/title&gt;
+&lt;meta name="generator" content="Bluefish 2.0.0" &gt;
+&lt;meta name="author" content="ks106" &gt;
+&lt;meta name="date" content="2010-07-25T11:53:15+0100" &gt;
+&lt;meta name="copyright" content="TMIT World Limited"&gt;
+&lt;meta name="keywords" content="Infinite Skills - php/MySQL Training"&gt;
+&lt;meta name="description" content="Infinite Skills - php/MySQL Training"&gt;
+&lt;meta name="ROBOTS" content="NOINDEX, NOFOLLOW"&gt;
+&lt;link rel="stylesheet" href="css/alphacrm.css" type="text/css" /&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;?php
+					
+	echo '&lt;h2 style="font-family: arial, helvetica, sans-serif;" &gt;
+				Infinite Skills - php/MySQL Training
+			&lt;/h2&gt;';
+	echo '&lt;div align="left",
+				  style="
+				  font-family: arial, helvetica, sans-serif; 
+				  font-style: sans-serif; 
+				  padding-left: 50px;
+			"&gt;';
+				
+
+		echo '&lt;a href="forms/companyListOrder.php"&gt;
+				&lt;span style="color: maroon; "&gt;List Companies&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+		echo '&lt;a href="forms/companyCreate.php"&gt;
+				&lt;span style="color: maroon; "&gt;Create New company&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+		echo '&lt;a href="forms/companyEdit.php"&gt;
+				&lt;span style="color: maroon; "&gt;Edit company&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+		echo '&lt;a href="forms/companyPeopleEdit.php"&gt;
+				&lt;span style="color: maroon; "&gt;List People in a Company&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+
+?&gt;
+
+
+&lt;/body&gt;
+&lt;/html&gt;</before>
+        <after/>
+      </leaf>
+      <leaf type="insert" title="index.php - 0805 end">
+        <before>&lt;?php
+
+	$loginAuthorised = $_POST["auth"];
+	
+	if ($loginAuthorised) {
+		$contentFile = 'includes/inc_crmMenu.php';
+	} else {
+		header("Location: forms/loginForm.php");
+	}	
+
+?&gt;
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;php MySQL Training&lt;/title&gt;
+&lt;meta name="generator" content="Bluefish 2.0.0" &gt;
+&lt;meta name="author" content="ks106" &gt;
+&lt;meta name="date" content="2010-07-25T13:05:01+0100" &gt;
+&lt;meta name="copyright" content="TMIT World Limited"&gt;
+&lt;meta name="keywords" content="Infinite Skills - php/MySQL Training"&gt;
+&lt;meta name="description" content="Infinite Skills - php/MySQL Training"&gt;
+&lt;meta name="ROBOTS" content="NOINDEX, NOFOLLOW"&gt;
+&lt;link rel="stylesheet" href="css/alphacrm.css" type="text/css" /&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;?php
+					
+	include_once($contentFile);
+
+?&gt;
+
+
+&lt;/body&gt;
+&lt;/html&gt;</before>
+        <after/>
+      </leaf>
+      <leaf type="insert" title="index.php - 0806 end">
+        <before>&lt;?php
+
+	$status = $_GET['status'];
+	if (isset($status) AND ($status == "logout")) {
+		setcookie("loginAuthorised", "", time()-7200);	
+		$loginAuthorised = false;
+	} else {
+		$loginAuthorised = ($_COOKIE["loginAuthorised"] == "loginAuthorised");
+	}
+	
+	if ($loginAuthorised) {
+		$contentFile = 'includes/inc_crmMenu.php';
+	} else {
+		header("Location: forms/loginForm.php");
+	}	
+	
+
+?&gt;
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;php MySQL Training&lt;/title&gt;
+&lt;meta name="generator" content="Bluefish 2.0.0" &gt;
+&lt;meta name="author" content="ks106" &gt;
+&lt;meta name="date" content="2010-07-25T13:45:33+0100" &gt;
+&lt;meta name="copyright" content="TMIT World Limited"&gt;
+&lt;meta name="keywords" content="Infinite Skills - php/MySQL Training"&gt;
+&lt;meta name="description" content="Infinite Skills - php/MySQL Training"&gt;
+&lt;meta name="ROBOTS" content="NOINDEX, NOFOLLOW"&gt;
+&lt;link rel="stylesheet" href="css/alphacrm.css" type="text/css" /&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;?php
+					
+	include_once($contentFile);
+
+?&gt;
+
+
+&lt;/body&gt;
+&lt;/html&gt;</before>
+        <after/>
+      </leaf>
+      <leaf type="insert" title="index.php - 0809 end">
+        <before>&lt;?php
+
+	$status = $_GET['status'];
+	if (isset($status) AND ($status == "logout")) {
+		setcookie("loginAuthorised", "", time()-7200);	
+		$loginAuthorised = false;
+	} else {
+		$loginAuthorised = ($_COOKIE["loginAuthorised"] == "loginAuthorised");
+	}
+	
+	if ($loginAuthorised) {
+		$contentFile = 'includes/inc_crmMenu.php';
+	} else {
+		header("Location: forms/loginForm.php");
+	}	
+	
+
+?&gt;
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;php MySQL Training&lt;/title&gt;
+&lt;meta name="generator" content="Bluefish 2.0.0" &gt;
+&lt;meta name="author" content="ks106" &gt;
+&lt;meta name="date" content="2010-07-25T13:45:01+0100" &gt;
+&lt;meta name="copyright" content="TMIT World Limited"&gt;
+&lt;meta name="keywords" content="Infinite Skills - php/MySQL Training"&gt;
+&lt;meta name="description" content="Infinite Skills - php/MySQL Training"&gt;
+&lt;meta name="ROBOTS" content="NOINDEX, NOFOLLOW"&gt;
+&lt;link rel="stylesheet" href="css/alphacrm.css" type="text/css" /&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;?php
+					
+	include_once($contentFile);
+
+?&gt;
+
+
+&lt;/body&gt;
+&lt;/html&gt;</before>
+        <after/>
+      </leaf>
+      <leaf type="insert" title="loginForm.php - 0804 end">
+        <before>&lt;?php
+	
+/*
+
+*	File:			loginForm.php
+*		folder:	/forms/
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	This script is the login FORM for alpha CRM
+*
+*
+*============================================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+$thisScriptName = "loginForm.php";
+
+echo '&lt;h2&gt;Login Form alphaCRM&lt;/h2&gt;';
+
+	$username = $_POST['username'];
+	
+	if(isset($username)) {
+		$password = $_POST['password'];
+		$md5Password = md5($password);
+		
+		
+		{	//		SELECT password for this user from the DB and see it it matches 
+			$tUser_SQLselect = "SELECT password FROM tUser ";
+			$tUser_SQLselect .= "WHERE username = '".$username."' ";	
+
+			$tUser_SQLselect_Query = mysql_query($tUser_SQLselect); 	
+			while ($row = mysql_fetch_array($tUser_SQLselect_Query, MYSQL_ASSOC)) {
+			    $passwordRetrieved = $row['password'];
+			}
+			mysql_free_result($tUser_SQLselect_Query);
+						
+			if (!empty($passwordRetrieved) AND ($md5Password == $passwordRetrieved)) {
+				
+					echo "YES. Password matches.&lt;br /&gt;&lt;br /&gt;";
+					echo '&lt;a href="'.$thisScriptName.'"&gt;Logout&lt;/a&gt;';	
+								
+			} else {
+				echo "Access denied.&lt;br /&gt;&lt;br /&gt;";		
+				echo '&lt;a href="'.$thisScriptName.'"&gt;Try again&lt;/a&gt;';			
+			}
+		}
+		
+	} else {
+
+		echo '&lt;form name="postLoginHid" action="'.$thisScriptName.'" method="post"&gt;';	
+				echo '
+					&lt;P&gt;User name: 
+					&lt;INPUT TYPE=text NAME=username value="" SIZE=12 MAXLENGTH=16&gt;&lt;/P&gt;
+					&lt;P&gt;Password: 
+					&lt;INPUT TYPE=password NAME=password value="" SIZE=12 MAXLENGTH=16&gt;&lt;/P&gt;
+					&lt;input type="submit"  value="Login" /&gt;
+				';
+		echo '&lt;/form&gt;';
+
+	}
+	
+echo '&lt;h2&gt;--------- END Login Form --------&lt;/h2&gt;';
+
+?&gt;</before>
+        <after/>
+      </leaf>
+      <leaf type="insert" title="loginForm.php - 0805 end">
+        <before>&lt;?php
+	
+/*
+
+*	File:			loginForm.php
+*		folder:	/forms/
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	This script is the login FORM for alpha CRM
+*
+*
+*============================================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+$thisScriptName = "loginForm.php";
+
+
+	$username = $_POST['username'];
+	
+	if(isset($username)) {
+		$password = $_POST['password'];
+		$md5Password = md5($password);
+		
+		
+		{	//		SELECT password for this user from the DB and see it it matches 
+			$tUser_SQLselect = "SELECT password FROM tUser ";
+			$tUser_SQLselect .= "WHERE username = '".$username."' ";	
+
+			$tUser_SQLselect_Query = mysql_query($tUser_SQLselect); 	
+			while ($row = mysql_fetch_array($tUser_SQLselect_Query, MYSQL_ASSOC)) {
+			    $passwordRetrieved = $row['password'];
+			}
+			mysql_free_result($tUser_SQLselect_Query);
+						
+			if (!empty($passwordRetrieved) AND ($md5Password == $passwordRetrieved)) {
+						echo '&lt;form name="authForm" action="../index.php" method="post"&gt;';	
+								echo '
+									&lt;input type="hidden" name="auth" value="1" /&gt;
+									Password OK: 									
+									&lt;input type="submit"  value="Click to Proceed" /&gt;
+								';
+						echo '&lt;/form&gt;';
+					
+					//header("Location: ../index.php?auth=1");	
+								
+			} else {
+				echo "Access denied.&lt;br /&gt;&lt;br /&gt;";		
+				echo '&lt;a href="'.$thisScriptName.'"&gt;Try again&lt;/a&gt;';			
+			}
+		}
+		
+	} else {
+		
+		echo '&lt;h2&gt;Login Form alphaCRM&lt;/h2&gt;';
+
+		echo '&lt;form name="postLoginHid" action="'.$thisScriptName.'" method="post"&gt;';	
+				echo '
+					&lt;P&gt;User name: 
+					&lt;INPUT TYPE=text NAME=username value="" SIZE=12 MAXLENGTH=16&gt;&lt;/P&gt;
+					&lt;P&gt;Password: 
+					&lt;INPUT TYPE=password NAME=password value="" SIZE=12 MAXLENGTH=16&gt;&lt;/P&gt;
+					&lt;input type="submit"  value="Login" /&gt;
+				';
+		echo '&lt;/form&gt;';
+		echo '&lt;h2&gt;--------- END Login Form --------&lt;/h2&gt;';
+	}
+	
+
+?&gt;</before>
+        <after/>
+      </leaf>
+      <leaf type="insert" title="loginForm.php - 0806 end">
+        <before>&lt;?php
+	
+/*
+
+*	File:			loginForm.php
+*		folder:	/forms/
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	This script is the login FORM for alpha CRM
+*
+*
+*============================================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+$thisScriptName = "loginForm.php";
+
+
+	$username = $_POST['username'];
+	
+	if(isset($username)) {
+		$password = $_POST['password'];
+		$md5Password = md5($password);
+		
+		
+		{	//		SELECT password for this user from the DB and see it it matches 
+			$tUser_SQLselect = "SELECT password FROM tUser ";
+			$tUser_SQLselect .= "WHERE username = '".$username."' ";	
+
+			$tUser_SQLselect_Query = mysql_query($tUser_SQLselect); 	
+			while ($row = mysql_fetch_array($tUser_SQLselect_Query, MYSQL_ASSOC)) {
+			    $passwordRetrieved = $row['password'];
+			}
+			mysql_free_result($tUser_SQLselect_Query);
+						
+			if (!empty($passwordRetrieved) AND ($md5Password == $passwordRetrieved)) {
+
+					//		update code:   0806_01 
+					setcookie("loginAuthorised", "loginAuthorised", time()+7200, "/");					
+					header("Location: ../index.php");	
+								
+			} else {
+				echo "Access denied.&lt;br /&gt;&lt;br /&gt;";		
+				echo '&lt;a href="'.$thisScriptName.'"&gt;Try again&lt;/a&gt;';			
+			}
+		}
+		
+	} else {
+		
+		echo '&lt;h2&gt;Login Form alphaCRM&lt;/h2&gt;';
+
+		echo '&lt;form name="postLoginHid" action="'.$thisScriptName.'" method="post"&gt;';	
+				echo '
+					&lt;P&gt;User name: 
+					&lt;INPUT TYPE=text NAME=username value="" SIZE=12 MAXLENGTH=16&gt;&lt;/P&gt;
+					&lt;P&gt;Password: 
+					&lt;INPUT TYPE=password NAME=password value="" SIZE=12 MAXLENGTH=16&gt;&lt;/P&gt;
+					&lt;input type="submit"  value="Login" /&gt;
+				';
+		echo '&lt;/form&gt;';
+		echo '&lt;h2&gt;--------- END Login Form --------&lt;/h2&gt;';
+	}
+	
+
+?&gt;</before>
+        <after/>
+      </leaf>
+      <leaf type="insert" title="loginForm.php - 0809 end">
+        <before>&lt;?php
+	
+/*
+
+*	File:			loginForm.php
+*		folder:	/forms/
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	This script is the login FORM for alpha CRM
+*
+*
+*============================================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+$thisScriptName = "loginForm.php";
+//		update code:   0809_01
+include_once('../includes/functions_accessLog.php');
+
+
+	$username = $_POST['username'];
+	
+	if(isset($username)) {
+		$password = $_POST['password'];
+		$md5Password = md5($password);
+		
+		
+		{	//		SELECT password for this user from the DB and see it it matches 
+		
+			//		update code:   0807_01
+			$tUser_SQLselect = "SELECT ID, password, accessLevel FROM tUser ";
+			$tUser_SQLselect .= "WHERE username = '".$username."' ";	
+
+			$tUser_SQLselect_Query = mysql_query($tUser_SQLselect); 	
+			while ($row = mysql_fetch_array($tUser_SQLselect_Query, MYSQL_ASSOC)) {
+			    $userID = $row['ID'];
+			    $passwordRetrieved = $row['password'];
+			    $accessLevel = $row['accessLevel'];
+			}
+		
+			mysql_free_result($tUser_SQLselect_Query);
+						
+			if (!empty($passwordRetrieved) AND ($md5Password == $passwordRetrieved)) {
+			    	//		update code:   0807_02 cookies	
+					setcookie("accessLevel", $accessLevel, time()+7200, "/");	
+					setcookie("userID", $userID, time()+7200, "/");	
+
+					//		update code:   0806_01 
+					setcookie("loginAuthorised", "loginAuthorised", time()+7200, "/");					
+
+					//		update code:   loginForm 0809_02 log access
+					$sessionLogged = insertLogin($userID);
+					if ($sessionLogged) {
+							header("Location: ../index.php");
+					} else {
+						echo 'Session Logging ERROR.&lt;br /&gt;&lt;br /&gt;';
+						echo $sessionLogged;
+						echo '&lt;a href="../index.php"&gt;Login Anyway&lt;/a&gt;';
+					}	
+					
+								
+			} else {
+				echo "Access denied.&lt;br /&gt;&lt;br /&gt;";		
+				echo '&lt;a href="'.$thisScriptName.'"&gt;Try again&lt;/a&gt;';			
+			}
+		}
+		
+	} else {
+		
+		echo '&lt;h2&gt;Login Form alphaCRM&lt;/h2&gt;';
+
+		echo '&lt;form name="postLoginHid" action="'.$thisScriptName.'" method="post"&gt;';	
+				echo '
+					&lt;P&gt;User name: 
+					&lt;INPUT TYPE=text NAME=username value="" SIZE=12 MAXLENGTH=16&gt;&lt;/P&gt;
+					&lt;P&gt;Password: 
+					&lt;INPUT TYPE=password NAME=password value="" SIZE=12 MAXLENGTH=16&gt;&lt;/P&gt;
+					&lt;input type="submit"  value="Login" /&gt;
+				';
+		echo '&lt;/form&gt;';
+		echo '&lt;h2&gt;--------- END Login Form --------&lt;/h2&gt;';
+	}
+	
+
+?&gt;</before>
+        <after/>
+      </leaf>
+      <leaf type="insert" title="inc_crmMenu - 0805_01">
+        <before>&lt;?php
+					
+	echo '&lt;h2 style="font-family: arial, helvetica, sans-serif;" &gt;
+				Infinite Skills - php/MySQL Training
+			&lt;/h2&gt;';
+	echo '&lt;div align="left",
+				  style="
+				  font-family: arial, helvetica, sans-serif; 
+				  font-style: sans-serif; 
+				  padding-left: 50px;
+			"&gt;';
+				
+
+		echo '&lt;a href="forms/companyListOrder.php"&gt;
+				&lt;span style="color: maroon; "&gt;List Companies&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+		echo '&lt;a href="forms/companyCreate.php"&gt;
+				&lt;span style="color: maroon; "&gt;Create New company&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+		echo '&lt;a href="forms/companyEdit.php"&gt;
+				&lt;span style="color: maroon; "&gt;Edit company&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+		echo '&lt;a href="forms/companyPeopleEdit.php"&gt;
+				&lt;span style="color: maroon; "&gt;List People in a Company&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+
+?&gt;</before>
+        <after/>
+      </leaf>
+      <leaf type="insert" title="inc_crmMenu - 0805_02">
+        <before>&lt;?php
+					
+	echo '&lt;h2 style="font-family: arial, helvetica, sans-serif;" &gt;
+				Infinite Skills - php/MySQL Training
+			&lt;/h2&gt;';
+	echo '&lt;div align="left",
+				  style="
+				  font-family: arial, helvetica, sans-serif; 
+				  font-style: sans-serif; 
+				  padding-left: 50px;
+			"&gt;';
+				
+
+		echo '&lt;a href="forms/companyListOrder.php"&gt;
+				&lt;span style="color: maroon; "&gt;List Companies&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+		echo '&lt;a href="forms/companyCreate.php"&gt;
+				&lt;span style="color: maroon; "&gt;Create New company&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+		echo '&lt;a href="forms/companyEdit.php"&gt;
+				&lt;span style="color: maroon; "&gt;Edit company&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+		echo '&lt;a href="forms/companyPeopleEdit.php"&gt;
+				&lt;span style="color: maroon; "&gt;List People in a Company&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+		echo '&lt;br /&gt;&lt;hr /&gt;&lt;br /&gt;';
+		
+		echo '&lt;form name="logouForm" action="index.php" method="post"&gt;';	
+				echo '
+					&lt;input type="hidden" name="auth" value="0" /&gt;
+					&lt;input type="submit"  value="Logout" /&gt;
+				';
+		echo '&lt;/form&gt;';
+
+
+?&gt;</before>
+        <after/>
+      </leaf>
+      <leaf type="insert" title="inc_crmMenu - 0806_01">
+        <before>&lt;?php
+					
+	echo '&lt;h2 style="font-family: arial, helvetica, sans-serif;" &gt;
+				Infinite Skills - php/MySQL Training
+			&lt;/h2&gt;';
+	echo '&lt;div align="left",
+				  style="
+				  font-family: arial, helvetica, sans-serif; 
+				  font-style: sans-serif; 
+				  padding-left: 50px;
+			"&gt;';
+				
+
+		echo '&lt;a href="forms/companyListOrder.php"&gt;
+				&lt;span style="color: maroon; "&gt;List Companies&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+		echo '&lt;a href="forms/companyCreate.php"&gt;
+				&lt;span style="color: maroon; "&gt;Create New company&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+		echo '&lt;a href="forms/companyEdit.php"&gt;
+				&lt;span style="color: maroon; "&gt;Edit company&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+		echo '&lt;a href="forms/companyPeopleEdit.php"&gt;
+				&lt;span style="color: maroon; "&gt;List People in a Company&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+
+		echo '&lt;br /&gt;&lt;hr /&gt;&lt;br /&gt;';
+
+		echo '&lt;a href="index.php?status=logout"&gt;
+				&lt;span style="color: maroon; "&gt;Logout&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;';
+
+		
+
+
+?&gt;</before>
+        <after/>
+      </leaf>
+      <leaf type="insert" title="inc_crmMenu - 0807 end">
+        <before>&lt;?php
+					
+	echo '&lt;h2 style="font-family: arial, helvetica, sans-serif;" &gt;
+				Infinite Skills - php/MySQL Training
+			&lt;/h2&gt;';
+	echo '&lt;div align="left",
+				  style="
+				  font-family: arial, helvetica, sans-serif; 
+				  font-style: sans-serif; 
+				  padding-left: 50px;
+			"&gt;';
+	
+				
+		echo '&lt;a href="forms/companyListOrder.php"&gt;
+				&lt;span style="color: maroon; "&gt;List Companies&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&lt;br /&gt;&lt;br /&gt;';
+			
+		//		update code:   0807_04
+		{		//				Restrict Access to Editor or higher
+			$accessLevel = $_COOKIE["accessLevel"];
+			if (isset($accessLevel) AND $accessLevel &gt;= 21) {
+			
+					echo '&lt;a href="forms/companyCreate.php"&gt;
+							&lt;span style="color: maroon; "&gt;Create New company&lt;/span&gt;
+							&lt;/a&gt;';
+					echo '&lt;br /&gt;&lt;br /&gt;';
+			
+					echo '&lt;a href="forms/companyEdit.php"&gt;
+							&lt;span style="color: maroon; "&gt;Edit company&lt;/span&gt;
+							&lt;/a&gt;';
+					echo '&lt;br /&gt;&lt;br /&gt;';
+			
+					echo '&lt;a href="forms/companyPeopleEdit.php"&gt;
+							&lt;span style="color: maroon; "&gt;List People in a Company&lt;/span&gt;
+							&lt;/a&gt;';
+					echo '&lt;br /&gt;&lt;br /&gt;';
+			}
+		//		END:		Restrict Access
+		}
+
+
+		echo '&lt;br /&gt;&lt;hr /&gt;&lt;br /&gt;';
+
+		echo '&lt;a href="index.php?status=logout"&gt;
+				&lt;span style="color: maroon; "&gt;Logout&lt;/span&gt;
+				&lt;/a&gt;';
+		echo '&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;';
+
+		
+
+
+?&gt;</before>
+        <after/>
+      </leaf>
+      <leaf type="insert" title="inc_crmMenu - 0809 end">
+        <before>&lt;?php
+/*					
+*		INCLUDE FILE:        includes/inc_crmMenu.php
+*
+*			used in:          index.php
+*
+*			Version:    		0808   date: 2010-07-01
+*/
+			
+	echo '&lt;div class="textNormal"&gt;';
+	echo '&lt;h2&gt;
+				Infinite Skills - php/MySQL Training
+			&lt;/h2&gt;';
+
+		echo '&lt;div class=pad60&gt;';
+			echo '&lt;a href="forms/companyListOrder.php"&gt;
+					&lt;span class="mainMenuItem"&gt;List Companies&lt;/span&gt;
+					&lt;/a&gt;';
+			echo '&lt;br /&gt;&lt;br /&gt;';
+	
+			
+		//		update code:   0807_04
+		{		//				Restrict Access to Editor or higher
+			$accessLevel = $_COOKIE["accessLevel"];
+			if (isset($accessLevel) AND $accessLevel &gt;= 21) {
+			
+				echo '&lt;a href="forms/companyCreate.php"&gt;
+						&lt;span class="mainMenuItem"&gt;Create New company&lt;/span&gt;
+						&lt;/a&gt;';
+				echo '&lt;br /&gt;&lt;br /&gt;';
+		
+				echo '&lt;a href="forms/companyEdit.php"&gt;
+						&lt;span class="mainMenuItem"&gt;Edit company&lt;/span&gt;
+						&lt;/a&gt;';
+				echo '&lt;br /&gt;&lt;br /&gt;';
+		
+				echo '&lt;a href="forms/companyPeopleEdit.php"&gt;
+						&lt;span class="mainMenuItem"&gt;List People in a Company&lt;/span&gt;
+						&lt;/a&gt;';
+				echo '&lt;br /&gt;&lt;br /&gt;';
+				
+			}
+		//		END:		Restrict Access
+		}
+
+		//		Restrict Access to Admin
+		//		update code:   0808_01 NEW USER
+		if (isset($accessLevel) AND $accessLevel &gt;= 99) {	
+			echo '&lt;a href="forms/userCreate.php"&gt;
+					&lt;span class="mainMenuItem"&gt;create NEW USER&lt;/span&gt;
+					&lt;/a&gt;';
+			echo '&lt;br /&gt;&lt;br /&gt;';
+		}
+
+		echo '&lt;br /&gt;&lt;hr /&gt;&lt;br /&gt;';
+
+		
+		{	//	Horizontal menu
+			
+			echo '&lt;a href="index.php?status=logout"&gt;
+					&lt;span class="mainMenuItem"&gt;Logout&lt;/span&gt;
+					&lt;/a&gt;';
+
+			if (isset($accessLevel) AND $accessLevel &gt;= 99) {	
+	
+				echo '&lt;a href="DEMO/" class="pad60"&gt;
+						&lt;span class="mainMenuItem"&gt;DEMO list&lt;/span&gt;
+						&lt;/a&gt;';
+		
+				echo '&lt;a href="initialise/" class="pad60"&gt;
+						&lt;span class="mainMenuItem"&gt;initialise&lt;/span&gt;
+						&lt;/a&gt;';
+		
+				echo '&lt;a href="forms/" class="pad60"&gt;
+						&lt;span class="mainMenuItem"&gt;FORMS&lt;/span&gt;
+						&lt;/a&gt;';
+			}
+		}	//	END:  Horizontal menu
+
+
+?&gt;</before>
+        <after/>
+      </leaf>
+      <leaf type="insert" title="functions - 0809 end">
+        <before>&lt;?php
+/*
+
+*	File:			functions_accessLog.php
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	a set of functions to record access in table tAccesLog
+*
+*
+*=====================================
+*/
+
+
+	function insertLogin($userID) {
+		$success = false;
+		//	Get current date-time in MySQL format
+		$nowTimeStamp = date("Y-m-d H:i:s");
+		//	Get user's IP address
+		$userIP = $_SERVER['REMOTE_ADDR'];
+	
+		$insertLogin_SQL = 'INSERT INTO tAccessLog (
+										userID, 
+										timeLogin, 
+										IPaddress
+									) VALUES (
+										'.$userID.',
+										"'.$nowTimeStamp.'",
+										"'.$userIP.'"
+									)';
+									
+			if (mysql_query($insertLogin_SQL))  {	
+				$success = true;
+			} else {
+				$success = $insertLogin_SQL."&lt;br /&gt;".mysql_error();		
+			}	
+			
+		return $success;	
+	}
+
+
+?&gt;</before>
+        <after/>
+      </leaf>
+    </branch>
+  </branch>
+</snippets>

@@ -1,0 +1,13 @@
+				
+				//	revision 1291:    convert eMail link to button
+					if (!empty($personArray[$indx]['eMail'])) {
+						$eMailFormLink = '<a href="index.php
+						?content=eMailFormLink
+						&personID='.$thisPersonID.'">
+						<img src="images/btnEmail.png" border="0" alt="eMail button" />
+						</a>';
+					} else {
+						$eMailFormLink = '';
+					}
+				//	END:  	revision 1291:                 $eMailFormLink
+

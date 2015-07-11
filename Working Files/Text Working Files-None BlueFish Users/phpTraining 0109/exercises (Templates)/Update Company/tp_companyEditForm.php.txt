@@ -1,0 +1,169 @@
+<?php
+
+/*		INCLUDE FILE:   tp_companyEditForm.php
+*
+*		folder:			includes/
+*
+*		used in:       tp_companyList.php
+*
+*		version:    	0907   date: 2010-07-01
+*
+*		purpose:			EDIT FORM for tCompany record selected  
+*							by clicking company Name in tp_companyList.php
+*
+*	===========================================================================
+*/	
+	include_once('includes/fn_tLookup_SQL.php');
+	include_once('includes/fn_tCompany_SQL.php');
+
+	$companyID = $_POST["companyID"];
+	if(!isset($companyID)) {$companyID = $_GET["companyID"]; }
+
+	$thisScriptName = 'index.php?content=editCompany&companyID='.$companyID;
+	
+		$companyEdited = $_POST["companyEdited"];
+		if(!isset($companyEdited)) {$companyEdited = $_GET["companyEdited"]; }
+	
+	
+	{	//		Update tCompany Record
+		if(isset($companyEdited) AND $companyEdited == '1'){
+			
+			$preName = $_POST["preName"];	
+			$companyName = $_POST["companyName"];	
+			$RegType = $_POST["RegType"];	
+			$StreetA = $_POST["StreetA"];	
+			$StreetB = $_POST["StreetB"];	
+			$StreetC = $_POST["StreetC"];	
+			$Town = $_POST["Town"];	
+			$County = $_POST["County"];	
+			$Postcode = $_POST["Postcode"];	
+			$COUNTRY = $_POST["COUNTRY"];	
+
+			$insertMsg = companyUpdate($companyID, $preName, $companyName, $RegType, $StreetA, 
+								$StreetB, $StreetC, $Town, $County,
+								$Postcode, $COUNTRY);
+
+								
+			if (empty($insertMsg)) {
+				$fullCoName = fullCoName('1', $preName, $companyName, $RegType);
+				echo "Company <strong>".$fullCoName."</strong> was successfully updated.<br /><br />";						
+			} else {
+				echo $insertMsg;
+			}
+			
+			unset($companyInserted);
+		}		
+	//		END:  Update tCompany Record
+	}
+
+	{	//  Get the details of the company selected 
+
+			$tCompany_SQLselect = "SELECT * ";
+			$tCompany_SQLselect .= "FROM ";
+			$tCompany_SQLselect .= "tCompany ";
+			$tCompany_SQLselect .= "WHERE ID = '".$companyID."' ";
+			
+			$tCompany_SQLselect_Query = mysql_query($tCompany_SQLselect);	
+			
+			while ($row = mysql_fetch_array($tCompany_SQLselect_Query, MYSQL_ASSOC)) {
+				$current_preName = $row['preName'];
+				$current_Name = $row['Name'];
+				$current_RegType = $row['RegType'];
+				
+				$current_StreetA = $row['StreetA'];
+				$current_StreetB = $row['StreetB'];
+				$current_StreetC = $row['StreetC'];
+				$current_Town = $row['Town'];
+				$current_County = $row['County'];
+				$current_Postcode = $row['Postcode'];
+				$current_COUNTRY = $row['COUNTRY'];
+				 
+			}
+	}
+
+	//		FORM vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+	{	//		Create form fields 
+		$fld_ID = '<input type="hidden" name="companyID" value="'.$companyID.'"/>';
+		$fld_companyEdited = '<input type="hidden" name="companyEdited" value="1"/>';
+
+		$fld_preName = '<input type="text" name="preName" value="'.$current_preName.'"/>';
+		$fld_companyName = '<input type="text" name="companyName" value="'.$current_Name.'"/>';
+		
+		$fld_RegType = dropdownCoRegTypes($current_RegType);
+		
+		$fld_StreetA = '<input type="text" name="StreetA" value="'.$current_StreetA.'"/>';
+		$fld_StreetB = '<input type="text" name="StreetB" value="'.$current_StreetB.'"/>';
+		$fld_StreetC = '<input type="text" name="StreetC" value="'.$current_StreetC.'"/>';
+		$fld_Town = '<input type="text" name="Town" value="'.$current_Town.'"/>';
+		$fld_County = '<input type="text" name="County" value="'.$current_County.'"/>';
+		$fld_Postcode = '<input type="text" name="Postcode" value="'.$current_Postcode.'"/>';
+
+		
+		$fld_COUNTRY = dropdownCountries($current_COUNTRY);
+
+	//  END: Create form fields 
+	}
+		
+	{	//		render FORM postCompany 
+		echo '<form name="postCompany" action="index.php?content=editCompany" method="post">';
+
+			
+				echo $fld_ID.$fld_companyEdited;	
+				echo '<input type="hidden" name="companyID" value="'.$companyID.'"/>';
+				echo '
+				<table>
+					<tr>
+						<td>pre Name</td>
+						<td>'.$fld_preName.'</td>
+					</tr>
+					<tr>
+						<td>Company Name</td>
+						<td>'.$fld_companyName.'</td>
+					</tr>
+					<tr>
+						<td>Reg Type</td>
+						<td>'.$fld_RegType.'</td>
+					</tr>
+					<tr>
+						<td>Address</td>
+						<td>'.$fld_StreetA.'</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>'.$fld_StreetB.'</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>'.$fld_StreetC.'</td>
+					</tr>
+					<tr>
+						<td>Town</td>
+						<td>'.$fld_Town.'</td>
+					</tr>
+					<tr>
+						<td>County</td>
+						<td>'.$fld_County.'</td>
+					</tr>
+					<tr>
+						<td>Postcode</td>
+						<td>'.$fld_Postcode.'</td>
+					</tr>
+					<tr>
+						<td>COUNTRY</td>
+						<td>'.$fld_COUNTRY.'</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td align="right"><input type="submit"  value="Save" /></td>
+					</tr>
+				</table>
+				';
+					
+		echo '</form>';
+	}
+	
+
+echo '<br /><hr /><br />';
+echo '<a href="index.php?content=companyList">Back to Company List</a>';
+
+?>

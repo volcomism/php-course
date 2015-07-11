@@ -1,0 +1,13 @@
+$_SQLselect = "SELECT ";
+$_SQLselect .= "  ";		// <<  attributes
+$_SQLselect .= "FROM ";
+$_SQLselect .= " ";			//	<< table name
+$_SQLselect .= "WHERE ";
+$_SQLselect .= " ";			//	<< attribute = $value
+$_SQLselect .= " AND ";
+$_SQLselect .= " ";			// << attribute = $value
+	
+$_SQLselect_Query = mysql_query($_SQLselect); 	
+while ($row = mysql_fetch_object($_SQLselect_Query)) {
+		$fieldVar = $row->fieldName;			//		fieldName = an attribute name
+}

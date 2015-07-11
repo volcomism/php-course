@@ -1,0 +1,20 @@
+			$accessLevel = $_COOKIE["accessLevel"];
+			$userID = $_COOKIE["userID"];
+					
+			$status = $_GET['status'];
+			if (isset($status) AND ($status == "logout")) {
+				setcookie("loginAuthorised", "", time()-7200);	
+				header("Location: index.php");
+			} else {
+				
+				//		This is where we manage CONTENT for LOGGED-IN users
+				$menuFile = 'includes/tp_crmMenu.php';
+				
+				$contentCode = $_GET['content'];
+				
+				//  DO SOMETHING depending on the $contentCode.   eg
+				
+				$contentMsg = $contentCode;
+
+			}
+		

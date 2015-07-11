@@ -1,0 +1,11 @@
+			 <div id="header">
+		    	<p class="todGreeting">
+			    	<?php 
+		    			if ($loginAuthorised) { 
+			    			echo todGreeting();
+		    			} 
+			    	?>
+		    	</p>
+		      <p>alpha CRM application</p>				
+		    </div><!-- end header -->
+

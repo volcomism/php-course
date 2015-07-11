@@ -1,0 +1,16 @@
+
+		echo '<form action="twoPageModelOutput.php" method="post">';
+		
+			echo '		Enter First Name: ';
+			echo '		<input type="text" name="personFirstName" />';
+			
+			echo '		Enter Last Name: ';
+			echo '		<input type="text" name="personLastName" />';
+			
+			echo '		<br /><br />';
+		
+	
+			echo '<input type="submit" />';
+				
+		echo '</form>';
+	

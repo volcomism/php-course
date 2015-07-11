@@ -1,0 +1,1 @@
+$CompanyAddress = coAddress($StreetA, $StreetB, $StreetC);

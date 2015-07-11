@@ -1,0 +1,52 @@
+<?php
+
+/*		THIS IS INCLUDE FILE:   dbClasses.php
+*
+*		folder:			classes/
+*
+*		used in:       index.php
+*
+*		version:    	1303   date: 2010-07-06
+*
+*		classes:			DBconnection	-		connect to and select DB 
+*
+*
+*	=================================================================
+*/		
+
+class DBconnection{
+
+		//	public properties
+			public $errorMsg;
+			public $errorCode;
+
+		//	public methods
+			public function __construct($hostname, $username, $password, $database) {
+				$this->connection = @mysql_connect($hostname,$username,$password);
+				
+				if (!$this->connection) {
+					$this->errorMsg  = mysql_error();
+					$this->errorCode  = mysql_errno();
+					return false;
+				}
+
+				$this->selection = @mysql_select_db($database,$this->connection);
+	
+				if (!$this->selection) {
+					$this->errorMsg  = mysql_error();
+					$this->errorCode  = mysql_errno();
+					@mysql_close($this->connection);
+					return false;
+				}
+				echo "THIS CONNECTION: ".$this->connection."<br /><br />";
+			}			
+			public function getConnectionID() {
+				return $this->connection;	
+			}
+													
+//	END:  		class DBconnection	
+}			
+
+	
+
+?>

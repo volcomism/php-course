@@ -1,0 +1,19 @@
+	
+.pad60 {
+	margin-left: 60px;	
+}
+
+.pad120 {
+	margin-left: 120px;	
+}
+
+.mainMenuItem {
+	font-family: arial, helvetica, sans-serif;
+	color: maroon;	
+}
+
+a:hover .mainMenuItem {
+	color: blue;	
+	font-weight: bold;
+	border-bottom:1px solid;	
+}

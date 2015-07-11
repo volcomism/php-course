@@ -1,0 +1,178 @@
+<?php
+
+/*		INCLUDE FILE:   tp_personEditForm.php
+*
+*		folder:			includes/
+*
+*		used in:       index.php
+*
+*		version:    	1303   date: 2010-07-05
+*
+*		purpose:			1302 - add notes field
+*							
+*
+*	===========================================================================
+*/		
+
+		{	//		Get the details of the person selected 
+			$personID = $_GET["personID"];	
+					
+			$tPerson_SQLselect = "SELECT * ";
+			$tPerson_SQLselect .= "FROM ";
+			$tPerson_SQLselect .= "tPerson ";
+			$tPerson_SQLselect .= "WHERE ID = '".$personID."' ";
+			
+			$tPerson_SQLselect_Query = mysql_query($tPerson_SQLselect);	
+			
+			while ($row = mysql_fetch_array($tPerson_SQLselect_Query, MYSQL_ASSOC)) {
+				$current_Salutation = $row['Salutation'];
+				$current_FirstName = $row['FirstName'];
+				$current_LastName = $row['LastName'];
+				$current_Tel = $row['Tel'];
+				$current_eMail = $row['eMail'];
+				$current_notes = $row['notes'];				//			<<<<<   1302
+				
+				$companyID = $row['CompanyID'];
+
+				 
+			}
+			
+		//  END: Get the details of the person selected 
+		}
+
+		{	//		Create form fields 
+			$fld_personID = '<input type="hidden" name="personID" value="'.$personID.'"/>';
+			$fld_personEdited = '<input type="hidden" name="personEdited" value="1"/>';
+	
+			$fld_FirstName = '<input type="text" name="FirstName" value="'.$current_FirstName.'"/>';
+			$fld_LastName = '<input type="text" name="LastName" value="'.$current_LastName.'"/>';
+			$fld_Tel = '<input type="text" name="Tel" value="'.$current_Tel.'"/>';
+			$fld_eMail = '<input type="text" name="eMail" value="'.$current_eMail.'"/>';
+
+			$fld_notes = '<textarea name="notes" rows="9" cols="50" >';
+			$fld_notes .= $current_notes;
+			$fld_notes .= '</textarea>';									//			<<<<<   1302
+
+		//  END: Create form fields 
+		}
+
+		{	//	create the Company DROPDOWN  FIELD 
+			$companyList_SQL =  "SELECT ID, prename, Name, RegType FROM tCompany ";
+			$companyList_SQL .= "ORDER By Name ";
+			
+			$companyList_SQL_Query = mysql_query($companyList_SQL);	
+
+			$fld_companyID = '<select name="companyID">';
+	 	
+				while ($row = mysql_fetch_array($companyList_SQL_Query, MYSQL_ASSOC)) {
+				    $dd_companyID = $row['ID'];
+				    $dd_preName = $row['preName'];
+				    $dd_companyName = $row['Name'];
+				    $dd_RegType = $row['RegType'];
+				    
+				    $fullCoyName = trim($dd_preName." ".$dd_companyName." ".$dd_RegType);
+				    
+				    if ($dd_companyID == $companyID) { 
+				    	$selectedFlag = " selected";
+				    } else { 
+				    	$selectedFlag = "";
+				    }
+				    $fld_companyID .= '<option value="'.$dd_companyID.'"';
+				    $fld_companyID .= $selectedFlag.'>'.$fullCoyName.'</option>';
+				}
+			
+				mysql_free_result($companyList_SQL_Query);		
+	
+			$fld_companyID .= '</select>';
+			
+		//	END: create the Company DROPDOWN  FIELD 
+		}	
+		{	//	create the Selection DROPDOWN  FIELD 
+			$salut_SQL =  "SELECT lookupValue FROM tLookup ";
+			$salut_SQL .= "WHERE lookupType = 'Salutation' ";
+			$salut_SQL .= "ORDER By lookupOrder ";
+			
+			$salut_SQL_Query = mysql_query($salut_SQL);	
+
+			$fld_Salutation = '<select name="Salutation">';
+	 	
+				while ($row = mysql_fetch_array($salut_SQL_Query, MYSQL_ASSOC)) {
+				    $salutValue = $row['lookupValue'];
+				    if ($current_Salutation == $salutValue) { 
+				    	$selectedFlag = " selected";
+				    } else { 
+				    	$selectedFlag = "";
+				    }
+				    $fld_Salutation .= '<option'.$selectedFlag.'>'.$salutValue.'</option>';
+				}
+			
+				mysql_free_result($salut_SQL_Query);		
+	
+			$fld_Salutation .= '</select>';
+			
+		//	END: create the Selection DROPDOWN  FIELD 
+		}	
+		{	//	render the FORM 
+
+			$saveButton = '<input type="submit"  value="Save" />';
+			
+			echo '<form name="postPerson" action="index.php?content=companyPeopleEdit" method="post">';
+			echo $fld_personEdited;
+				echo $fld_personID;
+				echo $fld_saveClicked;
+	
+	
+			$innerTable = '
+				<table>
+					<tr>
+						<td>Salutation</td>
+						<td>'.$fld_Salutation.'</td>
+					</tr>
+					<tr>
+						<td>First Name</td>
+						<td>'.$fld_FirstName.'</td>
+					</tr>
+					<tr>
+						<td>Last Name</td>
+						<td>'.$fld_LastName.'</td>
+					</tr>
+					<tr>
+						<td>Telephone</td>
+						<td>'.$fld_Tel.'</td>
+					</tr>
+					<tr>
+					<tr>
+						<td>eMail</td>
+						<td>'.$fld_eMail.'</td>
+					</tr>
+					<tr>
+					<td>Company</td>
+						<td>'.$fld_companyID.'</td>
+					</tr>			
+				</table>
+				';	
+		
+				echo '<table>';
+					echo '<tr valign="top">';
+						echo '<td>'.$innerTable.'</td>';
+						echo '<td>Notes:<br />'.$fld_notes.'</td>';
+					echo '</tr>';
+					echo '<tr>';
+						echo '<td></td>';
+						echo '<td align="right">'.$saveButton.'</td>';
+					echo '</tr>';
+				echo '</table>';	
+					
+					
+
+					
+			echo '</form>';
+		//		END: render the FORM 
+		}
+
+echo '<br /><hr /><br />';
+echo '<a href="index.php?content=companyPeopleEdit&companyID='.$companyID.'">Back to Company/People List</a>';
+echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+echo '<a href="index.php?content=companyList">Back to Company List</a>';
+
+?>

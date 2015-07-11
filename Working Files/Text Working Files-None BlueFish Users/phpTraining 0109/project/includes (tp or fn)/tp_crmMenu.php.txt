@@ -1,0 +1,51 @@
+<?php
+
+/*		INCLUDE FILE:   tp_crmMenu.php
+*
+*		folder:			includes/
+*
+*		used in:        index.php
+*
+*		version:    	0901   date: 2010-07-01
+*
+*		purpose:		MENU for the TEMPLATE version of alpha CRM
+*
+*	===========================================================================
+*/		
+	//	List Companies 
+	echo '<a href="index.php?content=companyList">
+			<span class="mainMenuItem">List Companies</span>
+			</a>';
+	echo '<br /><br />';
+
+	//	Restricted - Editor Only menu items
+	if (isset($accessLevel) AND $accessLevel >= 21) {
+	
+		echo '<a href="index.php?content=insertCompany">
+				<span class="mainMenuItem">Create Company</span>
+				</a>';
+		echo '<br /><br />';
+
+		echo '<a href="index.php?content=editCompany">
+				<span class="mainMenuItem">Edit company</span>
+				</a>';
+		echo '<br /><br />';
+		
+	}
+
+	//	Restricted - Admin Only menu items
+	if (isset($accessLevel) AND $accessLevel >= 99) {	
+		echo '<a href="index.php?content=insertUser">
+				<span class="mainMenuItem">create NEW USER</span>
+				</a>';
+		echo '<br /><br />';
+	}
+
+	//	Logout menu item 
+	echo '<a href="index.php?status=logout">
+			<span class="mainMenuItem">Logout</span>
+			</a>';
+	echo '<br /><br />';
+
+
+?>

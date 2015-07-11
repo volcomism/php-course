@@ -1,0 +1,15 @@
+						
+		echo '<p style="color: maroon;">$p = dumpArray($tableData, $arrName);</p>';
+		$p = dumpArray($arrayW, $arrayW_name);
+
+		if (in_array("Banana",$arrayW)) {
+				echo "<br />Found Banana in ".$arrayW_name."<br />";
+		}
+
+		if (in_array("Pineapple",$arrayW)) {
+				echo "<br />Found Pineapple<br />";
+		} else {
+				echo "<br />Pineapple NOT found in ".$arrayW_name."<br />";
+		}
+
+		

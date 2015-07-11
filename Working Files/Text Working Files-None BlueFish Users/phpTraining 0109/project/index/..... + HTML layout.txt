@@ -1,0 +1,23 @@
+  <div id="outerWrapper">
+
+		    <div id="header">
+		      <p>header</p>		
+		    </div><!-- end header -->
+
+    		<div id="innerWrapper">
+    		
+      		<div id="menuColumn">
+					<p>Menu</p>					
+		      </div><!-- end menuColumn -->
+
+      		<div id="contentColumn">
+        			<p>content</p>        
+      		</div><!-- end contentColumn -->
+      		
+    		</div><!-- end innerWrapper -->
+
+		    <div id="footer">
+		      <p>footer</p>		
+		    </div><!-- end footer -->
+    
+  </div><!-- end outerWrapper -->

@@ -1,0 +1,6 @@
+CREATE TABLE alphacrm.tMailTemplates (
+ID INT NOT NULL AUTO_INCREMENT ,
+description VARCHAR( 255 ) NOT NULL ,
+html TEXT NOT NULL ,
+PRIMARY KEY ( ID )
+) 

@@ -1,0 +1,23 @@
+<?php
+
+	//		php processing here
+	//			BEFORE any rendering
+	
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+	<!-- HTML Headers and Links to CSS -->
+
+</head>
+<body>
+
+	<!-- HTML or php rendering here -->
+	<?php
+		// can contain most php code - except header()function
+	?>
+
+
+</body>
+</html>

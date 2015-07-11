@@ -1,0 +1,144 @@
+<?php
+
+/*		THIS IS INCLUDE FILE:   dbClasses.php
+*
+*		folder:			classes/
+*
+*		used in:       index.php
+*
+*		version:    	1303_03   date: 2010-07-06
+*
+*		classes:			DBconnection	-		connect to and select DB 
+*										methods:   __construct($hostname, $username, $password, $database)
+*														getConnectionID()
+*														
+*							cTable			-		table meta info
+*										methods:   __construct($tableName)
+*														getRecordCount ()
+*														getAll ()
+*
+*							cRecord			-		DB record data
+*										methods:   __construct($tableName, $recordID)
+*														function getRecord
+*
+*
+*	=================================================================
+*/		
+class DBconnection{
+
+		//	public properties
+			public $errorMsg;
+			public $errorCode;
+
+		//	constructor method           
+			public function __construct($hostname, $username, $password, $database) {
+				$this->connection = @mysql_connect($hostname,$username,$password);
+				
+				if (!$this->connection) {
+					$this->errorMsg  = mysql_error();
+					$this->errorCode  = mysql_errno();
+					return false;
+				}
+
+				$this->selection = @mysql_select_db($database,$this->connection);
+	
+				if (!$this->selection) {
+					$this->errorMsg  = mysql_error();
+					$this->errorCode  = mysql_errno();
+					@mysql_close($this->connection);
+					return false;
+				}
+			}		
+				
+		//	helper methods           
+			public function getConnectionID() {
+				return $this->connection;	
+			}
+													
+//	END:  		class DBconnection	
+}			
+
+class cTable{
+		//	properties
+			public $errorMsg;
+			public $errorCode;
+			public $countQuery;
+			public $recordArray;
+
+		//	constructor method          
+			public function __construct($tableName) {
+				$this->tableName = $tableName;	
+			}
+
+		//	helper methods           
+			public function getRecordCount () {
+		 		$countSQL = "SELECT COUNT(ID) AS countID FROM ".$this->tableName;
+				$this->countQuery = @mysql_query($countSQL);		
+						
+				$this->recordArray = @mysql_fetch_array($this->countQuery, MYSQL_ASSOC);
+				return $this->recordArray['countID'];
+			} 
+			
+			public function getAll () {
+		 		$SQL = "SELECT * FROM ".$this->tableName;
+				$this->query = @mysql_query($SQL);		
+
+				while ($row = mysql_fetch_array($this->query, MYSQL_ASSOC)) {
+					$this->recordArray[] = $row;
+				}				
+				return $this->recordArray;
+			} 
+		
+
+//	END:  		class cTable
+}		
+
+class cRecord{
+		//	public properties
+			public $errorMsg;
+			public $errorCode;
+			public $query;
+			public $found;
+			public $recordArray;
+			public $countQuery;
+
+		// constructor method    
+			public function __construct($tableName, $recordID) {
+				$this->tableName = $tableName;			
+				$this->recordID = $recordID;			
+			}
+		
+			public function getRecord () { 
+		 		$SQL = "SELECT * FROM ".$this->tableName." ";
+				$SQL .= "WHERE ID = ".$this->recordID;
+	
+				$this->query = @mysql_query($SQL);
+				
+				if ($this->query) {
+					$this->found = @mysql_num_rows($this->query);
+				
+					if ($this->found > 0) {	
+						$this->recordArray = @mysql_fetch_array($this->query, MYSQL_ASSOC);
+						echo $SQL.'<br />';	
+						echo $this->recordArray['preName'];
+						return $this->recordArray;
+							
+					} else {
+						$this->errorMsg  = "0 records";
+						$this->errorCode  = "0";
+						return FALSE;
+					}					
+				} else {
+					$this->errorMsg  = mysql_error();
+					$this->errorCode  = mysql_errno();		
+					return FALSE;		
+				//	END: 		if (!$this->query) 			
+				}
+			//	END: 		function getRecord ()			
+			}
+//	END:  		class cRecord
+}			
+
+	
+
+?>

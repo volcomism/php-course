@@ -1,0 +1,7 @@
+
+/*	revision 1005 */
+.dataError {
+	font-size: 1em;
+	font-weight: bolder;
+	color: red;	
+}

@@ -1,0 +1,3 @@
+	$companyName = $_GET["companyName"];
+
+	echo "The name sent was: ".$companyName;

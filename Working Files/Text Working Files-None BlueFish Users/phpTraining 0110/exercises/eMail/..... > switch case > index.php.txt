@@ -1,0 +1,6 @@
+				    //	revision  1294:   eMailFormAll as link in tp_companyPeopleEdit.php
+				    //							opens   tp_eMailCompanyAll.php
+				    case "eMailAllLink":
+				        $contentFile = "includes/tp_eMailCompanyAll.php";
+				        break;
+ 

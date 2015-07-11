@@ -1,0 +1,93 @@
+<?php
+
+/*		INCLUDE FILE:   tp_personSuspend.php
+*
+*		folder:			includes/
+*
+*		used in:       index.php
+*
+*		version:    	0901   date: 2010-07-01
+*
+*		purpose:			EDIT FORM for selected tPerson
+*
+*	===========================================================================
+*/		
+
+		{	//		Get the details of the person selected 
+			$personID = $_GET["personID"];	
+					
+			$tPerson_SQLselect = "SELECT * ";
+			$tPerson_SQLselect .= "FROM ";
+			$tPerson_SQLselect .= "tPerson ";
+			$tPerson_SQLselect .= "WHERE ID = '".$personID."' ";
+			
+			$tPerson_SQLselect_Query = mysql_query($tPerson_SQLselect);	
+			
+			while ($row = mysql_fetch_array($tPerson_SQLselect_Query, MYSQL_ASSOC)) {
+				$Salutation = $row['Salutation'];
+				$FirstName = $row['FirstName'];
+				$LastName = $row['LastName'];
+
+				$companyID = $row['CompanyID'];
+				
+				$personFullName = trim($Salutation." ".$FirstName." ".$LastName);	 
+			}
+			
+		//  END: Get the details of the person selected 
+		}
+
+		{	//		Create form fields 
+			$fld_personID = '<input type="hidden" name="personID" value="'.$personID.'"/>';
+			$fld_companyID = '<input type="hidden" name="companyID" value="'.$companyID.'"/>';
+			$fld_personSuspended = '<input type="hidden" name="personSuspended" value="1"/>';
+	
+			$backLink = '<a href="index.php
+			?content=companyPeopleEdit
+			&companyID='.$companyID.'">
+			<img src="images/noDoNotDelete.png" border="0" alt="dont delete button" />
+			</a>';
+
+			$submitButton = '<Input Type="image" 
+			src="images/deleteRecord.png" 
+			border="0" alt="delete button">';
+			
+
+		//  END: Create form fields 
+		}
+
+		{	//	render the FORM 
+
+			echo '<form name="postPerson" action="index.php?content=companyPeopleEdit" method="post">';
+			echo $fld_personSuspended;
+		
+				echo $fld_personID.$fld_companyID;
+
+				echo '
+				<table>
+					<tr>
+						<td>Are you sure you want to DELTE:</td>
+						<td></td>
+					</tr>							<tr>
+						<td></td>
+						<td>'.$personFullName.'</td>
+					</tr>							<tr>
+						<td>&nbsp;</td>
+						<td align="right">'.$submitButton.'<br /><br /></td>
+					</tr>					
+					<tr>
+						<td>&nbsp;</td>
+						<td align="right">'.$backLink.'</td>
+					</tr>					
+				</table>
+				';
+					
+			echo '</form>';
+		//		END: render the FORM 
+		}
+
+echo '<br /><hr /><br />';
+echo '<a href="index.php?content=companyPeopleEdit&companyID='.$companyID.'">Back to Company/People List</a>';
+echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+echo '<a href="index.php?content=companyList">Back to Company List</a>';
+
+?>

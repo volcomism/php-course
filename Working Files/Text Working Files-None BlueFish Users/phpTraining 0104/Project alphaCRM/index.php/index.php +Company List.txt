@@ -1,0 +1,6 @@
+				
+		echo '<a href="forms/companyList.php">
+				<span style="color: maroon; ">Company LIST</span>
+				</a>';
+		echo '<br /><br />';
+

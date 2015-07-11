@@ -1,0 +1,3 @@
+	echo pageHint('&nbsp;&nbsp;^'.str_repeat('&nbsp;',25).'^ click Company name to EDIT company details.');
+	echo "<br />";	
+	echo pageHint('&nbsp;&nbsp;^ click ID to list PEOPLE in this company.');

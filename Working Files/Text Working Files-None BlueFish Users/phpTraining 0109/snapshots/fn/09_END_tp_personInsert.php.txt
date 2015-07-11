@@ -1,0 +1,48 @@
+<?php
+
+/*		INCLUDE FILE:   tp_personInsert.php
+*
+*		folder:			includes/
+*
+*		used in:       index.php
+*
+*		version:    	0901   date: 2010-07-01
+*
+*		purpose:			INSERTS the current fields to tPerson
+*
+*	===========================================================================
+*/		
+
+	function personInsert($Salutation, $FirstName, $LastName, $Tel, $eMail, $companyID) {
+
+		$tPerson_SQLinsert = "INSERT INTO tPerson (";			
+		$tPerson_SQLinsert .=  "Salutation, ";
+		$tPerson_SQLinsert .=  "FirstName, ";
+		$tPerson_SQLinsert .=  "LastName, ";
+		$tPerson_SQLinsert .=  "Tel, ";	
+		$tPerson_SQLinsert .=  "eMail, ";	
+		$tPerson_SQLinsert .=  "companyID ";
+		$tPerson_SQLinsert .=  ") ";
+		
+		$tPerson_SQLinsert .=  "VALUES (";
+		$tPerson_SQLinsert .=  "'".$Salutation."', ";
+		$tPerson_SQLinsert .=  "'".$FirstName."', ";
+		$tPerson_SQLinsert .=  "'".$LastName."', ";
+		$tPerson_SQLinsert .=  "'".$Tel."', ";	
+		$tPerson_SQLinsert .=  "'".$eMail."', ";	
+		$tPerson_SQLinsert .=  "'".$companyID."' ";
+		$tPerson_SQLinsert .=  ") ";
+
+		if (!empty($LastName)) {
+			if (mysql_query($tPerson_SQLinsert))  {	
+				$errorMsg = "";
+			} else {
+				$errorMsg = "FAILED to add new person.";
+			}
+		} else {
+			$errorMsg = "Cannot add person with no Lastname.";
+		}		
+		return $errorMsg;
+	}	
+
+?>

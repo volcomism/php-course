@@ -1,0 +1,16 @@
+$_SQLinsert = "INSERT INTO tablename ( ";
+$_SQLinsert .=  "Fieldname, ";
+
+$_SQLinsert .=  "Fieldname ";
+$_SQLinsert .=  ") ";
+$_SQLinsert .=  "VALUES (";
+$_SQLinsert .=  "'".$thisDateValue."', ";
+
+$_SQLinsert .=  "'".$thisDateValue."' ";
+$_SQLinsert .=  ") ";
+
+if (mysql_query($_SQLinsert))  {	
+	
+} else {
+	
+}

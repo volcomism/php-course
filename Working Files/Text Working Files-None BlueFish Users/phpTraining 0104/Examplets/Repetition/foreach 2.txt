@@ -1,0 +1,13 @@
+
+	$arrType = array(
+	                         'England' => 'County',
+	                         'Australia' => 'State',
+	                         'USA' => 'State',
+	                         'Canada' => 'Province' );
+
+	foreach ($arr as $indexName => $itemValue)
+	{
+	      echo  "The ".$arrType[$itemValue]." of ".$indexName." is in ".$itemValue."<br />";
+	      
+	}
+

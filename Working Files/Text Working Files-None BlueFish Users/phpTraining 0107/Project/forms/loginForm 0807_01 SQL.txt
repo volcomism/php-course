@@ -1,0 +1,10 @@
+			//		update code:   0807_01
+			$tUser_SQLselect = "SELECT ID, password, accessLevel FROM tUser ";
+			$tUser_SQLselect .= "WHERE username = '".$username."' ";	
+
+			$tUser_SQLselect_Query = mysql_query($tUser_SQLselect); 	
+			while ($row = mysql_fetch_array($tUser_SQLselect_Query, MYSQL_ASSOC)) {
+			    $userID = $row['ID'];
+			    $passwordRetrieved = $row['password'];
+			    $accessLevel = $row['accessLevel'];
+			}

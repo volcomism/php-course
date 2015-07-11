@@ -1,0 +1,144 @@
+/*	File:			index.php
+*
+*	Folder:		root (htdocs)	
+*	By:			TMIT
+*	Version:		2
+*	Date:			2010-07-06
+*
+*	Revisions:	2		ooModel connection Script
+*
+*	This script is the HOMEPAGE for alphaCRM
+*
+*
+*============================================================
+*/
+
+include('classes/dbClasses_tp.php');
+<?php
+/**
+			 * Bespoke Joomla Template by TMITworld.co.uk
+			 * Author www.TMITworld.co.uk
+			 
+			 * Template name = tmit_min
+ */
+
+// no direct access
+defined( '_JEXEC' ) or die( 'Restricted access' );
+JHTML::_('behavior.modal');
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="
+<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" >
+<head>
+<jdoc:include type="head" />
+<?php
+	//	setup MetaTags
+	$document =& JFactory::getDocument();
+	$document->setMetaData('robots', 'noindex, nofollow');
+
+	$document->setMetaData('generator', 'TMIT implementation of Joomla!');
+	$document->setMetaData('Author', 'TMIT - web 2.0 applications and datebase experts. www.TMITworld.com');
+	$document->setMetaData('copyright', 'TMIT World Limited');
+	$document->setMetaData('date', '2010-06-15');
+
+	// end MetaTags
+
+?>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/system/css/system.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/system/css/general.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/t_min_layout.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/t_min_format.css" type="text/css" />
+
+<!--[if lte IE 7]>
+<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/t_min_IE7.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if lte IE 6]>
+<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/t_min_IE6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+
+
+</head>
+<body>
+
+<div id="header">    <!-- begin header -->
+
+				<div id="headerLeft"><!-- begin headerLeft -->
+					<jdoc:include type="modules" name="modposTopLeft" />
+				</div><!-- end headerLeft -->
+
+				<div id="headerRight"><!-- begin headerRight -->
+					<jdoc:include type="modules" name="modposTopRight" />				
+				</div><!-- end headerRight -->
+
+					<?php  if($this->countModules('top')) : ?>
+						<div id="topmodules" class="float">
+							<jdoc:include type="modules" name="modposTop" />
+						</div>     
+					<?php endif; ?>
+	
+	
+	
+</div>    <!-- end header -->
+
+<div id="wrapper1"><!-- sets background to white and creates full length leftcol-->
+	
+	<div id="wrapper2"><!-- sets background to white and creates full length rightcol-->
+	
+		<div id="maincol"><!-- begin main content area -->
+				
+			<div id="leftcol"><!-- begin leftcol -->
+				<div class="leftModuleOffset">
+					<jdoc:include type="modules" name="modposLeftCol" />	
+				</div>
+			</div><!-- end leftcol -->
+
+
+			<?php  if($this->countModules('right')) : ?>
+				<div id="rightcol"><!-- begin rightcol -->
+						<jdoc:include type="modules" name="modposRightCol" />
+				</div><!-- end righttcol -->     
+			<?php endif; ?>
+
+
+			
+			<div id="centercol"><!-- begin centercol -->
+				<jdoc:include type="component" />								
+			</div><!-- end centercol -->
+				
+		</div><!-- END id="maincol" - main content area -->
+				
+		<div id="modposFooter"><!-- begin footer -->
+				<?php echo "Copyright © 2009-";
+				echo date("Y")."&nbsp;&nbsp;&nbsp&nbsp;";
+				echo $this->params->get('OwnerName');
+				// echo ", TMIT World Limited. "
+				echo ".&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;Hosted, Powered &amp; Maintained by";?> 
+				<a href="http://www.tmitservices.co.uk/vf/websites/" target="_TMIT">TMIT World</a>
+
+		</div><!-- end footer -->
+	
+	</div>    <!-- end wrapper2 -->
+
+</div>    <!-- end wrapper1 -->
+
+
+</body>
+</html>
+<?php 
+
+/**
+ * @copyright	Copyright (C) 2005 - 2008 Open Source Matters. All rights reserved.
+ * @license		GNU/GPL, see LICENSE.php
+ * Joomla! is free software. This version may have been modified pursuant
+ * to the GNU General Public License, and as distributed it includes or
+ * is derivative of works licensed under the GNU General Public License or
+ * other free or open source software licenses.
+ * See COPYRIGHT.php for copyright notices and details.
+ ----------------------------------------------------------------------------------
+ * Bespoke Joomla! Template by TMITworld.co.uk
+ * Author www.TMITworld.co.uk
+ */
+?>

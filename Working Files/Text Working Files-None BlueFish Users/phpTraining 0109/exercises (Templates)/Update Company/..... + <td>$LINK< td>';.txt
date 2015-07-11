@@ -1,0 +1,2 @@
+	//			echo '<td>'.$CompanyFullName.'&nbsp;</td>';
+				echo '<td>'.$linkToEditCompany.'&nbsp;</td>';

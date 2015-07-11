@@ -1,0 +1,37 @@
+<?php
+	
+//		File in DEMO folder:              customErrorTesting.php
+echo '<h2>Custom Error Testing:</h2>';
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} 	
+		}
+		//	END	Secure Connection Script
+}
+
+function customError($errLevel, $errMsg, $errFile, $errLine)
+  {
+	  echo "<b>Error parameters:</b><br />";
+	  
+	  echo "&nbsp;&nbsp;<b>errLevel:</b> [".$errLevel."]<br />";
+	  echo "&nbsp;&nbsp;<b>errMsg:</b> [".$errMsg."]<br />";
+	  echo "&nbsp;&nbsp;<b>errFile:</b> [".$errFile."]<br />";
+	  echo "&nbsp;&nbsp;<b>errLine:</b> [".$errLine."]<br />";
+	  echo "&nbsp;&nbsp;<b>errLine:</b> ================================<br />";
+
+  } 
+ 
+set_error_handler("customError"); 
+
+
+
+echo '<h2>--------- END custom error Testing--------</h2>';
+?>

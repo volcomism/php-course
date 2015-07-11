@@ -1,0 +1,80 @@
+<?php
+
+/*					
+*		INCLUDE FILE:        includes/inc_footer.php
+*
+*			used in:          index.php
+*
+*			Version:    		0901  date: 2010-07-01
+*/
+
+	{ 		//	Secure Connection Script
+			include('../htconfig/dbConfig.php'); 
+			$dbSuccess = false;
+			$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+			
+			if ($dbConnected) {		
+				$dbSelected = mysql_select_db($db['database'],$dbConnected);
+				if ($dbSelected) {
+					$dbSuccess = true;
+				} 	
+			}
+			//	END	Secure Connection Script
+	}
+
+	if ($dbSuccess) {
+
+	} else {
+			$contentText = 'No database connection.';
+	}	
+
+	
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+
+<title>php MySQL Training</title>
+<meta name="generator" content="Bluefish 2.2.1" >
+<meta name="author" content="Chris" >
+<meta name="date" content="2012-01-06T01:33:43-0500" >
+<meta name="copyright" content="TMIT World Limited">
+<meta name="keywords" content="Infinite Skills - php/MySQL Training">
+<meta name="description" content="Infinite Skills - php/MySQL Training">
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+<link rel="stylesheet" href="css/alphacrm_layout.css" type="text/css" />
+<link rel="stylesheet" href="css/alphacrm_style.css" type="text/css" />
+</head>
+
+
+</head>
+<body>
+
+
+  <div id="outerWrapper">
+
+        <p>header</p>
+
+    		<div id="innerWrapper">
+    		
+      		<div id="menuColumn">
+					<p>Menu</p>					
+		      </div><!-- end menuColumn -->
+
+      		<div id="contentColumn">
+        			<p>content</p>        
+      		</div><!-- end contentColumn -->
+      		
+    		</div><!-- end innerWrapper -->
+
+		    <div id="footer">
+		      <p>footer</p>		
+		    </div><!-- end footer -->
+    
+  </div><!-- end outerWrapper -->
+
+
+
+</body>
+</html>

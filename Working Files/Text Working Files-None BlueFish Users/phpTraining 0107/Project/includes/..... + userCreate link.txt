@@ -1,0 +1,6 @@
+		if (isset($accessLevel) AND $accessLevel >= 99) {	
+			echo '<a href="forms/createUser.php">
+					<span style="color: maroon; ">create NEW USER</span>
+					</a>';
+			echo '<br /><br />';
+		}

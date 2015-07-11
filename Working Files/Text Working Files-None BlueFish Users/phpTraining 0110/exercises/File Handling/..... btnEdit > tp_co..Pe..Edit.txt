@@ -1,0 +1,6 @@
+				//	revision   1191  - add edit button 
+					$personEditLink = '<a href="index.php
+					?content=personEditForm
+					&personID='.$thisPersonID.'">
+					<img src="images/btnEdit.png" border="0" alt="edit button" />
+					</a>';

@@ -1,0 +1,228 @@
+<?php
+
+/*		INCLUDE FILE:   tp_companyPeopleEdit.php
+*
+*		folder:			includes/
+*
+*		used in:        index.php
+*
+*		version:    	0901   date: 2010-07-01
+*
+*		purpose:			list of people associated with company selected in 
+*							tp_companyList.php
+*
+*		revision:		1191 - add edit button 
+*
+*	===========================================================================
+*/		
+
+	{	//	 NEW in tp_companyPeopleEdit.php
+	$thisScriptName = 'index.php?content=companyPeopleEdit&companyID='.$companyID;
+	include_once('includes/fn_tPerson_SQL.php');
+	
+	$companyID = $_POST["companyID"];
+	if(!isset($companyID)) {$companyID = $_GET["companyID"]; }
+	
+	$personID = $_POST["personID"];
+	if(!isset($personID)) {$personID = $_GET["personID"]; }
+	
+	$newPersonInserted = $_POST["newPersonInserted"];
+	if(!isset($newPersonInserted)) {$newPersonInserted = $_GET["newPersonInserted"]; }
+	
+	$personEdited = $_POST["personEdited"];
+	if(!isset($personEdited)) {$personEdited = $_GET["personEdited"]; }
+
+
+		{	//		Insert New Person Record
+			if(isset($newPersonInserted) AND $newPersonInserted == '1'){
+				
+				$Salutation = $_POST["Salutation"];	
+				$FirstName = $_POST["FirstName"];	
+				$LastName = $_POST["LastName"];	
+				$Tel = $_POST["Tel"];	
+				$eMail = $_POST["eMail"];	
+				
+				$insertMsg = personInsert($Salutation, $FirstName, $LastName, $Tel, $eMail, $companyID);
+				if (!empty($insertMsg)) {
+					echo $insertMsg;
+				}
+				
+				unset($newPersonInserted);
+			}		
+		//		END:  Insert New Person Record		
+		}
+
+		{	//		UPDATE Person Record
+			if(isset($personEdited) AND $personEdited == '1'){
+
+				$Salutation = $_POST["Salutation"];	
+				$FirstName = $_POST["FirstName"];	
+				$LastName = $_POST["LastName"];	
+				$Tel = $_POST["Tel"];	
+				$eMail = $_POST["eMail"];	
+				$companyID = $_POST["companyID"];	
+				
+				$updateMsg = personUpdate($personID, $Salutation, $FirstName, $LastName, $Tel, $eMail, $companyID);
+				if (!empty($updateMsg)) {
+					echo $updateMsg;
+				}
+				
+				unset($personEdited);
+			}		
+		//		END:  Insert New Person Record		
+		}
+
+	}
+
+		{	//  Get the details of the company selected 
+									
+				$tCompany_SQLselect = "SELECT * ";
+				$tCompany_SQLselect .= "FROM ";
+				$tCompany_SQLselect .= "tCompany ";
+				$tCompany_SQLselect .= "WHERE ID = '".$companyID."' ";
+				
+				$tCompany_SQLselect_Query = mysql_query($tCompany_SQLselect);	
+				
+				while ($row = mysql_fetch_array($tCompany_SQLselect_Query, MYSQL_ASSOC)) {
+					$preName = $row['preName'];
+					$companyName = $row['Name'];
+					$RegType = $row['RegType'];
+					
+					$fullCoyName = trim($preName." ".$companyName." ".$RegType);
+					
+					$StreetA = $row['StreetA'];
+					$StreetB = $row['StreetB'];
+					$StreetC = $row['StreetC'];
+					$Town = $row['Town'];
+					$County = $row['County'];
+					$Postcode = $row['Postcode'];
+					$COUNTRY = $row['COUNTRY'];
+	
+	 				$CompanyFullAddress = $StreetA;
+			
+						if (!empty($StreetB)) { $CompanyFullAddress .=  "<br /> ".$StreetB; }
+						if (!empty($StreetC)) { $CompanyFullAddress .=  "<br /> ".$StreetC; }
+						if (!empty($Town)) { $CompanyFullAddress .=  "<br /> ".$Town; }
+						if (!empty($County)) { $CompanyFullAddress .=  "<br /> ".$County; } 
+						if (!empty($Postcode)) { $CompanyFullAddress .=  "&nbsp;&nbsp;&nbsp; ".$Postcode; }			
+						if (!empty($COUNTRY)) { $CompanyFullAddress .=  "<br /> ".$COUNTRY; }										 
+				}					
+		}
+		
+		{	//  Get the details of all associated Person records
+			//		and store in array:  personArray  with key >$indx
+			 
+				$indx = 0;
+			
+				$tPerson_SQLselect = "SELECT * ";
+				$tPerson_SQLselect .= "FROM ";
+				$tPerson_SQLselect .= "tPerson ";
+				$tPerson_SQLselect .= "WHERE companyID = '".$companyID."' ";
+				
+				$tPerson_SQLselect_Query = mysql_query($tPerson_SQLselect);	
+				
+				while ($row = mysql_fetch_array($tPerson_SQLselect_Query, MYSQL_ASSOC)) {
+					
+					//		we need this to pass to personEdit.php
+					$personArray[$indx]['ID'] = $row['ID'];
+					//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+					
+					$personArray[$indx]['Salutation'] = $row['Salutation'];
+					$personArray[$indx]['FirstName'] = $row['FirstName'];
+					$personArray[$indx]['LastName'] = $row['LastName'];
+					$personArray[$indx]['Tel'] = $row['Tel'];
+					$personArray[$indx]['eMail'] = $row['eMail'];
+						
+					$indx++;			 
+				}
+	
+				$numPersons = sizeof($personArray);
+		}
+	
+		{	//		Output 
+
+			{	//		Table to render tCompany detail	
+			echo 	  '<table>
+							<tr valign="top">								
+								<td style=" font-size: 24; 
+												font-weight: bold;" 
+												>
+										'.$fullCoyName.'
+								</td>
+								
+								<td align="right" width="400">
+										'.$CompanyFullAddress.'			
+								</td>
+							</tr>
+						</table>';
+			//		END: Table to render tCompany detail
+			}
+											
+
+			{	//		Table of tPerson records
+			echo '<table border="1" padding="5">';
+				echo '<tr>
+							<td>Salutation</td>
+							<td>FirstName</td>
+							<td>LastName</td>
+							<td>Telephone</td>
+							<td>eMail</td>';
+							
+				//		update code:   coPeopleEdit 0807_13_restrict_21
+				if (isset($accessLevel) AND $accessLevel >= 21) {
+					echo '<td>&nbsp;</td>';
+				}
+				echo '</tr>	';	
+														
+				for ($indx = 0; $indx < $numPersons; $indx++) {
+					$thisPersonID = $personArray[$indx]['ID'];
+	
+					//	revision   1191  - add edit button 
+					$personEditLink = '<a href="index.php
+					?content=personEditForm
+					&personID='.$thisPersonID.'">
+					<img src="images/btnEdit.png" border="0" alt="edit button" />
+					</a>';
+									
+  					if (($indx % 2) == 1) {$rowClass = $tdOdd; } else { $rowClass = $tdEven; }  
+ 
+					echo '<tr '.$rowClass.' height="20">
+					
+								<td>'.$personArray[$indx]['Salutation'].'&nbsp;</td>
+								
+								<td>'.$personArray[$indx]['FirstName'].'&nbsp;</td>
+
+								<td>'.$personArray[$indx]['LastName'].'&nbsp;</td>
+
+								<td>'.$personArray[$indx]['Tel'].'&nbsp;</td>
+								
+								<td>'.$personArray[$indx]['eMail'].'&nbsp;</td>';
+
+					if (isset($accessLevel) AND $accessLevel >= 21) {
+							echo '<td>'.$personEditLink.'&nbsp;</td>';
+					}
+					echo '</tr>	';	
+  
+				}
+			echo '</table>';
+			//		END:  Table of tPerson records
+			}	
+																
+			if (isset($accessLevel) AND $accessLevel >= 21) {
+
+				//include_once('includes/inc_personAddForm.php');
+				include_once('includes/tp_personAddForm.php');
+				
+			}
+																							
+		//		END: Output section 
+		}
+				
+
+unset($personID);
+unset($companyID);
+
+echo '<br /><hr /><br />';
+echo '<a href="index.php?content=companyList">Back to Company List</a>';
+
+?>

@@ -1,0 +1,42 @@
+<?php
+
+/*		INCLUDE FILE:   fn_personUpdate.php
+*
+*		folder:			includes/
+*
+*		used in:       index.php
+*
+*		version:    	0901   date: 2010-07-01
+*
+*		purpose:			UPDATES edits from tp_personEditForm.php
+*
+*	===========================================================================
+*/		
+
+	function personUpdate($personID, $Salutation, $FirstName, $LastName, $Tel, $eMail, $companyID) {
+		
+		$tPerson_SQLupdate = "UPDATE tPerson SET ";			
+		$tPerson_SQLupdate .=  "CompanyID = '".$companyID."', "; 
+		
+		$tPerson_SQLupdate .=  "Salutation = '".$Salutation."', ";
+		$tPerson_SQLupdate .=  "FirstName = '".$FirstName."', ";
+		$tPerson_SQLupdate .=  "LastName = '".$LastName."', ";
+		$tPerson_SQLupdate .=  "Tel = '".$Tel."', ";
+		$tPerson_SQLupdate .=  "eMail = '".$eMail."' ";
+		$tPerson_SQLupdate .=  "WHERE ID = '".$personID."' "; 	
+	
+		if (!empty($LastName)) {
+			if (mysql_query($tPerson_SQLupdate))  {	
+				$errorMsg = "";
+			} else {
+				$errorMsg = "FAILED to update person.";
+			}
+		} else {
+			$errorMsg = "Cannot make Lastname empty.";
+		}		
+		
+		return $errorMsg;
+	}	
+
+	
+?>

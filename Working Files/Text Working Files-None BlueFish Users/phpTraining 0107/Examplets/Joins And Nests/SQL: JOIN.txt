@@ -1,0 +1,9 @@
+SELECT
+tPerson.ID,
+tPerson.Salutation,
+tPerson.FirstName,
+tPerson.LastName,
+tCompany.preName,
+tCompany.Name
+FROM tPerson JOIN tCompany
+ON tPerson.CompanyID = tCompany.ID

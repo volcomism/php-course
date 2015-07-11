@@ -1,0 +1,81 @@
+/*		StyleSheet file = alphacrm_layout.css
+
+			*
+			* Bespoke  Template Stylesheet by TMITworld.co.uk
+			* Author www.TMITworld.co.uk
+			*
+			*		used in php/MySQL Training Course
+			*		for Infinite Skill Inc.
+			*
+			* StyleSheet name = alphacrm_layout.css
+			 			
+*/
+
+#header {
+ 	text-align: center;
+ 	font-size: 18pt;	
+}    
+
+#outerWrapper {
+    border-spacing: 10px;
+    display: table;
+    
+}
+
+#innerWrapper {
+    border-spacing: 10px;
+    display: table;
+}
+
+#menuColumn{
+    display: table-cell;
+    border: 1px solid #094700;
+    padding: 10px;
+    vertical-align: top;
+    background-color: #DDFFBB;
+    min-width: 140px;
+}
+    
+#contentColumn {
+    display: table-cell;
+    border: 1px solid #094700;
+    padding: 10px;
+	 vertical-align: top;
+	 background-color: #FCFFCD;
+	 min-width: 700px;
+}
+
+#footer {
+ 	text-align: center;	
+}    
+
+
+/*		DELIVERY:
+
+
+  <div id="outerWrapper">
+
+		    <div id="header">
+		      <p>header</p>		
+		    </div><!-- end header -->
+
+    		<div id="innerWrapper">
+    		
+      		<div id="menuColumn">
+					<p>Menu</p>					
+		      </div><!-- end menuColumn -->
+
+      		<div id="contentColumn">
+        			<p>content</p>        
+      		</div><!-- end contentColumn -->
+      		
+    		</div><!-- end innerWrapper -->
+
+		    <div id="footer">
+		      <p>footer</p>		
+		    </div><!-- end footer -->
+    
+  </div><!-- end outerWrapper -->
+  
+*/
+

@@ -1,0 +1,19 @@
+			echo '<p><strong>Combined Array</strong></p>';
+	
+			echo '<p class="scriptcolour">$mergedArray = array_combine($arrayP, $arrayQ);</p>';
+			echo '<p class="scriptcolour">sort($mergedArray);</p>';
+			echo '<p class="scriptcolour">$combinedArray = super_unique($mergedArray);</p>';
+				
+	
+			$mergedArray = array_merge($arrayP, $arrayQ);
+			
+	
+			sort($mergedArray);
+			
+			$combinedArray = super_unique($mergedArray);
+			
+			$namecombinedArray = var_name($combinedArray, get_defined_vars());
+	
+			$p = dumpArray($combinedArray, $namecombinedArray);
+			
+		

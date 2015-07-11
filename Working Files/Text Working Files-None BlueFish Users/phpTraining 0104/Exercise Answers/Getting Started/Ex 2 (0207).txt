@@ -1,0 +1,15 @@
+<?php
+	
+// Getting started - Exercise 2
+//	Create a php script using your list from 1 above 
+
+//	FIRST create the php tags (using snippet "Basics:php Tags simple")
+//		then paste your Exercise 1 snippet between the tags
+
+echo "<ul>";
+	echo "<li></li>";
+	echo "<li></li>";
+	echo "<li></li>";
+echo "</ul>";
+
+?>

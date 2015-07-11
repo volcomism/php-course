@@ -1,0 +1,77 @@
+<?php
+
+/*		THIS IS INCLUDE FILE:   dbClasses.php
+*
+*		folder:			classes/
+*
+*		used in:       index.php
+*
+*		version:    	1303_02   date: 2010-07-06
+*
+*		classes:			DBconnection	-		connect to and select DB 
+*										methods:   __construct($hostname, $username, $password, $database)
+*														getConnectionID()
+*														
+*							cTable			-		table meta info
+*										methods:   __construct($tableName)
+*														getRecordCount ()
+*
+*	=================================================================
+*/		
+
+class DBconnection{
+
+		//	public properties
+			public $errorMsg;
+			public $errorCode;
+
+		//	public methods
+			public function __construct($hostname, $username, $password, $database) {
+				$this->connection = @mysql_connect($hostname,$username,$password);
+				
+				if (!$this->connection) {
+					$this->errorMsg  = mysql_error();
+					$this->errorCode  = mysql_errno();
+					return false;
+				}
+
+				$this->selection = @mysql_select_db($database,$this->connection);
+	
+				if (!$this->selection) {
+					$this->errorMsg  = mysql_error();
+					$this->errorCode  = mysql_errno();
+					@mysql_close($this->connection);
+					return false;
+				}
+			}			
+
+			public function getConnectionID() {
+				return $this->connection;	
+			}
+													
+//	END:  		class DBconnection	
+}			
+
+class cTable{
+		//	properties
+			public $errorMsg;
+			public $errorCode;
+
+		// methods
+			public function __construct($tableName) {
+				$this->tableName = $tableName;	
+			}
+
+			public function getRecordCount () {
+		 		$countSQL = "SELECT COUNT(ID) AS countID FROM ".$this->tableName;
+				$this->countQuery = @mysql_query($countSQL);		
+						
+				$this->recordArray = @mysql_fetch_array($this->countQuery, MYSQL_ASSOC);
+				return $this->recordArray['countID'];
+			} 
+
+//	END:  		class cTable
+}		
+
+
+?>

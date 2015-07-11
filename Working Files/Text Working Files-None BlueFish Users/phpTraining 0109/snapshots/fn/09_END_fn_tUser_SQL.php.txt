@@ -1,0 +1,60 @@
+<?php
+
+/*		INCLUDE FILE:   fn_tUser_SQL.php
+*
+*		folder:			includes/
+*
+*		used in:       anywhere
+*
+*		version:    	0907   date: 2010-07-01
+*
+*		purpose:			SQL commands for tUser, tAccessLog and tAccessControl
+*
+*		content:			function userInsert($username, $password, $eMail, $accessLevel)
+*
+*
+*	===========================================================================
+*/		
+
+	function userInsert($username, $password, $passwordValidate, $eMail, $accessLevel) {
+
+		{	//		check the data before processing it
+			$errorMsg = "";		 
+			if (strlen($username) < 5) { $errorMsg = "Username cannot be less than 5 characters<br />"; }
+			if (strlen($password) < 5) { $errorMsg .= "Password cannot be less than 5 characters<br />"; }
+			if ($password <> $passwordValidate) { $errorMsg .= "Password retype does not match.<br />"; }
+		}
+		
+		if (empty($errorMsg)) {
+			
+			$md5Password = md5($password);
+			
+			{  //   SQL:     $tUser_SQLinsert			
+				$tUser_SQLinsert = "INSERT INTO tUser (";			
+				$tUser_SQLinsert .=  "username, ";
+				$tUser_SQLinsert .=  "password, ";
+				$tUser_SQLinsert .=  "eMail, ";
+				$tUser_SQLinsert .=  "accessLevel ";
+				$tUser_SQLinsert .=  ") ";
+				
+				$tUser_SQLinsert .=  "VALUES (";
+				$tUser_SQLinsert .=  "'".$username."', ";
+				$tUser_SQLinsert .=  "'".$md5Password."', ";	
+				$tUser_SQLinsert .=  "'".$eMail."', ";	
+				$tUser_SQLinsert .=  "'".$accessLevel."' ";
+				$tUser_SQLinsert .=  ") ";
+			}
+			
+			if (mysql_query($tUser_SQLinsert))  {	
+					$errorMsg = "";
+			} else {
+					$errorMsg = "FAILED to add new person.";
+			}		
+		} 		
+		return $errorMsg;
+		//		END: function userInsert()
+	 }  
+		
+
+	
+?>

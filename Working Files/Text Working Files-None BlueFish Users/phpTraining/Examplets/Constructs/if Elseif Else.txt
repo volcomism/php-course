@@ -1,0 +1,28 @@
+$test = 4;
+	
+if ( TRUE ) {
+	echo "this is true";
+} else {
+	echo "this is false";
+}
+echo "<br /><br />";
+
+
+if ( $test == 4 ) {
+	echo "The value is 4";
+} else {
+	echo "The value is NOT 4";
+}
+
+
+
+echo "<br /><br />";
+
+if ( $test >= 5 ) {
+	echo "testvalue is GTE 5";
+} elseif ($test >= 3) {
+	echo "testvalue is GTE 3 and LT 5";
+} else {
+	echo "testvalue is LT 3";
+}
+

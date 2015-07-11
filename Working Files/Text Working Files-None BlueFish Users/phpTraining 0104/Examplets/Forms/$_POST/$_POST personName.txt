@@ -1,0 +1,5 @@
+
+	$personFirstName = $_POST["personFirstName"];
+	$personLastName = $_POST["personLastName"];
+
+	echo "The name you entered was: ".$personFirstName." ".$personLastName;

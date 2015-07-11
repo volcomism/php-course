@@ -1,0 +1,19 @@
+
+	echo '<a href="twoPageModelOutput.php
+				?companyName=TMIT%20World%20Limited
+				&userName=infinite">
+				Send Details 1
+			</a>';
+
+	echo "<br /><br />";
+	
+	$getValue = 'TMIT%20World%20Limited';
+	$userName = "infinite";	
+	
+
+	echo '<a href="twoPageModelOutput.php
+				?companyName='.$getValue.'
+				&userName='.$userName.'">
+				Send Details 2
+			</a>';
+

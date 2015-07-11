@@ -1,0 +1,17 @@
+				echo '<p><strong>Dump array:</strong>&nbsp;&nbsp;&nbsp;';
+				echo '<span style="color: maroon;">$p = dumpArray($arrayP);</span></p>';	
+				$p = dumpArray($arrayP, $arrayP_name);
+		
+				echo "<hr />";
+		
+				$sorted = sort($arrayP); 
+				$arrayFn= 'sort($arrayP); ';
+				
+				echo '<p><strong>sort array:</strong>&nbsp;&nbsp;&nbsp;';
+				echo '<span style="color: maroon;">'.$arrayFn.'</span></p>';	
+				if ($sorted) {				
+					$p = dumpArray($arrayP, $arrayP_name);
+				} else {
+					echo "<br />unable to sort<br />";
+				}
+		

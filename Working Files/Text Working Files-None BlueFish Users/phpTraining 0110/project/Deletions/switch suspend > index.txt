@@ -1,0 +1,4 @@
+				    //	revision  1301:   suspend record
+				    case "personSuspend":
+				        $contentFile = "includes/tp_personSuspend.php";
+				        break;

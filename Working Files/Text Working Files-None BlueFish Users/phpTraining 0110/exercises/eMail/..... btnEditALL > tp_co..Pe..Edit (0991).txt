@@ -1,0 +1,16 @@
+				// revision    0991  -  eMail ALL 
+				$eMailAllLink = '<a href="index.php
+						?content=eMailAllLink
+						&companyID='.$companyID.'">
+						<img src="images/btnEmailAll.png" border="0" alt="eMail button" />
+						</a>';
+						
+				echo '<tr>
+							<td colspan="5" align="right">';
+				echo 
+				echo 	   '</td>
+							<td></td>
+						</tr>	';	
+				// END:  ^^^^^ revision    0991  -  eMail ALL ^^^^ 
+				
+				

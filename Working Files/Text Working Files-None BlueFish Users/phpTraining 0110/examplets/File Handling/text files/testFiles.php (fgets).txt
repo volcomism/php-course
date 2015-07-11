@@ -1,0 +1,40 @@
+<style type="text/css">
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.scriptcolour {
+	color: maroon;	
+}
+</style>
+
+<?php
+/*
+
+*	File:			testFiles.php
+*					/DEMO
+*	By:			TMIT
+*	Date:		
+*
+*	This script 
+*
+*
+*=====================================
+*/
+
+		// File handling example: 
+	
+			$file = fopen("plainTextFile", "r"); 		
+			$i = 0;
+			while(!feof($file))
+			  {		  	
+				$thisLine = fgets($file);		
+				
+				echo '<p><span class="scriptcolour">Line '.$i.':</span>&nbsp;&nbsp;&nbsp; '.$thisLine.'</p>';
+				
+				$i++; 
+			  }
+			fclose($file);
+			
+  
+
+?>

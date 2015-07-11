@@ -1,0 +1,10 @@
+	<title>php MySQL Training</title>
+	<meta name="generator" content="Bluefish 2.2.1" >
+	<meta name="author" content="Chris" >
+	<meta name="date" content="2012-01-06T01:18:18-0500" >
+	<meta name="copyright" content="TMIT World Limited">
+	<meta name="keywords" content="Infinite Skills - php/MySQL Training">
+	<meta name="description" content="Infinite Skills - php/MySQL Training">
+	<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+	<link rel="stylesheet" href="css/alphacrm_layout.css" type="text/css" />
+	<link rel="stylesheet" href="css/alphacrm_style.css" type="text/css" />

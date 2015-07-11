@@ -1,0 +1,27 @@
+
+		{	//	create the Salutation DROPDOWN  FIELD 
+			$salut_SQL =  "SELECT lookupValue FROM tLookup ";
+			$salut_SQL .= "WHERE lookupType = 'Salutation' ";
+			$salut_SQL .= "ORDER By lookupOrder ";
+			
+			$salut_SQL_Query = mysql_query($salut_SQL);	
+
+			$fld_Salutation = '<select name="Salutation">';
+	 	
+				while ($row = mysql_fetch_array($salut_SQL_Query, MYSQL_ASSOC)) {
+				    $salutValue = $row['lookupValue'];
+				    if ($current_Salutation == $salutValue) { 
+				    	$selectedFlag = " selected";
+				    } else { 
+				    	$selectedFlag = "";
+				    }
+				    $fld_Salutation .= '<option'.$selectedFlag.'>'.$salutValue.'</option>';
+				}
+			
+				mysql_free_result($salut_SQL_Query);		
+	
+			$fld_Salutation .= '</select>';
+			
+		//	END: create the Salutation DROPDOWN  FIELD 
+		}	
+

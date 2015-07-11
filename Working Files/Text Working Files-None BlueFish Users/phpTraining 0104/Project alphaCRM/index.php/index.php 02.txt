@@ -1,0 +1,6 @@
+
+		echo '<a href="forms/companyEdit.php">
+				<span style="color: maroon; ">Edit company</span>
+				</a>';
+		echo '<br /><br />';
+

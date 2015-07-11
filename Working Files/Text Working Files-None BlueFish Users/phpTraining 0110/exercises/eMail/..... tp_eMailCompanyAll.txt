@@ -1,0 +1,134 @@
+<?php
+
+/*		INCLUDE FILE:   tp_eMailCompanyAll.php
+*
+*		folder:			includes/
+*
+*		used in:       tp_companyPeopleEdit.php
+*
+*		version:    	1294   date: 2010-07-03
+*
+*		purpose:		   send eMail to all email addresses in selected tCompany
+*
+*	===========================================================================
+*/
+
+
+$companyID = $_POST["companyID"];
+if(!isset($companyID)) {$companyID = $_GET["companyID"]; }
+
+{	//  Get the eMail addresses of tPerson where CompanyID = $CompanyID
+
+		$tPerson_SQLselect = "SELECT eMail ";
+		$tPerson_SQLselect .= "FROM ";
+		$tPerson_SQLselect .= "tPerson ";
+		$tPerson_SQLselect .= "WHERE CompanyID = '".$companyID."' ";
+		
+		$tPerson_SQLselect_Query = mysql_query($tPerson_SQLselect);	
+		
+		//		collect all addresses as BCC as we never (!!) want to send
+		//		eMail addresses to other people
+		$MailBCC = "";
+		while ($row = mysql_fetch_array($tPerson_SQLselect_Query, MYSQL_ASSOC)) {
+
+			$eMail = $row['eMail'];	
+			if (!empty($eMail)) {
+				$MailBCC .= $eMail.",";
+			}
+
+		}
+		//		remove the LAST comma 
+		$MailBCC = trim($MailBCC, ",");
+		$MailBCCdisplayList = str_replace(",","<br />",$MailBCC)."<br />".str_repeat("-",15);
+		
+}
+	
+{	//  Get the SMTP server	and default FROM address				
+		
+$sendWasClicked = 0;
+$sendWasClicked = $_POST['sendWasClicked'];
+if (isset($sendWasClicked) AND $sendWasClicked == 1) {
+	
+		{	//		if $sendWasClicked 
+
+				$ToMail = "noreply@training.tmit.net";
+				
+				$FromMail = "noreply@training.tmit.net";
+				
+				$subject = $_POST['subject'];
+				$message = $_POST['message'];
+		
+				$headers =   'From: '.$FromMail."\r\n";
+				$headers .=  'Reply-To: '.$FromMail."\r\n";	
+				
+				$headers .=  'BCC: '.$MailBCC."\r\n";			// <<<<  key step here 
+												    
+				$headers .=  'Content-Type: text/html'.chr(13).chr(10);
+				$headers .=  'X-Mailer: PHP/' . phpversion();
+				
+				ini_set("SMTP",$SMTPserver);		
+				$mailSent = mail($ToMail, $subject, $message, $headers);
+						
+				//		vvvvvvvvvvvvvvvvvvvvv  eMail SENT HERE vvvvvvvvvvvvvvvvvvvvvvvvv		
+				if ($mailSent) {
+					echo 'Mail SENT.<br /><br />';
+					$msg = eMailSentLog("C", $CompanyID, 1, 0, $subject, $message);
+					//		>>   error trap here if needed ^^^^^
+					
+				} else {
+					echo 'Mail FAILED.<br /><br />';	
+				}		
+				//    ^^^^^^^^^^^^^^^^^^^^^^^   eMail Out ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+		}
+		
+} else {
+			
+
+		{	//		FORM to get eMail details 
+
+				$sendWasClicked_fld = '<input type="hidden" name="sendWasClicked" value=1>';
+				$CompanyID_fld = '<input type="hidden" name="companyID" value='.$companyID.'>';	
+				
+				$subject_fld = '<input type="text" name="subject" size="43"/>';
+				$message_fld = '<textarea name="message" cols="50" rows="10"></textarea>';
+		
+				$submit_fld = '<input type="submit" value="Send"/>';
+						
+				echo '<form method="post" action="index.php?content=eMailAllLink">';
+						echo $sendWasClicked_fld;
+						echo $CompanyID_fld;
+						echo '<table>';
+						echo '<tr>';
+							echo '<td valign="top">To:</td>';
+							echo '<td class="textEmph">'.$MailBCCdisplayList.'</td>';
+						echo '</tr>';
+						echo '<tr>';
+							echo '<td>From:</td>';
+							echo '<td class="textEmph">'.$FromMail.'</td>';
+						echo '</tr>';
+		
+						echo '<tr>';
+							echo '<td>Subject</td>';
+							echo '<td>'.$subject_fld.'</td>';
+						echo '</tr>';
+						echo '<tr>';
+							echo '<td>Message</td>';
+							echo '<td>'.$message_fld.'</td>';
+						echo '</tr>';
+						echo '<tr>';
+							echo '<td></td>';
+							echo '<td align="right">'.$submit_fld.'</td>';
+						echo '</tr>';
+				
+						echo '</table>		';
+				echo '</form>';
+				
+		//		END: FORM to get eMail details			
+		} 
+		
+} 
+
+echo '<br /><hr /><br />';
+echo '<a href="index.php?content=companyPeopleEdit&companyID='.$companyID.'">Back to Company List</a>';
+
+?>

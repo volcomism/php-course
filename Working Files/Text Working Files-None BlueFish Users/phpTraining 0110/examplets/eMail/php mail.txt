@@ -1,0 +1,86 @@
+<?php
+	
+//		eMail_test.php
+
+$sendWasClicked = 0;
+$sendWasClicked = $_POST['sendWasClicked'];
+
+$SMTPserver = 'smtp.ukonline.co.uk';
+
+$default_FromMail = "noreply@jacasta.com";
+
+$default_ToMail = "test@training.tmit.net";
+
+if (isset($sendWasClicked) AND $sendWasClicked == 1) {
+	
+		{	//		if $sendWasClicked 
+			
+				$ToMail = $_POST['ToMail'];
+				$FromMail = $_POST['FromMail'];
+				$subject = $_POST['subject'];
+				$message = $_POST['message'];
+
+				$headers =   'From: '.$FromMail."\r\n";
+				$headers .=  'Reply-To: '.$FromMail."\r\n";	
+				$headers .=  'X-Mailer: PHP/' . phpversion();
+		
+				ini_set("SMTP",$SMTPserver);
+				$mailSent = mail($ToMail, $subject, $message, $headers);
+		
+				if ($mailSent) {
+					echo 'Mail SENT.<br /><br />';
+				} else {
+					echo 'Mail FAILED.<br /><br />';			
+				}		
+				
+				echo '<a href="eMail_test.php">again...</a>';
+		}
+		
+} else {
+	
+		{	//		FORM to get eMail details 
+
+					
+				$sendWasClicked_fld = '<input type="hidden" name="sendWasClicked" value=1/>';
+				
+				$ToMail_fld = '<input type="text" name="ToMail" value="'.$default_ToMail.'" size="25"/>';
+				$FromMail_fld = '<input type="text" name="FromMail" value="'.$default_FromMail.'" size="25"/>';
+				
+				$subject_fld = '<input type="text" name="subject" size="25"/>';
+				$message_fld = '<textarea name="message" cols="50" rows="10"></textarea>';
+		
+				$submit_fld = '<input type="submit" value="Send"/>';
+						
+				echo '<form method="post" action="eMail_test.php">';
+						echo $sendWasClicked_fld;
+						echo '<table>';
+						echo '<tr>';
+							echo '<td>To eMail</td>';
+							echo '<td>'.$ToMail_fld.'</td>';
+						echo '</tr>';
+						echo '<tr>';
+							echo '<td>From eMail</td>';
+							echo '<td>'.$FromMail_fld.'</td>';
+						echo '</tr>';
+		
+						echo '<tr>';
+							echo '<td>Subject</td>';
+							echo '<td>'.$subject_fld.'</td>';
+						echo '</tr>';
+						echo '<tr>';
+							echo '<td>Message</td>';
+							echo '<td>'.$message_fld.'</td>';
+						echo '</tr>';
+						echo '<tr>';
+							echo '<td></td>';
+							echo '<td align="right">'.$submit_fld.'</td>';
+						echo '</tr>';
+				
+						echo '</table>		';
+				echo '</form>';
+				
+			//		END: FORM to get eMail details			
+		} 
+} 
+        
+?>

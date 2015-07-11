@@ -1,0 +1,200 @@
+===About the Working Files===
+This PHP course is project based and users are encouraged to follow along and replicate the examples. To assist we have provided working files which can be found on the DVD in the folder called "Working Files", users who have purchased this product on digital download will find the files within the main folder. These working files have been created to work within the BlueFish editor that the author uses in this course.
+====
+
+=== Users who don't wish to use the recommend BlueFish editor ===
+Whilst we strongly recommend that users take advantage of pre-prepared code snippets and the many features offered by the Bluefish code editor, some users may wish to use another editor to follow this course. While we do not recommend using a different editor, to assist these customers we've also included the snippets / working files ( where possible ) in plain text format. These can be found in the "Working Files-None-BlueFish Users" folder and for customers who don't wish to use the Bluefish editor these text based working files should be used. Certain lessons may require none BlueFish users to manually input code based on the authors screen.
+=====
+
+
+To help you stay on track we have laid out a schedule of the order in which the working files should be used.
+
+01. Intro To Beginners PHP
+	0101 Intro What This Course Covers
+	0102 What We Need
+02. Getting Started
+	0201 Introducing XAMPP
+	0202 Downloading XAMPP
+	0203 XAMPP - Installing
+	0204 XAMPP - Setting Up
+	0205 Setting Up A PHP Editor - Bluefish
+	0206 Introduction To BlueFish
+	0207 The BlueFish Interface
+	0208 BlueFish Summary
+	0209 Downloading PHP Snippets
+	
+**resource: TMIT_res_php.xml should be acquired from the Working Files or downloaded as instructed before proceeding beyond here**
+
+	0210 Using PHP Snippets
+	0211 PHP Comments
+	0212 Our First PHP Page
+	0213 Intro To MySQL Databases
+	0214 Into To phpMyAdmin
+	0215 External Helpful Resources
+	0216 Exercises
+03. Our First Look At MySQL And PHP
+	0301 Connecting To A MySQL Database - Part 1
+	0302 Connecting To A MySQL Database - Part 2
+	0303 Our First MySQL Query - Part 1
+	0304 Our First MySQL Query - Part 2
+	0305 Creating A MySQL Database
+	0306 Create MySQL Tables - Part 1
+	0307 Create MySQL Tables - Part 2
+	0308 Database Structure
+	0309 Updating MySQL Tables
+	0310 Updating MySQL Tables - Example
+	0311 MySQL Delete Command
+	0312 Inserting Data In MySQL
+	0313 Intro To Variables And Operators
+	0314 Arithmetic Operators
+	0315 Assignment Operators
+	0316 Comparison Operators
+	0317 Introduction To Arrays
+	0318 Numeric Arrays
+	0319 Associative Arrays
+	0320 Multi-Dimensional Arrays
+	0321 Creating And Working With Arrays
+	0322 Creating Arrays From A Text File
+	0323 Lesson Review
+	
+**resource: phpTraining-0104.xml should be acquired from the Working Files or downloaded as instructed before proceeding beyond here**	
+
+04. Outputting And Processing Data
+	0401 Hiding Sensitive Data
+	0402 Including Sensitive Data
+	0403 PHP Echo And Quotes - Part 1
+	0404 PHP Echo And Quotes - Part 2
+	0405 Formatting Using sprintf
+	0406 Outputting Tabular Data
+	0407 Outputting Data And Time
+	0408 Introduction To Loops
+	0409 Do While Loops
+	0410 Repetition - For Loops
+	0411 Repetition - For Each Loops
+	0412 MySQL Select
+	0413 Formatting Outputted MySQL Data
+	0414 MySQL Joins Overview
+	0415 MySQL Joins
+	0416 MySQL Where And Order By
+05. Dealing With Variables
+	0501 Intro To Sending Variables
+	0502 Using Variables With GET
+	0503 Using Variables With POST
+	0504 Inserting Sent Data In A Database
+	0505 Updating A Database With Sent Data - Part 1
+	0506 Updating A Database With Sent Data - Part 2
+	0507 Redirection In PHP
+	0508 Creating A List - Example
+	0509 Styling The List - Example
+	0510 What We Have learned
+06. Inserting And Using Database Data
+	0601 Using One Page To Process Forms - Part 1
+	0602 Using One Page To Process Forms - Part 2
+	0603 Multi Part Forms
+	0604 Save And Return POST and GET
+	0605 Save And Return INSERT
+	0606 Save And Return UPDATE
+	0607 Normalization
+	0608 Simple Drop Downs
+	0609 Complex Drop Downs
+	0610 Revised Form - The Code
+	0611 Revised Form - The Result
+	0612 Lesson Review
+	
+**resource: phpTraining-0107.xml should be acquired from the Working Files or downloaded as instructed before proceeding beyond here**
+	
+07. MySQL Joins
+	0701 MySQL Join Types - Examples
+	0702 MySQL Join Diagrams
+	0703 Creating Nested Lists
+	0704 MySQL Nested Processing
+	0705 Styling Our Lists
+	0706 Intro To Functions
+	0707 Included Files
+08. PHP Errors And Security
+	0801 Introduction To Security And Errors
+	0802 Error Types - Databases
+	0803 PHP Error Types
+	0804 Custom Error Testing
+	0805 Create A Login Page
+	0806 Passwords For Login
+	0807 Protecting Pages
+	0808 Using Cookies - Theory
+	0809 Using Cookies - Practice
+	0810 Access Levels - Basic Restriction
+	0811 Access Levels - Restrict Fields
+	0812 Managing Users - Structure
+	0813 Managing Users - Create New
+	0814 Audit Trails - Access Function
+	0815 Audit Trails - Logging Logins
+	0816 Errors And Security - Review
+	
+**resources: phpTraining-0109.xml and end_08.zip should be acquired from the Working Files or downloaded as instructed before proceeding beyond here**
+	
+09. Building A Template Page
+	0901 PHP Templates
+	0902 Building Our PHP Template CSS/HTML
+	0903 Creating Template Menu
+	0904 Create Template Login Script
+	0905 Template Logout Script
+	0906 CMS Switch Statement
+	0907 Building Our CMS
+	0908 Setting up our CMS Content
+	0909 Complete CMS Module
+	0910 Review And Exercise
+	
+**resources: phpTraining-0110.xml and fonts.zip and exampleImages.zip should be acquired from the Working Files or downloaded as instructed before proceeding beyond here**
+	
+10. PHP Functions
+	1001 Function Structure
+	1002 Built In Functions Maths And Strings
+	1003 Built In Functions Date And Time
+	1004 Custom Functions
+	1005 Format With Functions
+	1006 Email Address Checking
+	1007 Database Functions
+	1008 Array Functions - sort And unique
+	1009 Array Functions - search, slice And merge
+	1010 Server Variables
+	1011 Browser Detection
+11. Using External Files, And Images
+	1101 Reading Text Files
+	1102 Writing Text Files
+	1103 Working With Image Files - exif
+	1104 Creating Image Files With GD Library
+	1105 Managing Images With GD Library
+	1106 Resizing Images With PHP
+	1107 Uploading Files - Overview
+	1108 Uploading Files - In Action
+	1109 Remote File Parsing
+12. Email With PHP
+	1201 Email With PHP And MySQL
+	1202 Sendmail SMTP Server
+	1203 Sendmail mail Function
+	1204 PHP mail CC And BCC
+	1205 HTML email Content
+	1206 Email Out - Hiding SMTP Address
+	1207 Email Out - Embedded Form
+	1208 Logging Sent Email
+13. Real Life PHP Introduction
+	1301 Real Life Introduction
+	1302 Building PHP Tools - Button Maker
+	1303 Building PHP Tools - Embedded Tool
+	1304 Managing Deletions - Suspension Fields
+	1305 Managing Deletions - Suspend Record
+	1306 Managing Deletions - Restore Records
+	1307 OO Programming - A Caveat
+	1308 OO Programming Model - DB Connection
+	1309 OO Programming - DB Examples
+	1310 CMS Open Source
+	1311 CMS Joomla
+	
+**resources: vtiger.zip is downloaded during this lesson 1312 and is available in the Working Files folder**
+
+	1312 CRM Download And Extract
+	1313 CRM vTiger Install
+	1314 CRM Modifying vTiger
+14. About The Author
+	1401 About The Author
+
+E&OE

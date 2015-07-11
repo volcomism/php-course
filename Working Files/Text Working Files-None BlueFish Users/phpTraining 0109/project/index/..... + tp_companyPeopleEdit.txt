@@ -1,0 +1,3 @@
+				    case "companyPeopleEdit":						
+ 				         $contentFile = "includes/tp_companyPeopleEdit.php";
+				        break;

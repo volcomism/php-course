@@ -1,0 +1,122 @@
+<?php
+
+/*		INCLUDE FILE:   tp_companyInsert.php
+*
+*		folder:			includes/
+*
+*		used in:       index.php
+*
+*		version:    	0901   date: 2010-07-01
+*
+*		purpose:			FORM to enter new company details
+*							POST fields to itself via index.php?content=insertCompany
+*							invoke function companyInsert(...) [from file fn_tCompany_SQL.php]
+*
+*	=====================================================================================
+*/		
+
+
+		include_once('includes/fn_tCompany_SQL.php');
+		include_once('includes/fn_tLookup_SQL.php');
+							
+		$companyInserted = $_POST["companyInserted"];
+		if(!isset($companyInserted)) {$companyInserted = $_GET["companyInserted"]; }
+		
+		{	//		Insert New tCompany Record
+			if(isset($companyInserted) AND $companyInserted == '1'){
+				
+				$preName = $_POST["preName"];	
+				$companyName = $_POST["companyName"];	
+				$RegType = $_POST["RegType"];	
+				$StreetA = $_POST["StreetA"];	
+				$StreetB = $_POST["StreetB"];	
+				$StreetC = $_POST["StreetC"];	
+				$Town = $_POST["Town"];	
+				$County = $_POST["County"];	
+				$Postcode = $_POST["Postcode"];	
+				$COUNTRY = $_POST["COUNTRY"];	
+					
+				$insertMsg = companyInsert($preName, $companyName, $RegType, $StreetA, 
+									$StreetB, $StreetC, $Town, $County,
+									$Postcode, $COUNTRY)	;
+									
+				if (!empty($insertMsg)) {
+					echo $insertMsg;
+				} else {
+					$fullCoName = fullCoName('1', $preName, $companyName, $RegType);
+					echo "Company <strong>".$fullCoName."</strong> was successfully inserted.<br /><br />";	
+				}
+				
+				unset($companyInserted);
+			}		
+		//		END:  Insert New tCompany Record		
+		}
+		
+
+		$fld_companyInserted = '<input type="hidden" name="companyInserted" value="1"/>';
+		$fld_COUNTRY = dropdownCountries('');
+		
+		{	//	FORM postCompany 
+		//echo '<form name="postCompany" action="companySave.php" method="post">';
+		echo '<form name="postCompany" action="index.php?content=insertCompany" method="post">';
+				echo $fld_companyInserted;
+				echo '
+				<table>
+					<tr>
+						<td>pre Name</td>
+						<td><input type="text" name="preName" /></td>
+					</tr>
+					<tr>
+						<td>Company Name</td>
+						<td><input type="text" name="companyName" /></td>
+					</tr>
+					<tr>
+						<td>Reg Type</td>
+						<td><input type="text" name="RegType" /></td>
+					</tr>
+					<tr>
+						<td>Address</td>
+						<td><input type="text" name="StreetA" /></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="text" name="StreetB" /></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="text" name="StreetC" /></td>
+					</tr>
+					<tr>
+						<td>Town</td>
+						<td><input type="text" name="Town" /></td>
+					</tr>
+					<tr>
+						<td>County</td>
+						<td><input type="text" name="County" /></td>
+					</tr>
+					<tr>
+						<td>Postcode</td>
+						<td><input type="text" name="Postcode" /></td>
+					</tr>
+					<tr>
+						<td>COUNTRY</td>
+						<td>'.$fld_COUNTRY.'</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td align="right"><input type="submit"  value="Save" /></td>
+					</tr>
+				</table>
+				';
+					
+		echo '</form>';
+		//	END: FORM postCompany 
+		}		
+		
+	echo "<br /><hr /><br />";
+
+	echo '<a href="../index.php">homepage</a>';
+	echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+	echo '<a href="index.php?content=companyList">Company List</a>';
+
+?>

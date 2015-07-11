@@ -1,0 +1,7 @@
+						echo '<form name="authForm" action="../index.php" method="post">';	
+								echo '
+									<input type="hidden" name="auth" value="1" />
+									Password OK: 									
+									<input type="submit"  value="Click to Proceed" />
+								';
+						echo '</form>';

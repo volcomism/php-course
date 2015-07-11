@@ -1,0 +1,9 @@
+// Getting started - Exercise 1
+//	Create a Bluefish snippet to render a 3-point HTML unordered list.
+
+echo "<ul>";
+	echo "<li></li>";
+	echo "<li></li>";
+	echo "<li></li>";
+echo "</ul>";
+

@@ -1,0 +1,16 @@
+				//  SWITCH processing on $contentCode.  
+				//		update code:   0905 Content management 
+				switch ($contentCode) {
+				    case "companyList":
+				        $contentMsg = $contentCode;
+				        break;
+				    case "insertCompany":
+				        $contentMsg = $contentCode;
+				        break;
+				    case "editCompany":
+				        $contentMsg = $contentCode;
+				        break;
+				    case "insertUser":
+				        $contentMsg = $contentCode;
+				        break;
+				}			

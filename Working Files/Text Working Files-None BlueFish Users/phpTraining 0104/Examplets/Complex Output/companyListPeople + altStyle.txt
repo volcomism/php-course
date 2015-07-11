@@ -1,0 +1,3 @@
+        					if (($indx % 2) == 1) {$rowClass = $tdOdd; } else { $rowClass = $tdEven; }  
+ 
+							echo '<tr '.$rowClass.'>

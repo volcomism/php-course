@@ -1,0 +1,2 @@
+//		update code:   coPeopleEdit 0807_11_cookie
+$accessLevel = $_COOKIE["accessLevel"];

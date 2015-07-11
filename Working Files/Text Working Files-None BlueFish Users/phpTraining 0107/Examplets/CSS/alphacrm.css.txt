@@ -1,0 +1,54 @@
+/*       CSS style sheet 			alphacrm.css         */
+/*																		*/
+/* 			for the ALPHA-CRM project						*/
+/* 																	*/
+/* 																	*/
+
+a {
+	color:#0000FF;
+	text-decoration: none;
+	
+}
+
+a:hover {
+	border-bottom:2px solid;
+	color:maroon;
+	
+}
+
+a .tableHeader {
+	background-color: #000000;	
+	color: white;	
+	font-weight: bold;
+	border-bottom:1px solid;	
+}
+
+
+a:hover .tableHeader {
+	background-color: #000000;	
+	color: red;	
+	font-weight: bold;
+	border-bottom:1px solid;	
+}
+
+.trOdd {
+	background-color: #BFFFCF;	
+}
+
+.trEven {
+	background-color: #FCCDFF;	
+}
+
+.textNormal {
+	font-family: arial, helvetica, sans-serif;
+	color: black;	
+}
+
+.textEmph {
+	color: maroon;	
+}
+.tableHeader {
+	background-color: #000000;	
+	color: white;	
+		
+}

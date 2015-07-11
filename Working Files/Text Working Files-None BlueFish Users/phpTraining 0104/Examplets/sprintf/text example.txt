@@ -1,0 +1,12 @@
+echo '<p style=" text-decoration: underline; font-family: arial, helvetica, sans-serif; color:red; ">
+		text example		
+	</p>';
+	
+$town = "Banbury";
+$county = "Oxfordshire";
+$format = 'The town of %s is in the county of %s';
+$output = sprintf($format, $town, $county);
+
+echo "<p>$output</p>";
+
+echo "<br /><hr /><br />";

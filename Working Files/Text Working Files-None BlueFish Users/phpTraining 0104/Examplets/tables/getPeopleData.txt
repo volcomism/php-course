@@ -1,0 +1,18 @@
+	
+			//		read CSV data file
+	
+			$file = fopen("../dbWIP/datafile", "r");					//		open the file 'datafile' for 'r'eading 		
+			$i = 0;
+			while(!feof($file))									//		while NOT the End Of File 
+			  {		  	
+				$thisLine = fgets($file);						//		gets the next line from 'datafile'				
+				$personData[$i] = explode(",", $thisLine);//    sets 
+																		//		$personData[$i] = array( $thisLine );
+																		//		whatever's in $thisline separated by commas .
+				$i++;  												//		increment $i 
+			  }
+			fclose($file); 										//		close the file 
+			
+			$numRows = sizeof($personData);
+
+	

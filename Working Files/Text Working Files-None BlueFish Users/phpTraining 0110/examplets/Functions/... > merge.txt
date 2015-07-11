@@ -1,0 +1,15 @@
+						
+		echo '<p><strong>Combined Array</strong></p>';
+
+		echo '<p class="scriptcolour">$combinedArray = array_combine($arrayP, $arrayQ);</p>';
+			
+
+		$combinedArray = array_merge($arrayP, $arrayQ);
+		$namecombinedArray = var_name($combinedArray, get_defined_vars());
+
+		sort($combinedArray);
+		
+
+		$p = dumpArray($combinedArray, $namecombinedArray);
+		
+		

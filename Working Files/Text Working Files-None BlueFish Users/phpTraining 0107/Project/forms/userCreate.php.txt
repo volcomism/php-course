@@ -1,0 +1,70 @@
+<?php
+/*
+
+*	File:			userCreate.php
+*	By:			TMIT
+*	Date:		2010-06-01
+*
+*	This script provides ADMIN with a form to 
+*	create a new user login
+*	checks data integrity and SAVES if OK
+*
+*
+*=====================================
+*/
+
+{ 		//	Secure Connection Script
+		include('../../htconfig/dbConfig.php'); 
+		$dbSuccess = false;
+		$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+		
+		if ($dbConnected) {		
+			$dbSelected = mysql_select_db($db['database'],$dbConnected);
+			if ($dbSelected) {
+				$dbSuccess = true;
+			} else {
+				echo "DB Selection FAILed";
+			}
+		} else {
+				echo "MySQL Connection FAILed";
+		}
+		//	END	Secure Connection Script
+}
+
+$loginAuthorised = ($_COOKIE["loginAuthorised"] == "loginAuthorised");
+
+if ($dbSuccess AND $loginAuthorised) {
+	//	external style sheet 
+	echo '<link rel="stylesheet" href="../css/alphacrm.css" type="text/css" >';
+	include_once('../includes/stringFunctions.php');
+	
+	$thisScriptName = 'userCreate.php';
+
+	echo '<h2>New User Creation Form</h2>';
+		
+	$saveClicked = $_POST["saveClicked"];
+	if (isset($saveClicked) AND ($saveClicked == 'saveClicked')) {
+		
+		//		Save the user 		
+				include_once('../includes/inc_userCreateSave.php');
+		 
+	} else {
+		echo "<br />";
+
+		//		create the accessLevel DROPDOWN  FIELD 
+				include_once('../includes/inc_userCreateACLdropdown.php');
+								
+		//		FORM postUser
+				include_once('../includes/inc_userCreateForm.php');	
+	}	
+	echo "<br /><hr /><br />";
+	echo '<a href="../index.php">Quit - to homepage</a>';
+
+} else {
+	
+	echo '<h2>You are not authorised to use this page.</h2>';
+	echo "<br /><hr /><br />";
+//		END:       if ($dbSuccess AND $loginAuthorised)
+}
+
+?>

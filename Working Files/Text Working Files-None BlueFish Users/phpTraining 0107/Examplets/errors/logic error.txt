@@ -1,0 +1,19 @@
+
+echo '<h4>Logic Error:</h4>';
+
+$ij = 4;
+$ji = 2;
+
+echo '$ij = '.$ij."<br />";
+echo '$ji = '.$ji."<br />";
+
+if ($ij < $ji) {
+	echo '$ij < $ji<br />';
+} else if ($ij > $ij) {
+	echo '$ij > $ji<br />'; 
+} else {
+	echo '$ij = $ji<br />';
+}
+
+echo "<br />";
+

@@ -1,0 +1,128 @@
+<?php
+
+//		eMail_test_cc.php
+
+$pageStyle = pageStyle();								//		<<<
+
+$sendWasClicked = 0;
+$sendWasClicked = $_POST['sendWasClicked'];
+
+$SMTPserver = 'smtp.ukonline.co.uk';
+
+$default_FromMail = "noreply@jacasta.com";
+
+$default_ToMail = "test@training.tmit.net";
+
+					
+if (isset($sendWasClicked) AND $sendWasClicked == 1) {
+	
+		{	//		if $sendWasClicked 
+			
+				$ToMail = $_POST['ToMail'];
+				$MailCC = $_POST['MailCC'];								//		<<<
+				$MailBCC = $_POST['MailBCC'];								//		<<<
+				$FromMail = $_POST['FromMail'];
+				$subject = $_POST['subject'];
+				$message = $_POST['message'];
+		
+																	
+				$headers =   'From: '.$FromMail."\r\n";
+				$headers .=  'Reply-To: '.$FromMail."\r\n";	
+				
+				$headers .=  'Cc: '.$MailCC."\r\n";							//		<<<
+				$headers .=  'BCC: '.$MailBCC."\r\n";							//		<<<
+												    
+				$headers .=  'Content-Type: text/html'.chr(13).chr(10);
+				$headers .=  'X-Mailer: PHP/' . phpversion();
+		
+				ini_set("SMTP",$SMTPserver);
+				$mailSent = mail($ToMail, $subject, $message, $headers);
+		
+				if ($mailSent) {
+					echo 'Mail SENT.<br /><br />';
+				} else {
+					echo 'Mail FAILED.<br /><br />';			
+				}		
+				
+				echo '<a href='.$thisScriptname.'>again...</a>';
+		}
+		
+} else {
+	
+		{	//		FORM to get eMail details 
+
+				$sendWasClicked_fld = '<input type="hidden" name="sendWasClicked" value=1/>';
+
+				$FromMail_fld = '<input type="text" name="FromMail" value="'.$default_FromMail.'" size="25"/>';
+				
+				$ToMail_fld = '<input type="text" name="ToMail" value="'.$default_ToMail.'" size="25"/>';
+
+
+		//		vvvvvvvvvvvvv
+					$MailCC_fld = '<input type="text" name="MailCC" size="25"/>';
+					$MailBCC_fld = '<input type="text" name="MailBCC" size="25"/>';
+		//		^^^^^^^^^^^^^^
+		
+		
+				$subject_fld = '<input type="text" name="subject" size="25"/>';
+				$message_fld = '<textarea name="message" cols="50" rows="10"></textarea>';
+		
+				$submit_fld = '<input type="submit" value="Send"/>';
+						
+				echo '<form method="post" action="'.$thisScriptname.'">';
+						echo $sendWasClicked_fld;
+						echo '<table>';
+						echo '<tr>';
+							echo '<td>To:</td>';
+							echo '<td>'.$ToMail_fld.'</td>';
+						echo '</tr>';
+						echo '<tr>';
+							echo '<td>CC:</td>';
+							echo '<td>'.$MailCC_fld.'</td>';			//		<<<
+						echo '</tr>';
+						echo '<tr>';
+							echo '<td>BCC:</td>';
+							echo '<td>'.$MailBCC_fld.'</td>';			//		<<<
+						echo '</tr>';
+						echo '<tr>';
+							echo '<td>From:</td>';
+							echo '<td>'.$FromMail_fld.'</td>';
+						echo '</tr>';
+		
+						echo '<tr>';
+							echo '<td>Subject:</td>';
+							echo '<td>'.$subject_fld.'</td>';
+						echo '</tr>';
+						echo '<tr>';
+							echo '<td valign="top">Message:</td>';
+							echo '<td>'.$message_fld.'</td>';
+						echo '</tr>';
+						echo '<tr>';
+							echo '<td></td>';
+							echo '<td align="right">'.$submit_fld.'</td>';
+						echo '</tr>';
+				
+						echo '</table>		';
+				echo '</form>';
+				
+			//		END: FORM to get eMail details			
+		} 
+} 
+
+function pageStyle() {
+			echo'	
+			<style type="text/css">
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			td {
+				color: maroon;	
+			}
+			.scriptcolour {
+				color: maroon;	
+			}
+			
+			</style>
+			';
+}        
+?>

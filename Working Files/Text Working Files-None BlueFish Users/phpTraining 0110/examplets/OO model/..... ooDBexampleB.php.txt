@@ -1,0 +1,35 @@
+<?php
+
+//	File:   ooDBexampleB.php
+//	folder:			DEMO
+
+include('../../htconfig/dbConfig.php'); 
+include('../classes/dbClasses.php'); 
+
+	$connectDB = new DBconnection(	$db['hostname'],
+												$db['username'],
+												$db['password'],
+												$db['database']	);
+												
+	$connectionID = $connectDB->getConnectionID();
+	
+	echo "New connectionID  is $connectionID";
+
+echo "<br /><hr /><br />";
+
+	$tableName = "tPerson";
+	$tableObject = new cTable($tableName);
+	
+	echo "Number of records in ".$tableName." is: ".$tableObject->getRecordCount();	 
+	
+	echo "<br /><hr /><br />";
+	
+	$tableName = "tCompany";
+	$tableObject = new cTable($tableName);
+
+	echo "Number of records in ".$tableName." is: ".$tableObject->getRecordCount();	 
+
+echo "<br /><hr /><br />";
+
+
+?>

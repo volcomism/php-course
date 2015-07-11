@@ -1,0 +1,12 @@
+INSERT INTO tLookup (
+lookupType , lookupValue, lookupOrder 
+)
+VALUES 
+('RegType', 'Ltd.', 1), 
+('RegType', 'LLC.', 2), 
+('RegType', 'plc', 3), 
+('RegType', 'GmbH', 4), 
+('RegType', 'BV', 5), 
+('RegType', 'Inc.', 6), 
+('RegType', 'AG', 7), 
+('RegType', 'AB', 8)

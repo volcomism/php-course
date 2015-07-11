@@ -1,0 +1,12 @@
+								echo '<tr>
+											<td>Salutation</td>
+											<td>FirstName</td>
+											<td>LastName</td>
+											<td>Telephone</td>
+											<td>eMail</td>';
+											
+								//		update code:   coPeopleEdit 0807_13_restrict_21
+								if (isset($accessLevel) AND $accessLevel >= 21) {
+									echo '<td>&nbsp;</td>';
+								}
+								echo '</tr>	';	

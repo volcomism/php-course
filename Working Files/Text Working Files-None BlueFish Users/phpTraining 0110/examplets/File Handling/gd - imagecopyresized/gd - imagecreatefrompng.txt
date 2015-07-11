@@ -1,0 +1,52 @@
+<?php
+
+		$image_file = 'testImage.png';
+		$image_path = '../images/'.$image_file;
+		
+		//		create an image resource from a file 
+		$image = imagecreatefrompng($image_path);
+
+		$red =  imagecolorallocate ($image, 255, 0, 0);
+		$yellow = imagecolorallocate ($image, 235, 235, 51);
+	
+		$textColour = $yellow;
+
+		$xCentre = 50;
+		$yCentre = 50;
+		$width = 50;
+		$height = 80;
+
+		$startAngle = 0;
+		$endAngle = 360;
+				
+		$thickness = 5;
+		
+		//		Set thickness in px for drawing
+		imagesetthickness ( $image  ,  $thickness  );
+		
+		//		Draw the arc		
+ 		imagearc($image, 
+					$xCentre, $yCentre, 
+					$width, $height,  
+					$startAngle, $endAngle, 
+					$red);		
+		
+
+	//		path and name of image file to be saved	
+		$image_file = 'testImage2.png';
+		$image_path = '../images/'.$image_file;
+	
+	//		save the image (MAKE SURE PERMISSIONS of the target directory are set to 'WRITE')
+		if (imagepng ( $image, $image_path)) {
+			chmod($image_path, 0666);			//		used for commercial grade systems 		
+			echo 'The image is "'.$image_path.'"<br /><br /><br />';	
+			echo '<img src="'.$image_path.'" alt="Test Image from GD Library" />';
+		} else {
+			echo "Failed to create image.";
+		}
+
+	//		release the memory used by the image 
+		imagedestroy($image);
+	
+
+?>

@@ -1,0 +1,15 @@
+
+include('../htconfig/dbconf.php'); 
+
+$dbConnected = mysql_connect($db['hostname'],$db['username'],$db['password']);
+if ($dbConnection) {
+	
+	$dbSelected = mysql_select_db($db['database'],$dbConnected);
+	if ($dbSelected) {
+		echo "DB connected<br /><br />";
+	} else {
+		echo "DB connection FAILED<br /><br />";
+	}		
+} else {
+	echo "MySQL connection FAILED<br /><br />";
+}

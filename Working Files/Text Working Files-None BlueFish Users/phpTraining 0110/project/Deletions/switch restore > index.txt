@@ -1,0 +1,6 @@
+     
+				    //	revision  1302:   restore record
+				    case "personRestore":
+				        $contentFile = "includes/tp_companyPeopleEdit.php";
+				        break;
+     

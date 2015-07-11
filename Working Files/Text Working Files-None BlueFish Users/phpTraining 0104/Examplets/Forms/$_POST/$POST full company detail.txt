@@ -1,0 +1,48 @@
+	
+	$companyID = $_POST["companyID"];	
+	
+	$tCompany_SQLselect = "SELECT * ";
+	$tCompany_SQLselect .= "FROM ";
+	$tCompany_SQLselect .= "tCompany ";
+	$tCompany_SQLselect .= "WHERE companyID = '".$companyID."' ";
+	
+
+	$tCompany_SQLselect_Query = mysql_query($tCompany_SQLselect);	
+	
+	while ($row = mysql_fetch_array($tCompany_SQLselect_Query, MYSQL_ASSOC)) {
+		$CompanypreName = $row['preName'];
+		$CompanyName = $row['Name'];
+		$RegType = $row['RegType'];
+		
+		$StreetA = $row['StreetA'];
+		$StreetB = $row['StreetB'];
+		$StreetC = $row['StreetC'];
+		$Town = $row['Town'];
+		$County = $row['County'];
+		$Postcode = $row['Postcode'];
+		$COUNTRY = $row['COUNTRY'];
+		 
+		$CompanyFullName = trim($CompanypreName." ".$CompanyName." ".$RegType);
+		
+		$CompanyFullAddress =  $StreetA;
+		
+		if (!empty($StreetB)) { $CompanyFullAddress .=  "<br />".$StreetB; }
+		if (!empty($StreetC)) { $CompanyFullAddress .=  "<br />".$StreetC; }
+		if (!empty($Town)) { $CompanyFullAddress .=  "<br />".$Town; }
+		if (!empty($County)) { $CompanyFullAddress .=  "<br />".$County; 
+									} else {
+									  $CompanyFullAddress .=  "<br />"
+									} 
+		if (!empty($Postcode)) { $CompanyFullAddress .=  "&nbsp;&nbsp;&nbsp;".$Postcode; }
+		
+		if (!empty($COUNTRY)) { $CompanyFullAddress .=  "<br />".$COUNTRY; }
+
+    
+	}
+	
+	mysql_free_result($tCompany_SQLselect_Query);			
+	
+	echo $CompanyFullName;
+	echo "<br />";
+	echo $CompanyFullAddress;
+	

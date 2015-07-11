@@ -1,0 +1,37 @@
+<?php
+//		getFileContents.php
+
+
+	$urlStringPrestring = 'http://www.training.tmit.net/tmit/tempHTML/';
+	$fileArray = array('toowhoo.html', 'toowhit.html', 'tooright.html');
+	
+	foreach ($fileArray as $value) {
+		
+		$urlString = $urlStringPrestring.$value;
+		
+		echo 'Extracting content from: '.$value.'<br /><br />';
+		
+		$pageContent = file_get_contents($urlString);
+		
+		echo 'Title: '.getTextBetweenStrings($pageContent, "<title>", "</title>").'<br />';		
+		echo 'Product: '.getTextBetweenStrings($pageContent, '<h3>Product:', '</h3>').'<br />';
+		echo 'eMail: '.getTextBetweenStrings($pageContent, 'eMail: <a href="mailto:', '">').'<br />';
+		
+		echo '<br /><hr /><br />';		
+		
+	}
+
+
+
+function getTextBetweenStrings($source, $leftstring, $rightstring) {
+	
+	$posLeft = stripos($source, $leftstring);						//		ignore case 
+	$posLeft = $posLeft + strlen($leftstring);
+	
+	$posRight = stripos($source, $rightstring, $posLeft);
+	$returnstring = trim(substr($source,$posLeft,  $posRight - $posLeft));
+
+	return ($returnstring);	
+}
+
+?>

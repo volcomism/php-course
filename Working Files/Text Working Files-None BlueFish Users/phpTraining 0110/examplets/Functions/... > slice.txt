@@ -1,0 +1,29 @@
+						
+		echo '<p style="color: maroon;">$p = dumpArray($tableData, $arrName);</p>';
+		$p = dumpArray($arrayQ, $arrayQ_name);
+
+		$slice = array_slice($arrayQ, 4);
+		$varnameSlice = var_name($slice, get_defined_vars());
+		echo '<p style="color: maroon;">$slice = array_slice($arrayQ, 4);</p>';
+		$p = dumpArray($slice, $varnameSlice);
+
+		$slice = array_slice($arrayQ, 2, 3);
+		$varnameSlice = var_name($slice, get_defined_vars());
+		echo '<p style="color: maroon;">$slice = array_slice($arrayQ, 2, 3);</p>';
+		$p = dumpArray($slice, $varnameSlice);
+
+		$slice = array_slice($arrayQ, -2, 3);
+		$varnameSlice = var_name($slice, get_defined_vars());
+		echo '<p style="color: maroon;">$slice = array_slice($arrayQ,-2, 3);</p>';
+		$p = dumpArray($slice, $varnameSlice);
+
+		$slice = array_slice($arrayQ, 5, 2);
+		$varnameSlice = var_name($slice, get_defined_vars());
+		echo '<p style="color: maroon;">$slice = array_slice($arrayQ, 5, 2);</p>';
+		$p = dumpArray($slice, $varnameSlice);
+
+		$slice = array_slice($arrayQ, 5, 2, TRUE);
+		$varnameSlice = var_name($slice, get_defined_vars());
+		echo '<p style="color: maroon;">$slice = array_slice($arrayQ, 5, 2, TRUE);</p>';
+		$p = dumpArray($slice, $varnameSlice);
+

@@ -1,0 +1,15 @@
+//	SQL = "UPDATE tableName SET fldName = fldValue WHERE indexName = indexValue"
+
+$_SQLupdate = "UPDATE tableName SET ";
+
+$_SQLupdate .= "fldNameA = '".$fldValueA."', ";
+
+$_SQLupdate .= "fldNameB = '".$fldValueB."' ";
+
+$_SQLupdate .= "WHERE indexName = '".$indexValue."' "; 
+
+if (mysql_query($_SQLupdate))  {
+	
+} else {	
+	
+}

@@ -1,0 +1,54 @@
+<?php
+
+	//		set size of image
+		$imageSizeX = 300;
+		$imageSizeY = 300;
+		
+		$image = imagecreate($imageSizeX, $imageSizeY);
+
+	//		first instance of imagecolorallocate sets background of image.
+		$background_teal = imagecolorallocate ($image, 0, 125, 125);
+	
+	//		now set a colour for the text
+		$red =  imagecolorallocate ($image, 255, 0, 0);
+		$yellow = imagecolorallocate ($image, 235, 235, 51);
+	
+		$textColour = $yellow;
+		
+	//		set a path to the font
+		$font_file = 'FreeMonoBoldOblique.ttf';
+		$font_path = '../fonts/'.$font_file;
+		
+	//		the text string
+		$string = 'php / MySQL Training';
+
+	//		path and name of image file to be saved	
+		$image_file = 'testImage.png';
+		$image_path = '../images/'.$image_file;
+	
+		$fontsize = 18;
+		$textAngle = 45;
+		$xOffset = 50;
+		$yOffset = 270;
+		
+	//		create the image 
+		imagettftext (	$image, $fontsize, 
+							$textAngle, 
+							$xOffset, $yOffset, 
+							$textColour, 
+							$font_path, 
+							$string);
+	
+	//		save the image (MAKE SURE PERMISSIONS of the target directory are set to 'WRITE')
+		if (imagepng ( $image, $image_path)) {
+			chmod($image_path, 0666);			//		used for commercial grade systems 		
+			echo 'The image is "'.$image_path.'"<br /><br /><br />';	
+			echo '<img src="'.$image_path.'" alt="Test Image from GD Library" />';
+		} else {
+			echo "Failed to create image.";
+		}
+
+	//		release the memory used by the image 
+		imagedestroy($image);
+	
+?>

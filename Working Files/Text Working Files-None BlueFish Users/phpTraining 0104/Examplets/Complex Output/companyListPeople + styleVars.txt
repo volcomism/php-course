@@ -1,0 +1,4 @@
+		
+			$tdOdd = 'style = "background-color: #FF8F8F;"';
+			$tdEven = 'style = "background-color: #76E9FF;"';
+			

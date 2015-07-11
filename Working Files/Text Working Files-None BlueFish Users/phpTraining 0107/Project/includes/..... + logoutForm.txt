@@ -1,0 +1,8 @@
+		echo '<br /><hr /><br />';
+		
+		echo '<form name="logoutForm" action="index.php" method="post">';	
+				echo '
+					<input type="hidden" name="auth" value="0" />
+					<input type="submit"  value="Logout" />
+				';
+		echo '</form>';
